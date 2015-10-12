@@ -4,6 +4,9 @@ using System.Xml.Serialization;
 
 namespace ConfigurationSectionHandlerDemo
 {
+    /// <summary>
+    /// References: http://theburningmonk.com/2011/06/generic-config-section-handlers/
+    /// </summary>
     internal class Program
     {
         private static void Main()
