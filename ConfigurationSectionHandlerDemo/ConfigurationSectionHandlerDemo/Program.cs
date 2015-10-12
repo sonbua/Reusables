@@ -20,7 +20,7 @@ namespace ConfigurationSectionHandlerDemo
         {
             var pageSections = (Page[]) ConfigurationManager.GetSection("page");
 
-            Console.WriteLine("Found {0} pages\n", pageSections.Length);
+            Console.WriteLine("Found {0} articles\n", pageSections.Length);
 
             foreach (var indexing in pageSections)
             {
