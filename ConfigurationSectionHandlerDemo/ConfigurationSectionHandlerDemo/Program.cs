@@ -11,14 +11,30 @@ namespace ConfigurationSectionHandlerDemo
     {
         private static void Main()
         {
+            TestGenericConfigurationSectionHandler();
+
             TestGenericCollectionConfigurationSectionHandler();
 
             Console.ReadLine();
         }
 
+        private static void TestGenericConfigurationSectionHandler()
+        {
+            Console.WriteLine("Test section with single config\n");
+
+            var singlePageSection = (SinglePage) ConfigurationManager.GetSection("page");
+
+            Console.WriteLine("Page name: {0}", singlePageSection.Name);
+            Console.WriteLine("Body: {0}", singlePageSection.Body);
+
+            Console.WriteLine("====================\n");
+        }
+
         private static void TestGenericCollectionConfigurationSectionHandler()
         {
-            var pageSections = (Page[]) ConfigurationManager.GetSection("page");
+            Console.WriteLine("Test section with collection of configs");
+
+            var pageSections = (Page[])ConfigurationManager.GetSection("site");
 
             Console.WriteLine("Found {0} articles\n", pageSections.Length);
 
@@ -30,22 +46,32 @@ namespace ConfigurationSectionHandlerDemo
         }
     }
 
-    [XmlRoot("article")]
+    [XmlRoot("page")]
     public class Page
     {
         [XmlAttribute("name")]
         public string Name { get; set; }
 
         [XmlElement("property")]
-        public PageTypeProperty Property { get; set; }
+        public PageProperty Property { get; set; }
     }
 
-    public class PageTypeProperty
+    public class PageProperty
     {
         [XmlAttribute("name")]
         public string Name { get; set; }
 
         [XmlAttribute("searchable")]
         public bool Searchable { get; set; }
+    }
+
+    [XmlRoot("page")]
+    public class SinglePage
+    {
+        [XmlElement("name")]
+        public string Name { get; set; }
+
+        [XmlElement("body")]
+        public string Body { get; set; }
     }
 }
