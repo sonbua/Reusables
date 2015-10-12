@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace ConfigurationSectionHandlerDemo
@@ -26,6 +27,7 @@ namespace ConfigurationSectionHandlerDemo
 
             Console.WriteLine("Page name: {0}", singlePageSection.Name);
             Console.WriteLine("Body: {0}", singlePageSection.Body);
+            Console.WriteLine("Properties count: {0}", singlePageSection.Properties.Length);
 
             Console.WriteLine("====================\n");
         }
@@ -73,5 +75,9 @@ namespace ConfigurationSectionHandlerDemo
 
         [XmlElement("body")]
         public string Body { get; set; }
+
+        [XmlArray("properties")]
+        [XmlArrayItem("property")]
+        public PageProperty[] Properties { get; set; }
     }
 }
