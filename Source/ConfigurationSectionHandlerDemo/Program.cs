@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace ConfigurationSectionHandlerDemo
@@ -36,7 +35,7 @@ namespace ConfigurationSectionHandlerDemo
         {
             Console.WriteLine("Test section with collection of configs");
 
-            var pageSections = (Page[])ConfigurationManager.GetSection("site");
+            var pageSections = (Page[]) ConfigurationManager.GetSection("site");
 
             Console.WriteLine("Found {0} articles\n", pageSections.Length);
 
