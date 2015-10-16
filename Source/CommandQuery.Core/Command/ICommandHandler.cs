@@ -1,6 +1,11 @@
 ﻿namespace CommandQuery.Core.Command
 {
-    public interface ICommandHandler<TCommand> where TCommand : Command
+    public interface ICommandHandler
+    {
+        void Handle(object command);
+    }
+
+    public interface ICommandHandler<TCommand> : ICommandHandler where TCommand : Command
     {
         void Handle(TCommand command);
     }
