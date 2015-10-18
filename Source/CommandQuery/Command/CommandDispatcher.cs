@@ -2,11 +2,11 @@
 
 namespace CommandQuery.Command
 {
-    public abstract class CommandDispatcher : ICommandDispatcher
+    public class CommandDispatcher : ICommandDispatcher
     {
         private readonly IServiceProvider _serviceProvider;
 
-        protected CommandDispatcher(IServiceProvider serviceProvider)
+        public CommandDispatcher(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
