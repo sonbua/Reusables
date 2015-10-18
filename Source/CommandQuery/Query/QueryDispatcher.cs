@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CommandQuery.Core.Query
+namespace CommandQuery.Query
 {
     public class QueryDispatcher : IQueryDispatcher
     {

@@ -1,4 +1,4 @@
-﻿namespace CommandQuery.Core.Command
+﻿namespace CommandQuery.Command
 {
     public abstract class Command
     {

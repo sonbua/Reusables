@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CommandQuery.Core
+namespace CommandQuery
 {
     public class Optional<T>
     {
@@ -45,14 +45,6 @@ namespace CommandQuery.Core
             return optionalObj != null && Equals(optionalObj);
         }
 
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return (EqualityComparer<T>.Default.GetHashCode(_value)*397) ^ HasValue.GetHashCode();
-            }
-        }
-
         public bool Equals(Optional<T> other)
         {
             if (HasValue && other.HasValue)
@@ -61,6 +53,14 @@ namespace CommandQuery.Core
             }
 
             return HasValue == other.HasValue;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (EqualityComparer<T>.Default.GetHashCode(_value)*397) ^ HasValue.GetHashCode();
+            }
         }
     }
 }

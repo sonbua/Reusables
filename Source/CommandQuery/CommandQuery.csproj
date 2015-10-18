@@ -7,8 +7,8 @@
     <ProjectGuid>{8A6F0955-9952-43CC-ACD8-327FF2DB890B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CommandQuery.Core</RootNamespace>
-    <AssemblyName>CommandQuery.Core</AssemblyName>
+    <RootNamespace>CommandQuery</RootNamespace>
+    <AssemblyName>CommandQuery</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -1,4 +1,4 @@
-﻿namespace CommandQuery.Core.Query
+﻿namespace CommandQuery.Query
 {
     public interface IQueryHandler
     {
