@@ -4,9 +4,4 @@
     {
         object Handle(object query);
     }
-
-    public interface IQueryHandler<TQuery, TResult> : IQueryHandler where TQuery : Query<TResult>
-    {
-        TResult Handle(TQuery query);
-    }
 }

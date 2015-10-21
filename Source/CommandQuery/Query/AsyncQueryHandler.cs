@@ -2,7 +2,7 @@
 
 namespace CommandQuery.Query
 {
-    public abstract class AsyncQueryHandler<TQuery, TResult> : IQueryHandler<TQuery, Task<TResult>> where TQuery : Query<Task<TResult>>
+    public abstract class AsyncQueryHandler<TQuery, TResult> : IAsyncQueryHandler<TQuery, TResult>
     {
         public abstract Task<TResult> Handle(TQuery query);
 
