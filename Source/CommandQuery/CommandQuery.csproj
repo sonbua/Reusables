@@ -36,7 +36,6 @@
   <ItemGroup>
     <Compile Include="Command\Command.cs" />
     <Compile Include="Command\AsyncCommandDispatcher.cs" />
-    <Compile Include="Command\AsyncCommandHandler.cs" />
     <Compile Include="Command\IAsyncCommandDispatcher.cs" />
     <Compile Include="Command\IAsyncCommandHandler.cs" />
     <Compile Include="Optional.cs" />

@@ -14,9 +14,7 @@ namespace CommandQuery.Command
 
         public async Task DispatchAsync<TCommand>(TCommand command) where TCommand : Command
         {
-            var handlerType = typeof (IAsyncCommandHandler<>).MakeGenericType(typeof (TCommand));
-
-            var handler = (IAsyncCommandHandler<TCommand>) _serviceProvider.GetService(handlerType);
+            var handler = (IAsyncCommandHandler<TCommand>) _serviceProvider.GetService(typeof (IAsyncCommandHandler<TCommand>));
 
             await handler.HandleAsync(command);
         }
