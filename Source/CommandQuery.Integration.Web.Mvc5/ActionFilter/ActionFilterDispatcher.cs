@@ -18,9 +18,9 @@ namespace CommandQuery.Integration.Web.Mvc5.ActionFilter
         {
             var skipNextFilters = false;
 
-            foreach (var attribute in AttributesOf(filterContext.ActionDescriptor))
+            foreach (var attribute in ExecutingAttributesOf(filterContext.ActionDescriptor))
             {
-                foreach (var actionFilter in ActionFiltersOf(attribute))
+                foreach (var actionFilter in ExecutingActionFiltersOf(attribute))
                 {
                     actionFilter.OnActionExecuting(attribute, filterContext);
 
@@ -42,9 +42,9 @@ namespace CommandQuery.Integration.Web.Mvc5.ActionFilter
         {
             var skipNextFilters = false;
 
-            foreach (var attribute in AttributesOf(filterContext.ActionDescriptor))
+            foreach (var attribute in ExecutedAttributesOf(filterContext.ActionDescriptor))
             {
-                foreach (var actionFilter in ActionFiltersOf(attribute))
+                foreach (var actionFilter in ExecutedActionFiltersOf(attribute))
                 {
                     actionFilter.OnActionExecuted(attribute, filterContext);
 
@@ -62,7 +62,7 @@ namespace CommandQuery.Integration.Web.Mvc5.ActionFilter
             }
         }
 
-        private static IEnumerable<BaseAttribute> AttributesOf(ActionDescriptor actionDescriptor)
+        private static IEnumerable<BaseAttribute> ExecutingAttributesOf(ActionDescriptor actionDescriptor)
         {
             var controllerCustomAttributes = actionDescriptor.ControllerDescriptor.GetCustomAttributes(inherit: true).OfType<BaseAttribute>().OrderBy(attribute => attribute.Order);
             var actionCustomAttributes = actionDescriptor.GetCustomAttributes(inherit: true).OfType<BaseAttribute>().OrderBy(attribute => attribute.Order);
@@ -70,11 +70,29 @@ namespace CommandQuery.Integration.Web.Mvc5.ActionFilter
             return controllerCustomAttributes.Concat(actionCustomAttributes);
         }
 
-        private IOrderedEnumerable<IActionFilter> ActionFiltersOf(BaseAttribute attribute)
+        private static IEnumerable<BaseAttribute> ExecutedAttributesOf(ActionDescriptor actionDescriptor)
+        {
+            var actionCustomAttributes = actionDescriptor.GetCustomAttributes(inherit: true).OfType<BaseAttribute>().OrderByDescending(attribute => attribute.Order);
+            var controllerCustomAttributes = actionDescriptor.ControllerDescriptor.GetCustomAttributes(inherit: true).OfType<BaseAttribute>().OrderByDescending(attribute => attribute.Order);
+
+            return actionCustomAttributes.Concat(controllerCustomAttributes);
+        }
+
+        private IEnumerable<IActionFilter> ExecutingActionFiltersOf(BaseAttribute attribute)
+        {
+            return ActionFiltersOf(attribute).OrderBy(filter => filter.Order);
+        }
+
+        private IEnumerable<IActionFilter> ExecutedActionFiltersOf(BaseAttribute attribute)
+        {
+            return ActionFiltersOf(attribute).OrderByDescending(filter => filter.Order);
+        }
+
+        private IEnumerable<IActionFilter> ActionFiltersOf(BaseAttribute attribute)
         {
             var filterType = typeof (IActionFilter<>).MakeGenericType(attribute.GetType());
 
-            return _serviceProvider.Invoke(filterType).OrderBy(filter => filter.Order);
+            return _serviceProvider.Invoke(filterType);
         }
     }
 }
