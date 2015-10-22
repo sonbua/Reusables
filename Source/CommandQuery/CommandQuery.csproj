@@ -40,12 +40,11 @@
     <Compile Include="Command\ICommandHandler.cs" />
     <Compile Include="Optional.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Query\AsyncQueryHandler.cs" />
-    <Compile Include="Query\IAsyncQueryHandler.cs" />
-    <Compile Include="Query\IAsyncQueryDispatcher.cs" />
+    <Compile Include="Query\IQueryDispatcher.cs" />
     <Compile Include="Query\IQueryHandler.cs" />
     <Compile Include="Query\Query.cs" />
-    <Compile Include="Query\AsyncQueryDispatcher.cs" />
+    <Compile Include="Query\QueryDispatcher.cs" />
+    <Compile Include="Query\QueryHandler.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
