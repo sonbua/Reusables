@@ -4,7 +4,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace ConfigurationSectionHandlerDemo
+namespace Reusables.Configuration
 {
     public sealed class GenericCollectionConfigurationSectionHandler<T> : IConfigurationSectionHandler
     {

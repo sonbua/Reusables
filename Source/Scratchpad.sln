@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Web.Mvc5", "Reusa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reusables", "Reusables", "{61D0BC57-AFCC-4913-B467-4BE91D89CA01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Cqrs", "Reusables.Cqrs\Reusables.Cqrs.csproj", "{5E7E00EB-AA72-4EF1-9BA6-17C0C3C9A7DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Configuration", "Reusables.Configuration\Reusables.Configuration.csproj", "{FCBB27A9-9FF0-4A08-823F-9CB73D827286}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{A6FCD242-9112-481B-A1F1-36DF8121ED8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6FCD242-9112-481B-A1F1-36DF8121ED8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6FCD242-9112-481B-A1F1-36DF8121ED8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E7E00EB-AA72-4EF1-9BA6-17C0C3C9A7DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E7E00EB-AA72-4EF1-9BA6-17C0C3C9A7DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E7E00EB-AA72-4EF1-9BA6-17C0C3C9A7DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E7E00EB-AA72-4EF1-9BA6-17C0C3C9A7DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCBB27A9-9FF0-4A08-823F-9CB73D827286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCBB27A9-9FF0-4A08-823F-9CB73D827286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCBB27A9-9FF0-4A08-823F-9CB73D827286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCBB27A9-9FF0-4A08-823F-9CB73D827286}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,5 +48,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8A6F0955-9952-43CC-ACD8-327FF2DB890B} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{A6FCD242-9112-481B-A1F1-36DF8121ED8D} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{5E7E00EB-AA72-4EF1-9BA6-17C0C3C9A7DC} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{FCBB27A9-9FF0-4A08-823F-9CB73D827286} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 	EndGlobalSection
 EndGlobal
