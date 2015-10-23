@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationSectionHandlerDemo", "ConfigurationSectionHandlerDemo\ConfigurationSectionHandlerDemo.csproj", "{5D3E74CD-9D1C-435D-B546-354037ABDFF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandQuery", "CommandQuery\CommandQuery.csproj", "{8A6F0955-9952-43CC-ACD8-327FF2DB890B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables", "Reusables\Reusables.csproj", "{8A6F0955-9952-43CC-ACD8-327FF2DB890B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandQuery.Integration.Web.Mvc5", "CommandQuery.Integration.Web.Mvc5\CommandQuery.Integration.Web.Mvc5.csproj", "{A6FCD242-9112-481B-A1F1-36DF8121ED8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Web.Mvc5", "Reusables.Web.Mvc5\Reusables.Web.Mvc5.csproj", "{A6FCD242-9112-481B-A1F1-36DF8121ED8D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CQRS", "CQRS", "{61D0BC57-AFCC-4913-B467-4BE91D89CA01}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reusables", "Reusables", "{61D0BC57-AFCC-4913-B467-4BE91D89CA01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace CommandQuery.Query
+namespace Reusables.Cqrs
 {
     public abstract class QueryHandler<TQuery, TResult> : IQueryHandler<TQuery, TResult> where TQuery : Query<TResult>
     {

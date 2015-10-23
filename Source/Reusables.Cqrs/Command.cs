@@ -1,4 +1,4 @@
-﻿namespace CommandQuery.Command
+﻿namespace Reusables.Cqrs
 {
     public abstract class Command
     {

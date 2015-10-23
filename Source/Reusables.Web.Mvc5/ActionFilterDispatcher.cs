@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace CommandQuery.Integration.Web.Mvc5.ActionFilter
+namespace Reusables.Web.Mvc5
 {
     public class ActionFilterDispatcher : System.Web.Mvc.IActionFilter
     {

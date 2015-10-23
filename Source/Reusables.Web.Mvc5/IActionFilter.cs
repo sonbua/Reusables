@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace CommandQuery.Integration.Web.Mvc5.ActionFilter
+namespace Reusables.Web.Mvc5
 {
     public interface IActionFilter
     {

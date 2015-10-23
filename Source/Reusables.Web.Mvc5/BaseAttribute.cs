@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CommandQuery.Integration.Web.Mvc5.ActionFilter
+namespace Reusables.Web.Mvc5
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public abstract class BaseAttribute : Attribute

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace CommandQuery.Query
+namespace Reusables.Cqrs
 {
     public interface IQueryDispatcher
     {

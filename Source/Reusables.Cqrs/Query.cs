@@ -1,4 +1,4 @@
-﻿namespace CommandQuery.Query
+﻿namespace Reusables.Cqrs
 {
     public abstract class Query<TResult>
     {
