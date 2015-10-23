@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Cqrs", "Reusables
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Configuration", "Reusables.Configuration\Reusables.Configuration.csproj", "{FCBB27A9-9FF0-4A08-823F-9CB73D827286}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{E1B89800-37AB-4E3E-912F-5B0680600976}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{5D3E74CD-9D1C-435D-B546-354037ABDFF1} = {E1B89800-37AB-4E3E-912F-5B0680600976}
 		{8A6F0955-9952-43CC-ACD8-327FF2DB890B} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{A6FCD242-9112-481B-A1F1-36DF8121ED8D} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{5E7E00EB-AA72-4EF1-9BA6-17C0C3C9A7DC} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
