@@ -2,7 +2,7 @@
 
 namespace Reusables.Web.Mvc5
 {
-    public abstract class ActionFilterBase<TAttribute> : IActionFilter<TAttribute> where TAttribute : BaseAttribute
+    public abstract class ActionFilterBase<TFilterAttribute> : IActionFilter<TFilterAttribute> where TFilterAttribute : FilterAttribute
     {
         public int Order { get; set; }
 
@@ -10,16 +10,16 @@ namespace Reusables.Web.Mvc5
 
         public void OnActionExecuting(object attribute, ActionExecutingContext filterContext)
         {
-            OnActionExecuting((TAttribute) attribute, filterContext);
+            OnActionExecuting((TFilterAttribute) attribute, filterContext);
         }
 
         public void OnActionExecuted(object attribute, ActionExecutedContext filterContext)
         {
-            OnActionExecuted((TAttribute) attribute, filterContext);
+            OnActionExecuted((TFilterAttribute) attribute, filterContext);
         }
 
-        public abstract void OnActionExecuting(TAttribute attribute, ActionExecutingContext filterContext);
+        public abstract void OnActionExecuting(TFilterAttribute attribute, ActionExecutingContext filterContext);
 
-        public abstract void OnActionExecuted(TAttribute attribute, ActionExecutedContext filterContext);
+        public abstract void OnActionExecuted(TFilterAttribute attribute, ActionExecutedContext filterContext);
     }
 }

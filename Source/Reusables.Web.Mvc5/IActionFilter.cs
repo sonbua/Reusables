@@ -16,10 +16,10 @@ namespace Reusables.Web.Mvc5
         void OnActionExecuted(object attribute, ActionExecutedContext filterContext);
     }
 
-    public interface IActionFilter<TAttribute> : IActionFilter where TAttribute : BaseAttribute
+    public interface IActionFilter<TFilterAttribute> : IActionFilter where TFilterAttribute : FilterAttribute
     {
-        void OnActionExecuting(TAttribute attribute, ActionExecutingContext filterContext);
+        void OnActionExecuting(TFilterAttribute attribute, ActionExecutingContext filterContext);
 
-        void OnActionExecuted(TAttribute attribute, ActionExecutedContext filterContext);
+        void OnActionExecuted(TFilterAttribute attribute, ActionExecutedContext filterContext);
     }
 }

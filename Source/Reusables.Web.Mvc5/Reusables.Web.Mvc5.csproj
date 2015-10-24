@@ -41,7 +41,7 @@
     <Compile Include="ActionFilterBase.cs" />
     <Compile Include="ActionFilterDispatcher.cs" />
     <Compile Include="IActionFilter.cs" />
-    <Compile Include="BaseAttribute.cs" />
+    <Compile Include="FilterAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

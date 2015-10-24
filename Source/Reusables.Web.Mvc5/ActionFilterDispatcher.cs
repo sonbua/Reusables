@@ -24,9 +24,10 @@ namespace Reusables.Web.Mvc5
                 {
                     actionFilter.OnActionExecuting(attribute, filterContext);
 
-                    if (actionFilter.SkipNextFilters)
+                    skipNextFilters = actionFilter.SkipNextFilters;
+
+                    if (skipNextFilters)
                     {
-                        skipNextFilters = true;
                         break;
                     }
                 }
@@ -48,9 +49,10 @@ namespace Reusables.Web.Mvc5
                 {
                     actionFilter.OnActionExecuted(attribute, filterContext);
 
-                    if (actionFilter.SkipNextFilters)
+                    skipNextFilters = actionFilter.SkipNextFilters;
+
+                    if (skipNextFilters)
                     {
-                        skipNextFilters = true;
                         break;
                     }
                 }
@@ -62,33 +64,33 @@ namespace Reusables.Web.Mvc5
             }
         }
 
-        private static IEnumerable<BaseAttribute> ExecutingAttributesOf(ActionDescriptor actionDescriptor)
+        private static IEnumerable<FilterAttribute> ExecutingAttributesOf(ActionDescriptor actionDescriptor)
         {
-            var controllerCustomAttributes = actionDescriptor.ControllerDescriptor.GetCustomAttributes(inherit: true).OfType<BaseAttribute>().OrderBy(attribute => attribute.Order);
-            var actionCustomAttributes = actionDescriptor.GetCustomAttributes(inherit: true).OfType<BaseAttribute>().OrderBy(attribute => attribute.Order);
+            var controllerCustomAttributes = actionDescriptor.ControllerDescriptor.GetCustomAttributes(inherit: true).OfType<FilterAttribute>().OrderBy(attribute => attribute.Order);
+            var actionCustomAttributes = actionDescriptor.GetCustomAttributes(inherit: true).OfType<FilterAttribute>().OrderBy(attribute => attribute.Order);
 
             return controllerCustomAttributes.Concat(actionCustomAttributes);
         }
 
-        private static IEnumerable<BaseAttribute> ExecutedAttributesOf(ActionDescriptor actionDescriptor)
+        private static IEnumerable<FilterAttribute> ExecutedAttributesOf(ActionDescriptor actionDescriptor)
         {
-            var actionCustomAttributes = actionDescriptor.GetCustomAttributes(inherit: true).OfType<BaseAttribute>().OrderByDescending(attribute => attribute.Order);
-            var controllerCustomAttributes = actionDescriptor.ControllerDescriptor.GetCustomAttributes(inherit: true).OfType<BaseAttribute>().OrderByDescending(attribute => attribute.Order);
+            var actionCustomAttributes = actionDescriptor.GetCustomAttributes(inherit: true).OfType<FilterAttribute>().OrderByDescending(attribute => attribute.Order);
+            var controllerCustomAttributes = actionDescriptor.ControllerDescriptor.GetCustomAttributes(inherit: true).OfType<FilterAttribute>().OrderByDescending(attribute => attribute.Order);
 
             return actionCustomAttributes.Concat(controllerCustomAttributes);
         }
 
-        private IEnumerable<IActionFilter> ExecutingActionFiltersOf(BaseAttribute attribute)
+        private IEnumerable<IActionFilter> ExecutingActionFiltersOf(FilterAttribute attribute)
         {
             return ActionFiltersOf(attribute).OrderBy(filter => filter.Order);
         }
 
-        private IEnumerable<IActionFilter> ExecutedActionFiltersOf(BaseAttribute attribute)
+        private IEnumerable<IActionFilter> ExecutedActionFiltersOf(FilterAttribute attribute)
         {
             return ActionFiltersOf(attribute).OrderByDescending(filter => filter.Order);
         }
 
-        private IEnumerable<IActionFilter> ActionFiltersOf(BaseAttribute attribute)
+        private IEnumerable<IActionFilter> ActionFiltersOf(FilterAttribute attribute)
         {
             var filterType = typeof (IActionFilter<>).MakeGenericType(attribute.GetType());
 
