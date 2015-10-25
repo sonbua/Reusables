@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationSectionHandlerDemo", "ConfigurationSectionHandlerDemo\ConfigurationSectionHandlerDemo.csproj", "{5D3E74CD-9D1C-435D-B546-354037ABDFF1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables", "Reusables\Reusables.csproj", "{8A6F0955-9952-43CC-ACD8-327FF2DB890B}"
@@ -16,6 +14,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Configuration", "Reusables.Configuration\Reusables.Configuration.csproj", "{FCBB27A9-9FF0-4A08-823F-9CB73D827286}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{E1B89800-37AB-4E3E-912F-5B0680600976}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.DataAnnotations", "Reusables.DataAnnotations\Reusables.DataAnnotations.csproj", "{F4BFAC1B-4638-447E-A562-2DF8C146A8D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Validation", "Reusables.Validation\Reusables.Validation.csproj", "{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,15 +45,25 @@ Global
 		{FCBB27A9-9FF0-4A08-823F-9CB73D827286}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCBB27A9-9FF0-4A08-823F-9CB73D827286}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCBB27A9-9FF0-4A08-823F-9CB73D827286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4BFAC1B-4638-447E-A562-2DF8C146A8D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4BFAC1B-4638-447E-A562-2DF8C146A8D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4BFAC1B-4638-447E-A562-2DF8C146A8D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4BFAC1B-4638-447E-A562-2DF8C146A8D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5D3E74CD-9D1C-435D-B546-354037ABDFF1} = {E1B89800-37AB-4E3E-912F-5B0680600976}
-		{8A6F0955-9952-43CC-ACD8-327FF2DB890B} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{A6FCD242-9112-481B-A1F1-36DF8121ED8D} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{8A6F0955-9952-43CC-ACD8-327FF2DB890B} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{5E7E00EB-AA72-4EF1-9BA6-17C0C3C9A7DC} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{FCBB27A9-9FF0-4A08-823F-9CB73D827286} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{F4BFAC1B-4638-447E-A562-2DF8C146A8D1} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{76BB9170-AF0E-4715-867C-3FB1A98DDFFC} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 	EndGlobalSection
 EndGlobal
