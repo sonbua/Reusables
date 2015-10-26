@@ -40,6 +40,7 @@
     <Compile Include="DataAnnotations\MinLengthAttributeValidator.cs" />
     <Compile Include="DataAnnotations\RangeAttributeValidator.cs" />
     <Compile Include="DataAnnotations\RequiredAttributeValidator.cs" />
+    <Compile Include="DataAnnotations\StringLengthAttributeValidator.cs" />
     <Compile Include="DataAnnotations\ValidationAttributeValidator.cs" />
     <Compile Include="DataAnnotations\ValidationContext.cs" />
     <Compile Include="IValidator.cs" />
