@@ -1,5 +1,8 @@
-﻿namespace Reusables.DataAnnotations
+﻿using System;
+
+namespace Reusables.DataAnnotations
 {
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public class RequiredAttribute : ValidationAttribute
     {
         /// <summary>

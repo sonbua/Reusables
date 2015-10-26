@@ -2,6 +2,7 @@
 
 namespace Reusables.DataAnnotations
 {
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public class MaxLengthAttribute : ValidationAttribute
     {
         public MaxLengthAttribute(int length)

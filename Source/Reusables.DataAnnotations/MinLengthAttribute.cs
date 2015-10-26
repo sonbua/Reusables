@@ -2,6 +2,7 @@ using System;
 
 namespace Reusables.DataAnnotations
 {
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public class MinLengthAttribute : ValidationAttribute
     {
         public MinLengthAttribute(int length)

@@ -21,7 +21,7 @@ namespace Reusables.Validation.DataAnnotations
             }
 
             // TODO: resource
-            return new ValidationResult(string.Format("{0} should be longer.", context.MemberName));
+            return new ValidationResult(string.Format("{0} should be longer.", context.MemberName), context.MemberName);
         }
     }
 }

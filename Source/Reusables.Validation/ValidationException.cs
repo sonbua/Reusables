@@ -39,7 +39,7 @@ namespace Reusables.Validation
 
         public ValidationResult ValidationResult
         {
-            get { return _validationResult ?? (_validationResult = new ValidationResult(Message)); }
+            get { return _validationResult ?? (_validationResult = new ValidationResult(Message, string.Empty)); }
         }
 
         public object Value { get; private set; }
