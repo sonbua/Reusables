@@ -9,6 +9,7 @@ namespace Reusables.DataAnnotations
         {
             if (string.IsNullOrEmpty(pattern))
             {
+                // TODO: resource
                 throw new ArgumentException("The pattern must be set to a valid regular expression.");
             }
 

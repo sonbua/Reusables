@@ -11,6 +11,7 @@ namespace Reusables.DataAnnotations
         {
             if (maximumLength < 0)
             {
+                // TODO: resource
                 throw new ArgumentException("Maximum length should be greater than or equal to 0.");
             }
 
@@ -26,11 +27,13 @@ namespace Reusables.DataAnnotations
             {
                 if (value > MaximumLength)
                 {
+                    // TODO: resource
                     throw new ArgumentException("Minimum length should be less than or equal to maximum length.");
                 }
 
                 if (value < 0)
                 {
+                    // TODO: resource
                     throw new ArgumentException("Minimum length should be greater than or equal to 0.");
                 }
 
