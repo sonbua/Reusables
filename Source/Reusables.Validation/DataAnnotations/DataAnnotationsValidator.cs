@@ -20,7 +20,9 @@ namespace Reusables.Validation.DataAnnotations
             return from propertyInfo in typeof (TInstance).GetProperties(BindingFlags.Public)
                    let value = propertyInfo.GetValue(instance)
                    let context = new ValidationContext(propertyInfo.PropertyType, propertyInfo.Name)
-                   from attribute in propertyInfo.GetCustomAttributes<ValidationAttribute>().OrderBy(x => x.Order)
+                   from attribute in propertyInfo.GetCustomAttributes<ValidationAttribute>()
+                                                 .OrderByDescending(x => x.GetType() == typeof (RequiredAttribute))
+                                                 .ThenBy(x => x.Order)
                    let validator = ResolveValidatorFor(attribute)
                    select validator.Validate(value, context, attribute);
         }
