@@ -39,6 +39,7 @@
     <Compile Include="DataAnnotations\MaxLengthAttributeValidator.cs" />
     <Compile Include="DataAnnotations\MinLengthAttributeValidator.cs" />
     <Compile Include="DataAnnotations\RangeAttributeValidator.cs" />
+    <Compile Include="DataAnnotations\RegularExpressionAttributeValidator.cs" />
     <Compile Include="DataAnnotations\RequiredAttributeValidator.cs" />
     <Compile Include="DataAnnotations\StringLengthAttributeValidator.cs" />
     <Compile Include="DataAnnotations\ValidationAttributeValidator.cs" />

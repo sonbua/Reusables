@@ -1,9 +1,17 @@
-﻿namespace Reusables.DataAnnotations
+﻿using System;
+
+namespace Reusables.DataAnnotations
 {
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public class RegularExpressionAttribute : ValidationAttribute
     {
         public RegularExpressionAttribute(string pattern)
         {
+            if (string.IsNullOrEmpty(pattern))
+            {
+                throw new ArgumentException("The pattern must be set to a valid regular expression.");
+            }
+
             Pattern = pattern;
         }
 
