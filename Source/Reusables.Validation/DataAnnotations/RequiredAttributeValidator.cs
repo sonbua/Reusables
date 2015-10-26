@@ -14,12 +14,7 @@ namespace Reusables.Validation.DataAnnotations
 
             var str = value as string;
 
-            if (str == null || attribute.AllowEmptyString)
-            {
-                return ValidationResult.Success;
-            }
-
-            if (str.Trim().Length > 0)
+            if (str == null || attribute.AllowEmptyString || str.Trim().Length > 0)
             {
                 return ValidationResult.Success;
             }
