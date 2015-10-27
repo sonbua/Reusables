@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.DataAnnotations",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Validation", "Reusables.Validation\Reusables.Validation.csproj", "{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Util.Extensions", "Reusables.Util\Reusables.Util.Extensions.csproj", "{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Util.Extensions.Tests", "Reusables.Util.Tests\Reusables.Util.Extensions.Tests.csproj", "{300E5E34-0B24-459A-B804-1E5C56E5F0F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,14 @@ Global
 		{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{300E5E34-0B24-459A-B804-1E5C56E5F0F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{300E5E34-0B24-459A-B804-1E5C56E5F0F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{300E5E34-0B24-459A-B804-1E5C56E5F0F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{300E5E34-0B24-459A-B804-1E5C56E5F0F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,5 +77,7 @@ Global
 		{FCBB27A9-9FF0-4A08-823F-9CB73D827286} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{F4BFAC1B-4638-447E-A562-2DF8C146A8D1} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{76BB9170-AF0E-4715-867C-3FB1A98DDFFC} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{300E5E34-0B24-459A-B804-1E5C56E5F0F1} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 	EndGlobalSection
 EndGlobal
