@@ -17,10 +17,10 @@ namespace Reusables.Web.Mvc5
     }
 
     /// <summary>
-    /// Defines a common interface for all action filter attribute handlers.
-    /// If you want to create derived type from this interface, consider inheriting from <see cref="ActionFilterBase{TFilterAttribute}"/> abstract class instead.
+    /// Defines a common interface for action filter attribute handlers.
+    /// If you are to create derived types from this interface, consider inheriting from the <see cref="ActionFilterBase{TFilterAttribute}"/> base class instead.
     /// </summary>
-    /// <typeparam name="TFilterAttribute"></typeparam>
+    /// <typeparam name="TFilterAttribute">The type of action filter attribute.</typeparam>
     public interface IActionFilter<TFilterAttribute> : IActionFilter where TFilterAttribute : FilterAttribute
     {
         void OnActionExecuting(TFilterAttribute attribute, ActionExecutingContext filterContext);

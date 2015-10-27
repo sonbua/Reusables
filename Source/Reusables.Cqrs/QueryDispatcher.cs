@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace Reusables.Cqrs
 {
+    /// <summary>
+    /// Provides a default implementation of the <see cref="IQueryDispatcher"/> interface.
+    /// </summary>
     public class QueryDispatcher : IQueryDispatcher
     {
         private readonly IServiceProvider _serviceProvider;

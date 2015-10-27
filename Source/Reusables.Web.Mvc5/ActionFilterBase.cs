@@ -3,7 +3,8 @@
 namespace Reusables.Web.Mvc5
 {
     /// <summary>
-    /// Provides a basic implementation for <see cref="IActionFilter{TFilterAttribute}"/> interface.
+    /// Provides a basic, non-generic implementation for <see cref="IActionFilter{TFilterAttribute}"/> interface.
+    /// You are encouraged to inherit from this class, and override the generic versions.
     /// </summary>
     /// <typeparam name="TFilterAttribute"></typeparam>
     public abstract class ActionFilterBase<TFilterAttribute> : IActionFilter<TFilterAttribute> where TFilterAttribute : FilterAttribute
