@@ -2,6 +2,10 @@
 
 namespace Reusables.Web.Mvc5
 {
+    /// <summary>
+    /// Provides a basic implementation for <see cref="IActionFilter{TFilterAttribute}"/> interface.
+    /// </summary>
+    /// <typeparam name="TFilterAttribute"></typeparam>
     public abstract class ActionFilterBase<TFilterAttribute> : IActionFilter<TFilterAttribute> where TFilterAttribute : FilterAttribute
     {
         public int Order { get; set; }
