@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Util.Extensions",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Util.Extensions.Tests", "Reusables.Util.Tests\Reusables.Util.Extensions.Tests.csproj", "{300E5E34-0B24-459A-B804-1E5C56E5F0F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Serialization", "Reusables.Serialization\Reusables.Serialization.csproj", "{6F8C4016-0BED-4DCF-B61A-AA7C105BBADE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Serialization.Newtonsoft", "Reusables.Serialization.Newtonsoft\Reusables.Serialization.Newtonsoft.csproj", "{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +69,14 @@ Global
 		{300E5E34-0B24-459A-B804-1E5C56E5F0F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{300E5E34-0B24-459A-B804-1E5C56E5F0F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{300E5E34-0B24-459A-B804-1E5C56E5F0F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F8C4016-0BED-4DCF-B61A-AA7C105BBADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F8C4016-0BED-4DCF-B61A-AA7C105BBADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F8C4016-0BED-4DCF-B61A-AA7C105BBADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F8C4016-0BED-4DCF-B61A-AA7C105BBADE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,5 +91,7 @@ Global
 		{76BB9170-AF0E-4715-867C-3FB1A98DDFFC} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{300E5E34-0B24-459A-B804-1E5C56E5F0F1} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{6F8C4016-0BED-4DCF-B61A-AA7C105BBADE} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 	EndGlobalSection
 EndGlobal

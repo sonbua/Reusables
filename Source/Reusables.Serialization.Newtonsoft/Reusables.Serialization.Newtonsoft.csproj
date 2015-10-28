@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD}</ProjectGuid>
+    <ProjectGuid>{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Reusables.Util.Extensions</RootNamespace>
-    <AssemblyName>Reusables.Util.Extensions</AssemblyName>
+    <RootNamespace>Reusables.Serialization.Newtonsoft</RootNamespace>
+    <AssemblyName>Reusables.Serialization.Newtonsoft</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,31 +20,43 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Reusables.Util.Extensions.xml</DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
-    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyExtensions.cs" />
-    <Compile Include="EnumerableExtensions.cs" />
-    <Compile Include="ConversionExtensions.cs" />
-    <Compile Include="StreamExtensions.cs" />
-    <Compile Include="StringExtensions.cs" />
+    <Compile Include="DataContractXmlSerializer.cs" />
+    <Compile Include="Extensions\GenericExtensions.cs" />
+    <Compile Include="NewtonsoftJsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Reusables.Serialization\Reusables.Serialization.csproj">
+      <Project>{6f8c4016-0bed-4dcf-b61a-aa7c105bbade}</Project>
+      <Name>Reusables.Serialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reusables.Util\Reusables.Util.Extensions.csproj">
+      <Project>{b93b3dec-c90e-4f3f-a23d-cc976e2192dd}</Project>
+      <Name>Reusables.Util.Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
