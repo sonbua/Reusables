@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Brick.MiscUtil.Extensions
+namespace Reusables.Util.Extensions
 {
     /// <summary>
     /// All extension methods related to conversion.

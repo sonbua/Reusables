@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Brick.MiscUtil.Extensions
+namespace Reusables.Util.Extensions
 {
     /// <summary>
     /// All extension methods related to IEnumarable&lt;T&gt;.

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Brick.MiscUtil.Extensions
+namespace Reusables.Util.Extensions
 {
     /// <summary>
     /// All extension methods related to String.

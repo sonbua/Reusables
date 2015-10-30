@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Brick.MiscUtil.Extensions;
 using NSubstitute;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
 
-namespace Brick.MiscUtil.Tests.Extensions
+namespace Reusables.Util.Extensions.Tests
 {
     public class EnumerableExtensionsTest
     {

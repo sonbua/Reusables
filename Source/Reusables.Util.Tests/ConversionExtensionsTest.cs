@@ -1,8 +1,7 @@
 ﻿using System;
-using Brick.MiscUtil.Extensions;
 using Xunit;
 
-namespace Brick.MiscUtil.Tests.Extensions
+namespace Reusables.Util.Extensions.Tests
 {
     public class ConversionExtensionsTest
     {

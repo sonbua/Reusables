@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Brick.MiscUtil.Extensions
+namespace Reusables.Util.Extensions
 {
     /// <summary>
     /// All extension methods related to Assembly.

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using Brick.MiscUtil.Extensions;
 using Xunit;
 
-namespace Brick.MiscUtil.Tests.Extensions
+namespace Reusables.Util.Extensions.Tests
 {
     public class AssemblyExtensionsTest
     {

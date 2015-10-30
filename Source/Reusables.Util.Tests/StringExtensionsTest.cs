@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Brick.MiscUtil.Extensions;
 using Ploeh.AutoFixture.Xunit2;
 using Xunit;
 
-namespace Brick.MiscUtil.Tests.Extensions
+namespace Reusables.Util.Extensions.Tests
 {
     public class StringExtensionsTest
     {
