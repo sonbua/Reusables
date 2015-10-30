@@ -17,7 +17,7 @@ namespace Reusables.Validation.DataAnnotations
 
         public IEnumerable<ValidationResult> Validate(TInstance instance)
         {
-            return from propertyInfo in typeof (TInstance).GetProperties(BindingFlags.Public)
+            return from propertyInfo in typeof (TInstance).GetProperties(BindingFlags.Public | BindingFlags.Instance)
                    let value = propertyInfo.GetValue(instance)
                    let context = new ValidationContext(propertyInfo.PropertyType, propertyInfo.Name)
                    from attribute in propertyInfo.GetCustomAttributes<ValidationAttribute>()
