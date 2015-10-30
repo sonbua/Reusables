@@ -12,7 +12,7 @@ namespace Reusables.DataAnnotations
             if (maximumLength < 0)
             {
                 // TODO: resource
-                throw new ArgumentException("Maximum length should be greater than or equal to 0.");
+                throw new ArgumentException("The maximum length must be a nonnegative integer.");
             }
 
             MaximumLength = maximumLength;

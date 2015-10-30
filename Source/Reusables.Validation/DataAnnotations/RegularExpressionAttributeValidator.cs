@@ -9,6 +9,11 @@ namespace Reusables.Validation.DataAnnotations
     {
         public override ValidationResult Validate(object value, ValidationContext context, RegularExpressionAttribute attribute)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException("context");
+            }
+
             var input = Convert.ToString(value, CultureInfo.CurrentCulture);
 
             if (string.IsNullOrEmpty(input))
@@ -25,7 +30,7 @@ namespace Reusables.Validation.DataAnnotations
             }
 
             // TODO: resource
-            return new ValidationResult(string.Format("{0} does not match this pattern {1}.", context.MemberName, attribute.Pattern), context.MemberName);
+            return new ValidationResult(string.Format("The field {0} must match the regular expression '{1}'.", context.MemberName, attribute.Pattern), context.MemberName);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Reusables.DataAnnotations;
 
 namespace Reusables.Validation.DataAnnotations
@@ -6,10 +7,15 @@ namespace Reusables.Validation.DataAnnotations
     {
         public override ValidationResult Validate(object value, ValidationContext context, RequiredAttribute attribute)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException("context");
+            }
+
             if (value == null)
             {
                 // TODO: resource
-                return new ValidationResult(string.Format("{0} cannot be null.", context.MemberName), context.MemberName);
+                return new ValidationResult(string.Format("The {0} field is required.", context.MemberName), context.MemberName);
             }
 
             var str = value as string;
@@ -20,7 +26,7 @@ namespace Reusables.Validation.DataAnnotations
             }
 
             // TODO: resource
-            return new ValidationResult(string.Format("{0} is required.", context.MemberName), context.MemberName);
+            return new ValidationResult(string.Format("The {0} field is required.", context.MemberName), context.MemberName);
         }
     }
 }

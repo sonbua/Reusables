@@ -7,6 +7,11 @@ namespace Reusables.Validation.DataAnnotations
     {
         public override ValidationResult Validate(object value, ValidationContext context, MaxLengthAttribute attribute)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException("context");
+            }
+
             if (value == null)
             {
                 return ValidationResult.Success;
@@ -21,7 +26,7 @@ namespace Reusables.Validation.DataAnnotations
             }
 
             // TODO: resource
-            return new ValidationResult(string.Format("{0} exceeds max length.", context.MemberName), context.MemberName);
+            return new ValidationResult(string.Format("The field {0} must be a string or array type with a maximum length of '{1}'.", context.MemberName, attribute.Length), context.MemberName);
         }
     }
 }

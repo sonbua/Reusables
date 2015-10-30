@@ -17,15 +17,20 @@ namespace Reusables.Validation.DataAnnotations
             {
                 return ValidationResult.Success;
             }
-            
+
             if (num < attribute.MinimumLength)
             {
                 // TODO: resource
-                return new ValidationResult(string.Format("{0} should contain at least {1} characters.", context.MemberName, attribute.MinimumLength), context.MemberName);
+                var errorMessage = string.Format("The field {0} must be a string with a minimum length of {1} and a maximum length of {2}.",
+                                                 context.MemberName,
+                                                 attribute.MinimumLength,
+                                                 attribute.MaximumLength);
+
+                return new ValidationResult(errorMessage, context.MemberName);
             }
 
             // TODO: resource
-            return new ValidationResult(string.Format("{0} should contain at most {1} characters.", context.MemberName, attribute.MaximumLength), context.MemberName);
+            return new ValidationResult(string.Format("The field {0} must be a string with a maximum length of {1}.", context.MemberName, attribute.MaximumLength), context.MemberName);
         }
     }
 }

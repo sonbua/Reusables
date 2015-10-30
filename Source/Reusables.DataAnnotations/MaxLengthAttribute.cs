@@ -10,7 +10,7 @@ namespace Reusables.DataAnnotations
             if (length <= 0)
             {
                 // TODO: resource
-                throw new ArgumentException("Length must be greater than 0.");
+                throw new ArgumentException("MaxLengthAttribute must have a Length value that is greater than zero.");
             }
 
             Length = length;
