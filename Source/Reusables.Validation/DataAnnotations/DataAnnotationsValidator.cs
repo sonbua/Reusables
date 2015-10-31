@@ -6,7 +6,11 @@ using Reusables.DataAnnotations;
 
 namespace Reusables.Validation.DataAnnotations
 {
-    public class DataAnnotationsValidator<TInstance> : IValidator<TInstance>
+    /// <summary>
+    /// Provides a generic validator which validates an object via validation attributes you put on its public properties.
+    /// </summary>
+    /// <typeparam name="TInstance">The type of object to validate. It must have a public parameterless constructor.</typeparam>
+    public class DataAnnotationsValidator<TInstance> : IValidator<TInstance> where TInstance : new()
     {
         private readonly IServiceProvider _serviceProvider;
 
