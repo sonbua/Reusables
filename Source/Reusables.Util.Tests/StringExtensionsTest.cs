@@ -9,14 +9,15 @@ namespace Reusables.Util.Extensions.Tests
 {
     public class StringExtensionsTest
     {
-        [Fact]
-        public void EqualsIgnoreCase_NullSubject_ThrowsException()
+        [Theory]
+        [AutoData]
+        public void EqualsIgnoreCase_NullSubject_ThrowsException(string other)
         {
             // arrange
             string subject = null;
 
             // act
-            Action nullSubject = () => subject.EqualsIgnoreCase("other");
+            Action nullSubject = () => subject.EqualsIgnoreCase(other);
 
             // assert
             Assert.Throws<ArgumentNullException>(nullSubject);
@@ -51,12 +52,12 @@ namespace Reusables.Util.Extensions.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void FormatWithMask_NullSubject_ThrowsException()
+        [Theory]
+        [AutoData]
+        public void FormatWithMask_NullSubject_ThrowsException(string mask)
         {
             // arrange
             string source = null;
-            var mask = "#";
 
             // act
             Action nullSubject = () => source.FormatWithMask(mask);
@@ -65,11 +66,11 @@ namespace Reusables.Util.Extensions.Tests
             Assert.Throws<ArgumentNullException>(nullSubject);
         }
 
-        [Fact]
-        public void FormatWithMask_NullMask_ThrowsException()
+        [Theory]
+        [AutoData]
+        public void FormatWithMask_NullMask_ThrowsException(string source)
         {
             // arrange
-            var source = string.Empty;
             string mask = null;
 
             // act
@@ -146,17 +147,18 @@ namespace Reusables.Util.Extensions.Tests
             Assert.True(!Regex.IsMatch(actual, letters));
         }
 
-        [Fact]
-        public void Remove_NullSource_ThrowsException()
+        [Theory]
+        [AutoData]
+        public void Remove_NullSource_ThrowsException(char[] removedChars)
         {
             // arrange
             string source = null;
 
             // act
-            Action nullRemovedChars = () => source.Remove(new[] {' '});
+            Action nullSource = () => source.Remove(removedChars);
 
             // assert
-            Assert.Throws<ArgumentNullException>(nullRemovedChars);
+            Assert.Throws<ArgumentNullException>(nullSource);
         }
 
         [Theory]
@@ -188,14 +190,15 @@ namespace Reusables.Util.Extensions.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void Remove_NullSource_ThrowsException_2()
+        [Theory]
+        [AutoData]
+        public void Remove_NullSource_ThrowsException_2(char[] removedChars)
         {
             // arrange
             string source = null;
 
             // act
-            Action nullSource = () => source.Remove(new[] {'x', 'y'});
+            Action nullSource = () => source.Remove(removedChars);
 
             // assert
             Assert.Throws<ArgumentNullException>(nullSource);
@@ -314,14 +317,15 @@ namespace Reusables.Util.Extensions.Tests
             Assert.Equal(expected, newString);
         }
 
-        [Fact]
-        public void Replace_NullSource_ThrowsException()
+        [Theory]
+        [AutoData]
+        public void Replace_NullSource_ThrowsException(string[] oldStrings, string substitutent)
         {
             // arrange
             string source = null;
 
             // act
-            Action nullSource = () => source.Replace(new[] {"1"}, "substitutent");
+            Action nullSource = () => source.Replace(oldStrings, substitutent);
 
             // assert
             Assert.Throws<ArgumentNullException>(nullSource);
@@ -329,12 +333,13 @@ namespace Reusables.Util.Extensions.Tests
 
         [Theory]
         [AutoData]
-        public void Replace_NullOldStrings_ThrowsException(string source)
+        public void Replace_NullOldStrings_ThrowsException(string source, string substitutent)
         {
             // arrange
+            string[] oldStrings = null;
 
             // act
-            Action nullSource = () => source.Replace(oldStrings: null, substituent: "substitutent");
+            Action nullSource = () => source.Replace(oldStrings, substitutent);
 
             // assert
             Assert.Throws<ArgumentNullException>(nullSource);
@@ -367,14 +372,15 @@ namespace Reusables.Util.Extensions.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void SafeFormat_NullFormat_ThrowsException()
+        [Theory]
+        [AutoData]
+        public void SafeFormat_NullFormat_ThrowsException(string args)
         {
             // arrange
             string format = null;
 
             // act
-            Action nullFormat = () => format.SafeFormat("args");
+            Action nullFormat = () => format.SafeFormat(args);
 
             // assert
             Assert.Throws<ArgumentNullException>(nullFormat);
