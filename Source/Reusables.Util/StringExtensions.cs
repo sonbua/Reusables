@@ -83,6 +83,45 @@ namespace Reusables.Util.Extensions
         }
 
         /// <summary>
+        /// Fills a template with data object.
+        /// For example, merging this string
+        /// <code>{Name} is {Age} years old</code>
+        /// with this person
+        /// <code>var john = new Person {Name = "John Doe", Age = 30};</code>
+        /// will result
+        /// <code>John Doe is 30 years old</code>
+        /// </summary>
+        /// <param name="template">The template string that will be filled with <paramref name="data"/>.</param>
+        /// <param name="data">The data object that will be populated in the <paramref name="template"/>.</param>
+        /// <param name="fieldStartDelimiter">The start delimiter of field template. Default is <c>{</c>.</param>
+        /// <param name="fieldEndDelimiter">The end delimiter of field template. Default is <c>}</c>.</param>
+        /// <returns></returns>
+        public static string Merge(this string template, object data, char fieldStartDelimiter = '{', char fieldEndDelimiter = '}')
+        {
+            if (template == null)
+            {
+                throw new ArgumentNullException("template");
+            }
+
+            if (data == null)
+            {
+                throw new ArgumentNullException("data");
+            }
+
+            var dataDictionary = data.ToDictionary();
+
+            return dataDictionary.Keys
+                                 .Where(x => x != null)
+                                 .Aggregate(template, (current, key) =>
+                                                      {
+                                                          var fieldTemplate = fieldStartDelimiter + key + fieldEndDelimiter;
+                                                          var fieldValue = dataDictionary[key].ToString();
+
+                                                          return current.Replace(fieldTemplate, fieldValue);
+                                                      });
+        }
+
+        /// <summary>
         /// In a specified input string, replaces all strings that match a specified regular expression with a specified replacement string. Specified options modify the matching operation.
         /// </summary>
         /// <param name="source">The string to search for a match.</param>
