@@ -93,7 +93,7 @@ namespace Reusables.Util.Extensions.Tests
         [Theory]
         [InlineData(null, true)]
         [InlineData("", true)]
-        [InlineData("some string", true)]
+        [InlineData("some string", false)]
         public void IsNullOrEmpty_ShouldReturnExpectedValue(string input, bool expected)
         {
             // arrange
