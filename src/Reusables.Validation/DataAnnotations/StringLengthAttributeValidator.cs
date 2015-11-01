@@ -21,16 +21,13 @@ namespace Reusables.Validation.DataAnnotations
             if (num < attribute.MinimumLength)
             {
                 // TODO: resource
-                var errorMessage = string.Format("The field {0} must be a string with a minimum length of {1} and a maximum length of {2}.",
-                                                 context.MemberName,
-                                                 attribute.MinimumLength,
-                                                 attribute.MaximumLength);
-
-                return new ValidationResult(errorMessage, context.MemberName);
+                return new ValidationResult(errorMessage: string.Format("The field {0} must be a string with a minimum length of {1} and a maximum length of {2}.", context.MemberName, attribute.MinimumLength, attribute.MaximumLength),
+                                            memberName: context.MemberName);
             }
 
             // TODO: resource
-            return new ValidationResult(string.Format("The field {0} must be a string with a maximum length of {1}.", context.MemberName, attribute.MaximumLength), context.MemberName);
+            return new ValidationResult(errorMessage: string.Format("The field {0} must be a string with a maximum length of {1}.", context.MemberName, attribute.MaximumLength),
+                                        memberName: context.MemberName);
         }
     }
 }
