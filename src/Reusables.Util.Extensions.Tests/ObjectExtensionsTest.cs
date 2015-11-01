@@ -4,7 +4,7 @@ using Xunit;
 
 namespace Reusables.Util.Extensions.Tests
 {
-    public class ObjectExtensionsTests
+    public class ObjectExtensionsTest
     {
         [Fact]
         public void ToDictionary_NullInstance_ThrowsException()
