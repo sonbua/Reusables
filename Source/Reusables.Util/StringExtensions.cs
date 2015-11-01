@@ -90,6 +90,7 @@ namespace Reusables.Util.Extensions
         /// <code>var john = new Person {Name = "John Doe", Age = 30};</code>
         /// will result
         /// <code>John Doe is 30 years old</code>
+        /// Does not support types that contain public static member(s), and will throw <see cref="ArgumentOutOfRangeException"/> in this case.
         /// </summary>
         /// <param name="template">The template string that will be filled with <paramref name="data"/>.</param>
         /// <param name="data">The data object that will be populated in the <paramref name="template"/>.</param>

@@ -1,27 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+using FastMember;
 
 namespace Reusables.Util.Extensions
 {
     public static class ObjectExtensions
     {
         /// <summary>
-        /// Extract all public properties' names and associated values from an object instance to a dictionary. The instance type must have a public parameterless constructor.
+        /// Extracts all run-time type's public member names and associated values from an object instance to a dictionary. Does not support types that contain public static member(s), and will throw <see cref="ArgumentOutOfRangeException"/> in this case.
         /// </summary>
         /// <param name="instance">The object to retrieve property values.</param>
         /// <returns></returns>
-        public static Dictionary<string, object> ToDictionary<T>(this T instance) where T : new()
+        public static Dictionary<string, object> ToDictionary<T>(this T instance)
         {
             if (instance == null)
             {
                 throw new ArgumentNullException("instance");
             }
 
-            return instance.GetType()
-                           .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                           .ToDictionary(x => x.Name, x => x.GetValue(instance));
+            var typeAccessor = TypeAccessor.Create(instance.GetType());
+
+            return typeAccessor.GetMembers()
+                               .ToDictionary(member => member.Name,
+                                             member => typeAccessor[instance, member.Name]);
         }
     }
 }
