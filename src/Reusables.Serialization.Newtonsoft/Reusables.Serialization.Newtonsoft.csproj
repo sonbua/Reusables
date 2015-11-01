@@ -53,7 +53,7 @@
       <Project>{6f8c4016-0bed-4dcf-b61a-aa7c105bbade}</Project>
       <Name>Reusables.Serialization</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Reusables.Util\Reusables.Util.Extensions.csproj">
+    <ProjectReference Include="..\Reusables.Util.Extensions\Reusables.Util.Extensions.csproj">
       <Project>{b93b3dec-c90e-4f3f-a23d-cc976e2192dd}</Project>
       <Name>Reusables.Util.Extensions</Name>
     </ProjectReference>
