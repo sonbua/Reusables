@@ -19,9 +19,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.DataAnnotations",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Validation", "Reusables.Validation\Reusables.Validation.csproj", "{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Util.Extensions", "Reusables.Util\Reusables.Util.Extensions.csproj", "{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Util.Extensions", "Reusables.Util.Extensions\Reusables.Util.Extensions.csproj", "{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Util.Extensions.Tests", "Reusables.Util.Tests\Reusables.Util.Extensions.Tests.csproj", "{300E5E34-0B24-459A-B804-1E5C56E5F0F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Util.Extensions.Tests", "Reusables.Util.Extensions.Tests\Reusables.Util.Extensions.Tests.csproj", "{300E5E34-0B24-459A-B804-1E5C56E5F0F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Serialization", "Reusables.Serialization\Reusables.Serialization.csproj", "{6F8C4016-0BED-4DCF-B61A-AA7C105BBADE}"
 EndProject
