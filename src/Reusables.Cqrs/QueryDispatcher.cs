@@ -30,7 +30,7 @@ namespace Reusables.Cqrs
 
             var handler = (IAsyncQueryHandler<TResult>) _serviceProvider.GetService(handlerType);
 
-            return await handler.HandleAsync(query);
+            return await handler.HandleAsync(query).ConfigureAwait(false);
         }
     }
 }

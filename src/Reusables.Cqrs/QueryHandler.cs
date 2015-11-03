@@ -28,7 +28,7 @@ namespace Reusables.Cqrs
     {
         public async Task<TResult> HandleAsync(object query)
         {
-            return await HandleAsync((TAsyncQuery) query);
+            return await HandleAsync((TAsyncQuery) query).ConfigureAwait(false);
         }
 
         public abstract Task<TResult> HandleAsync(TAsyncQuery query);

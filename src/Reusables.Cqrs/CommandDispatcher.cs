@@ -26,7 +26,7 @@ namespace Reusables.Cqrs
         {
             var handler = (IAsyncCommandHandler<TAsyncCommand>) _serviceProvider.GetService(typeof (IAsyncCommandHandler<TAsyncCommand>));
 
-            await handler.HandleAsync(command);
+            await handler.HandleAsync(command).ConfigureAwait(false);
         }
     }
 }
