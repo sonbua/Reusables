@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationSectionHandlerDemo", "ConfigurationSectionHandlerDemo\ConfigurationSectionHandlerDemo.csproj", "{5D3E74CD-9D1C-435D-B546-354037ABDFF1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables", "Reusables\Reusables.csproj", "{8A6F0955-9952-43CC-ACD8-327FF2DB890B}"
@@ -26,6 +28,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Serialization", "Reusables.Serialization\Reusables.Serialization.csproj", "{6F8C4016-0BED-4DCF-B61A-AA7C105BBADE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Serialization.Newtonsoft", "Reusables.Serialization.Newtonsoft\Reusables.Serialization.Newtonsoft.csproj", "{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.EventSourcing", "Reusables.EventSourcing\Reusables.EventSourcing.csproj", "{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,14 +81,18 @@ Global
 		{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5D3E74CD-9D1C-435D-B546-354037ABDFF1} = {E1B89800-37AB-4E3E-912F-5B0680600976}
-		{A6FCD242-9112-481B-A1F1-36DF8121ED8D} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{8A6F0955-9952-43CC-ACD8-327FF2DB890B} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{A6FCD242-9112-481B-A1F1-36DF8121ED8D} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{5E7E00EB-AA72-4EF1-9BA6-17C0C3C9A7DC} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{FCBB27A9-9FF0-4A08-823F-9CB73D827286} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{F4BFAC1B-4638-447E-A562-2DF8C146A8D1} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
@@ -93,5 +101,6 @@ Global
 		{300E5E34-0B24-459A-B804-1E5C56E5F0F1} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{6F8C4016-0BED-4DCF-B61A-AA7C105BBADE} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 	EndGlobalSection
 EndGlobal
