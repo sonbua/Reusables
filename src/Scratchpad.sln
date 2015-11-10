@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Serialization.New
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.EventSourcing", "Reusables.EventSourcing\Reusables.EventSourcing.csproj", "{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsEventSourcingDemo.Web", "CqrsEventSourcingDemo.Web\CqrsEventSourcingDemo.Web.csproj", "{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,5 +108,6 @@ Global
 		{6F8C4016-0BED-4DCF-B61A-AA7C105BBADE} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1} = {E1B89800-37AB-4E3E-912F-5B0680600976}
 	EndGlobalSection
 EndGlobal

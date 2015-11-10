@@ -190,3 +190,4 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 *.sln.GhostDoc.xml
+.vs/
