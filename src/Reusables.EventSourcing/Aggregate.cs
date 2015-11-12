@@ -1,11 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Reusables.EventSourcing
 {
     public abstract class Aggregate
     {
-        public abstract Guid Id { get; }
+        protected List<object> UncommittedEvents;
 
-        public long Version { get; set; }
+        public Guid Id { get; protected set; }
+
+        public long Version { get; protected set; }
+
+        public object[] GetUncommittedEvents()
+        {
+            return UncommittedEvents.ToArray();
+        }
+
+        public void ClearUncommittedEvents()
+        {
+            UncommittedEvents.Clear();
+        }
     }
 }
