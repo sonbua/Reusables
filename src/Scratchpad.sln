@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Diagnostics.Loggi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Diagnostics.Logging.NLog", "Reusables.Diagnostics.Logging.NLog\Reusables.Diagnostics.Logging.NLog.csproj", "{053901AD-9BC6-4009-B484-EC0D6D9C43C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.EventSourcing.Extensions", "Reusables.EventSourcing.Extensions\Reusables.EventSourcing.Extensions.csproj", "{91CF2B13-0DE4-474D-9E6A-4E7483238D59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,10 @@ Global
 		{053901AD-9BC6-4009-B484-EC0D6D9C43C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{053901AD-9BC6-4009-B484-EC0D6D9C43C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{053901AD-9BC6-4009-B484-EC0D6D9C43C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91CF2B13-0DE4-474D-9E6A-4E7483238D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91CF2B13-0DE4-474D-9E6A-4E7483238D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91CF2B13-0DE4-474D-9E6A-4E7483238D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91CF2B13-0DE4-474D-9E6A-4E7483238D59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,5 +129,6 @@ Global
 		{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1} = {E1B89800-37AB-4E3E-912F-5B0680600976}
 		{7E1A4672-ACCC-4B48-8510-734EDA9A372A} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{053901AD-9BC6-4009-B484-EC0D6D9C43C5} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{91CF2B13-0DE4-474D-9E6A-4E7483238D59} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 	EndGlobalSection
 EndGlobal
