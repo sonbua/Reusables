@@ -19,6 +19,8 @@ namespace Reusables.Validation.DataAnnotations
             _serviceProvider = serviceProvider;
         }
 
+        public int Order { get; }
+
         public IEnumerable<ValidationResult> Validate(TInstance instance)
         {
             return from propertyInfo in typeof (TInstance).GetProperties(BindingFlags.Public | BindingFlags.Instance)
