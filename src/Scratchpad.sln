@@ -33,6 +33,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.EventSourcing", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsEventSourcingDemo.Web", "CqrsEventSourcingDemo.Web\CqrsEventSourcingDemo.Web.csproj", "{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Diagnostics.Logging", "Reusables.Diagnostics.Logging\Reusables.Diagnostics.Logging.csproj", "{7E1A4672-ACCC-4B48-8510-734EDA9A372A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Diagnostics.Logging.NLog", "Reusables.Diagnostics.Logging.NLog\Reusables.Diagnostics.Logging.NLog.csproj", "{053901AD-9BC6-4009-B484-EC0D6D9C43C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +95,14 @@ Global
 		{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E1A4672-ACCC-4B48-8510-734EDA9A372A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E1A4672-ACCC-4B48-8510-734EDA9A372A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E1A4672-ACCC-4B48-8510-734EDA9A372A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E1A4672-ACCC-4B48-8510-734EDA9A372A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{053901AD-9BC6-4009-B484-EC0D6D9C43C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{053901AD-9BC6-4009-B484-EC0D6D9C43C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{053901AD-9BC6-4009-B484-EC0D6D9C43C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{053901AD-9BC6-4009-B484-EC0D6D9C43C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,5 +121,7 @@ Global
 		{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1} = {E1B89800-37AB-4E3E-912F-5B0680600976}
+		{7E1A4672-ACCC-4B48-8510-734EDA9A372A} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{053901AD-9BC6-4009-B484-EC0D6D9C43C5} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 	EndGlobalSection
 EndGlobal
