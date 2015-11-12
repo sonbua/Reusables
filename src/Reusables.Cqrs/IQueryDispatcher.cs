@@ -7,8 +7,8 @@ namespace Reusables.Cqrs
     /// </summary>
     public interface IQueryDispatcher
     {
-        TResult Dispatch<TResult>(Query<TResult> query);
+        TResult DispatchQuery<TResult>(Query<TResult> query);
 
-        Task<TResult> DispatchAsync<TResult>(AsyncQuery<TResult> query);
+        Task<TResult> DispatchQueryAsync<TResult>(AsyncQuery<TResult> query);
     }
 }

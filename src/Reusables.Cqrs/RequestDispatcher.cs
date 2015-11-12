@@ -15,21 +15,21 @@ namespace Reusables.Cqrs
             _serviceProvider = serviceProvider;
         }
 
-        void ICommandDispatcher.Dispatch<TCommand>(TCommand command)
+        public void DispatchCommand<TCommand>(TCommand command) where TCommand : Command
         {
             var handler = (ICommandHandler<TCommand>) _serviceProvider.GetService(typeof (ICommandHandler<TCommand>));
 
             handler.Handle(command);
         }
 
-        async Task ICommandDispatcher.DispatchAsync<TAsyncCommand>(TAsyncCommand command)
+        public async Task DispatchCommandAsync<TAsyncCommand>(TAsyncCommand command) where TAsyncCommand : AsyncCommand
         {
             var handler = (IAsyncCommandHandler<TAsyncCommand>) _serviceProvider.GetService(typeof (IAsyncCommandHandler<TAsyncCommand>));
 
             await handler.HandleAsync(command).ConfigureAwait(false);
         }
 
-        TResult IQueryDispatcher.Dispatch<TResult>(Query<TResult> query)
+        public TResult DispatchQuery<TResult>(Query<TResult> query)
         {
             var handlerType = typeof (IQueryHandler<,>).MakeGenericType(query.GetType(), typeof (TResult));
 
@@ -38,7 +38,7 @@ namespace Reusables.Cqrs
             return handler.Handle(query);
         }
 
-        async Task<TResult> IQueryDispatcher.DispatchAsync<TResult>(AsyncQuery<TResult> query)
+        public async Task<TResult> DispatchQueryAsync<TResult>(AsyncQuery<TResult> query)
         {
             var handlerType = typeof (IAsyncQueryHandler<,>).MakeGenericType(query.GetType(), typeof (TResult));
 
