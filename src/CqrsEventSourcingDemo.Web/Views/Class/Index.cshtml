@@ -1,0 +1,17 @@
+﻿@using Reusables.Util.Extensions
+
+@model CqrsEventSourcingDemo.Web.Scenarios.Class.ListAllClasses.ClassDto[]
+
+@{
+    ViewBag.Title = "All Classes";
+}
+
+<h2>All Classes</h2>
+@if (Model.IsNullOrEmpty())
+{
+    <p>No class</p>
+}
+
+<hr />
+
+@Html.ActionLink("Add new", "Add")

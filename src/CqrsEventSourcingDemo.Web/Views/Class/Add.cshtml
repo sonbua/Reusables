@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Add New Class";
+}
+
+<h2>Add New Class</h2>
+
+@using (Html.BeginForm("Add", "Class"))
+{
+    <div class="form-group">
+        <label for="className">Class name: </label>
+        <input type="text" name="className" id="className" class="form-control" />
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Submit" />
+}
