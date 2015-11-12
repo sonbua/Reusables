@@ -35,13 +35,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command.cs" />
-    <Compile Include="CommandDispatcher.cs" />
+    <Compile Include="IRequestDispatcher.cs" />
+    <Compile Include="RequestDispatcher.cs" />
     <Compile Include="ICommandDispatcher.cs" />
     <Compile Include="ICommandHandler.cs" />
     <Compile Include="IQueryDispatcher.cs" />
     <Compile Include="IQueryHandler.cs" />
     <Compile Include="Query.cs" />
-    <Compile Include="QueryDispatcher.cs" />
     <Compile Include="QueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
