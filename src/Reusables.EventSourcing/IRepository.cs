@@ -5,8 +5,12 @@ namespace Reusables.EventSourcing
 {
     public interface IRepository
     {
-        Task<TAggregate> GetById<TAggregate>(Guid id) where TAggregate : Aggregate;
+        TAggregate GetById<TAggregate>(Guid id) where TAggregate : Aggregate;
 
-        Task Save(Aggregate aggregate);
+        Task<TAggregate> GetByIdAsync<TAggregate>(Guid id) where TAggregate : Aggregate;
+
+        void Save(Aggregate aggregate);
+
+        Task SaveAsync(Aggregate aggregate);
     }
 }
