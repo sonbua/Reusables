@@ -1,4 +1,4 @@
-using System;
+using Reusables.Diagnostics.Contracts;
 using Reusables.Serialization.Newtonsoft.Extensions;
 
 namespace Reusables.Serialization.Newtonsoft
@@ -12,10 +12,7 @@ namespace Reusables.Serialization.Newtonsoft
 
         public override T Deserialize(string source)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
+            Requires.IsNotNull(source, nameof(source));
 
             return source.FromXml<T>();
         }

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Reusables.Diagnostics.Contracts;
 using Reusables.Util.Extensions;
 
 namespace Reusables.Serialization.Newtonsoft.Extensions
@@ -15,10 +16,7 @@ namespace Reusables.Serialization.Newtonsoft.Extensions
 
         public static T FromJson<T>(this string source)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
+            Requires.IsNotNull(source, nameof(source));
 
             return JsonConvert.DeserializeObject<T>(source);
         }
@@ -41,10 +39,7 @@ namespace Reusables.Serialization.Newtonsoft.Extensions
 
         public static T FromXml<T>(this string source)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
+            Requires.IsNotNull(source, nameof(source));
 
             using (var stream = new MemoryStream())
             {
