@@ -22,6 +22,11 @@ namespace CqrsEventSourcingDemo.Web.Abstractions.Views
             updateAction(view);
         }
 
+        public void Remove(Guid id)
+        {
+            _views.Remove(GetById(id));
+        }
+
         public TView GetById(Guid id)
         {
             return _views.Single(x => x.Id == id);

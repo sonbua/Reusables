@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using CqrsEventSourcingDemo.Web.Scenarios.Class.AddNewClass;
 using CqrsEventSourcingDemo.Web.Scenarios.Class.GetClassById;
 using CqrsEventSourcingDemo.Web.Scenarios.Class.ListAllClasses;
+using CqrsEventSourcingDemo.Web.Scenarios.Class.RemoveClass;
 using CqrsEventSourcingDemo.Web.Scenarios.Class.RenameClass;
 using Reusables.Cqrs;
 
@@ -61,6 +62,25 @@ namespace CqrsEventSourcingDemo.Web.Controllers
                               Id = id,
                               NewName = newName
                           };
+
+            _dispatcher.DispatchCommand(command);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Remove(Guid id)
+        {
+            var query = new GetClassByIdQuery {Id = id};
+
+            var classView = _dispatcher.DispatchQuery(query);
+
+            return View(classView);
+        }
+
+        [HttpPost]
+        public ActionResult RemoveImpl(Guid id)
+        {
+            var command = new RemoveClassCommand {Id = id};
 
             _dispatcher.DispatchCommand(command);
 

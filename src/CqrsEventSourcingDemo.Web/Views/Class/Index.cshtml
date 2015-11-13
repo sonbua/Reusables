@@ -20,6 +20,7 @@ else
                 <td>@classView.Id</td>
                 <td>@classView.Name</td>
                 <td>@Html.ActionLink("Rename", "Rename", new {id = classView.Id})</td>
+                <td>@Html.ActionLink("Remove", "Remove", new {id = classView.Id})</td>
             </tr>
         }
     </table>

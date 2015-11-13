@@ -9,6 +9,8 @@ namespace Reusables.EventSourcing
 
         void Update(Guid id, Action<TView> updateAction);
 
+        void Remove(Guid id);
+
         TView GetById(Guid id);
     }
 }
