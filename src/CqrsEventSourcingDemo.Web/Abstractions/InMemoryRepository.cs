@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CqrsEventSourcingDemo.Web.Controllers;
 using Reusables.EventSourcing;
 using Reusables.EventSourcing.Extensions;
 using Reusables.Util.Extensions;
@@ -13,21 +12,21 @@ namespace CqrsEventSourcingDemo.Web.Abstractions
     {
         private static readonly Dictionary<Guid, List<EventData>> _eventStorage = new Dictionary<Guid, List<EventData>>();
 
-        public TAggregate GetById<TAggregate>(Guid id) where TAggregate : Aggregate
+        public TAggregate GetById<TAggregate>(Guid id) where TAggregate : Aggregate, new()
         {
-            List<EventData> listOfEventData;
+            List<EventData> eventDataHistory;
 
-            if (_eventStorage.TryGetValue(id, out listOfEventData))
+            if (!_eventStorage.TryGetValue(id, out eventDataHistory))
             {
-                var events = listOfEventData.Select(x => x.FromEventData());
-
-                return (TAggregate) (Aggregate) new ClassAggregate(events);
+                return new TAggregate();
             }
 
-            return (TAggregate) (Aggregate) new ClassAggregate(Enumerable.Empty<object>());
+            var history = eventDataHistory.Select(x => x.FromEventData());
+
+            return new TAggregate().Replay(history);
         }
 
-        public Task<TAggregate> GetByIdAsync<TAggregate>(Guid id) where TAggregate : Aggregate
+        public Task<TAggregate> GetByIdAsync<TAggregate>(Guid id) where TAggregate : Aggregate, new()
         {
             throw new NotImplementedException();
         }

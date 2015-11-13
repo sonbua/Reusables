@@ -5,13 +5,13 @@ namespace Reusables.EventSourcing
 {
     public abstract class Aggregate
     {
-        protected List<object> UncommittedEvents = new List<object>();
+        protected List<Event> UncommittedEvents = new List<Event>();
 
         public Guid Id { get; protected set; }
 
         public long Version { get; protected set; }
 
-        public object[] GetUncommittedEvents()
+        public Event[] GetUncommittedEvents()
         {
             return UncommittedEvents.ToArray();
         }

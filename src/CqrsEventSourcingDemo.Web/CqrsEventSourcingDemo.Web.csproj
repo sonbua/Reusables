@@ -342,6 +342,10 @@
       <Project>{A6FCD242-9112-481B-A1F1-36DF8121ED8D}</Project>
       <Name>Reusables.Web.Mvc5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reusables\Reusables.csproj">
+      <Project>{8A6F0955-9952-43CC-ACD8-327FF2DB890B}</Project>
+      <Name>Reusables</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

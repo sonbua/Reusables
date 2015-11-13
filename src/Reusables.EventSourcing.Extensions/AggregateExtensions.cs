@@ -9,19 +9,29 @@ namespace Reusables.EventSourcing.Extensions
     {
         private static readonly MethodInfo _internalPreserveStackTraceMethod = typeof (Exception).GetMethod("InternalPreserveStackTrace", BindingFlags.Instance | BindingFlags.NonPublic);
 
-        public static void InvokeEventOptional<TAggregate>(this TAggregate aggregate, object @event) where TAggregate : Aggregate
+        public static TAggregate Replay<TAggregate>(this TAggregate aggregate, IEnumerable<Event> history) where TAggregate : Aggregate
         {
-            MethodInfo whenMethod;
+            foreach (var @event in history)
+            {
+                aggregate.InvokeEventOptional(@event);
+            }
+
+            return aggregate;
+        }
+
+        public static void InvokeEventOptional<TAggregate>(this TAggregate aggregate, Event @event) where TAggregate : Aggregate
+        {
+            MethodInfo handler;
             var eventType = @event.GetType();
 
-            if (!Cache<TAggregate>.Dict.TryGetValue(eventType, out whenMethod))
+            if (!EventHandlerCache<TAggregate>.Instance.TryGetValue(eventType, out handler))
             {
                 return;
             }
 
             try
             {
-                whenMethod.Invoke(aggregate, new[] {@event});
+                handler.Invoke(aggregate, new object[] {@event});
             }
             catch (TargetInvocationException ex)
             {
@@ -31,12 +41,12 @@ namespace Reusables.EventSourcing.Extensions
             }
         }
 
-        private static class Cache<TAggregate>
+        private static class EventHandlerCache<TAggregate>
         {
-            public static readonly IDictionary<Type, MethodInfo> Dict = typeof (TAggregate).GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-                                                                                           .Where(m => m.Name == "When")
-                                                                                           .Where(m => m.GetParameters().Length == 1)
-                                                                                           .ToDictionary(m => m.GetParameters().First().ParameterType, m => m);
+            public static readonly IDictionary<Type, MethodInfo> Instance = typeof (TAggregate).GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                                                                                               .Where(m => m.Name == "When")
+                                                                                               .Where(m => m.GetParameters().Length == 1)
+                                                                                               .ToDictionary(m => m.GetParameters().First().ParameterType, m => m);
         }
     }
 }

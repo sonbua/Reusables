@@ -33,11 +33,11 @@ namespace Reusables.EventSourcing.Extensions
                    };
         }
 
-        public static object FromEventData(this EventData eventData)
+        public static Event FromEventData(this EventData eventData)
         {
             var eventClrTypeName = JObject.Parse(eventData.Metadata).Property("EventClrType").Value;
 
-            return JsonConvert.DeserializeObject(eventData.Event, Type.GetType((string) eventClrTypeName));
+            return (Event) JsonConvert.DeserializeObject(eventData.Event, Type.GetType((string) eventClrTypeName));
         }
     }
 }

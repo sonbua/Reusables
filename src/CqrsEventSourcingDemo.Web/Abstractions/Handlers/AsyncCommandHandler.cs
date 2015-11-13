@@ -6,7 +6,7 @@ using Reusables.EventSourcing;
 namespace CqrsEventSourcingDemo.Web.Abstractions.Handlers
 {
     public abstract class AsyncCommandHandler<TAggregate, TAsyncCommand> : IAsyncCommandHandler<TAsyncCommand>
-        where TAggregate : Aggregate
+        where TAggregate : Aggregate, new()
         where TAsyncCommand : AsyncCommand
     {
         private readonly IRepository _repository;
