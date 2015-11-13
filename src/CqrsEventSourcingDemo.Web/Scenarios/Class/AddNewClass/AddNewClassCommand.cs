@@ -9,6 +9,7 @@ namespace CqrsEventSourcingDemo.Web.Scenarios.Class.AddNewClass
         public Guid ClassId { get; set; }
 
         [Required]
+        [StringLength(50, MinimumLength = 3)]
         public string ClassName { get; set; }
     }
 }

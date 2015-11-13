@@ -220,11 +220,17 @@
     <Compile Include="Scenarios\Class\AddNewClass\AddNewClassCommand.cs" />
     <Compile Include="Scenarios\Class\AddNewClass\AddNewClassCommandHandler.cs" />
     <Compile Include="Scenarios\Class\AddNewClass\NewClassAdded.cs" />
+    <Compile Include="Scenarios\Class\AddNewClass\NewClassAddedSubscriber.cs" />
     <Compile Include="Scenarios\Class\ClassAggregate.cs" />
     <Compile Include="Scenarios\Class\ClassView.cs" />
-    <Compile Include="Scenarios\Class\ClassViewObserver.cs" />
+    <Compile Include="Scenarios\Class\GetClassById\GetClassByIdQuery.cs" />
+    <Compile Include="Scenarios\Class\GetClassById\GetClassByIdQueryHandler.cs" />
     <Compile Include="Scenarios\Class\ListAllClasses\ListAllClassesQuery.cs" />
     <Compile Include="Scenarios\Class\ListAllClasses\ListAllClassesQueryHandler.cs" />
+    <Compile Include="Scenarios\Class\RenameClass\ClassRenamed.cs" />
+    <Compile Include="Scenarios\Class\RenameClass\ClassRenamedSubscriber.cs" />
+    <Compile Include="Scenarios\Class\RenameClass\RenameClassCommand.cs" />
+    <Compile Include="Scenarios\Class\RenameClass\RenameClassCommandHandler.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +304,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <None Include="Views\Class\Add.cshtml" />
     <None Include="Views\Class\Index.cshtml" />
+    <None Include="Views\Class\Rename.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

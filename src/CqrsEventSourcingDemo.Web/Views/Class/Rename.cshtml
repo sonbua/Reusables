@@ -1,0 +1,17 @@
+﻿@model CqrsEventSourcingDemo.Web.Scenarios.Class.ClassView
+
+@{
+    ViewBag.Title = "Rename Class Name";
+}
+
+<h2>Rename Class: @Model.Name</h2>
+
+@using (Html.BeginForm("Rename", "Class"))
+{
+    <div class="form-group">
+        <label for="newName" class="control-label">New name: </label>
+        <input type="text" name="newName" id="newName" class="form-control" />
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-primary" />
+}

@@ -1,21 +1,15 @@
-using System;
-using CqrsEventSourcingDemo.Web.Scenarios.Class.AddNewClass;
 using Reusables.EventSourcing;
 
-namespace CqrsEventSourcingDemo.Web.Scenarios.Class
+namespace CqrsEventSourcingDemo.Web.Scenarios.Class.AddNewClass
 {
-    public class ClassViewObserver : Subscriber<NewClassAdded>
+    public class NewClassAddedSubscriber : Subscriber<NewClassAdded>
     {
         private readonly IViewDatabase _viewDatabase;
 
-        public ClassViewObserver(IViewDatabase viewDatabase)
+        public NewClassAddedSubscriber(IViewDatabase viewDatabase)
         {
             _viewDatabase = viewDatabase;
         }
-
-        public string Name { get; set; }
-
-        public Guid Id { get; set; }
 
         public override void Handle(NewClassAdded @event)
         {

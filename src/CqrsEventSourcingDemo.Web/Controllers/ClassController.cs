@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Web.Mvc;
-using CqrsEventSourcingDemo.Web.Abstractions.Views;
 using CqrsEventSourcingDemo.Web.Scenarios.Class.AddNewClass;
+using CqrsEventSourcingDemo.Web.Scenarios.Class.GetClassById;
 using CqrsEventSourcingDemo.Web.Scenarios.Class.ListAllClasses;
+using CqrsEventSourcingDemo.Web.Scenarios.Class.RenameClass;
 using Reusables.Cqrs;
-using Reusables.EventSourcing;
 
 namespace CqrsEventSourcingDemo.Web.Controllers
 {
@@ -43,6 +43,28 @@ namespace CqrsEventSourcingDemo.Web.Controllers
 
             return RedirectToAction("Index");
         }
-    }
 
+        public ActionResult Rename(Guid id)
+        {
+            var query = new GetClassByIdQuery {Id = id};
+
+            var classView = _dispatcher.DispatchQuery(query);
+
+            return View(classView);
+        }
+
+        [HttpPost]
+        public ActionResult Rename(Guid id, string newName)
+        {
+            var command = new RenameClassCommand
+                          {
+                              Id = id,
+                              NewName = newName
+                          };
+
+            _dispatcher.DispatchCommand(command);
+
+            return RedirectToAction("Index");
+        }
+    }
 }

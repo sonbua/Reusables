@@ -19,6 +19,7 @@ else
             <tr>
                 <td>@classView.Id</td>
                 <td>@classView.Name</td>
+                <td>@Html.ActionLink("Rename", "Rename", new {id = classView.Id})</td>
             </tr>
         }
     </table>

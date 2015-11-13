@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CqrsEventSourcingDemo.Web.Scenarios.Class.AddNewClass;
+using CqrsEventSourcingDemo.Web.Scenarios.Class.RenameClass;
 using Reusables.EventSourcing;
 using Reusables.EventSourcing.Extensions;
 
@@ -23,6 +24,11 @@ namespace CqrsEventSourcingDemo.Web.Scenarios.Class
             Publish(new NewClassAdded {Id = id, ClassName = className});
         }
 
+        public void Rename(Guid id, string newName)
+        {
+            Publish(new ClassRenamed {Id = id, NewName = newName});
+        }
+
         private void Publish(Event @event)
         {
             UncommittedEvents.Add(@event);
@@ -41,6 +47,11 @@ namespace CqrsEventSourcingDemo.Web.Scenarios.Class
         {
             Id = @event.Id;
             Name = @event.ClassName;
+        }
+
+        private void When(ClassRenamed @event)
+        {
+            Name = @event.NewName;
         }
     }
 }
