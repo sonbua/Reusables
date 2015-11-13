@@ -313,7 +313,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="CompositionRoot\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
