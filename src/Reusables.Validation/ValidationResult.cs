@@ -10,12 +10,12 @@ namespace Reusables.Validation
         {
             if (errorMessage == null)
             {
-                throw new ArgumentNullException("errorMessage");
+                throw new ArgumentNullException(nameof(errorMessage));
             }
 
             if (memberName == null)
             {
-                throw new ArgumentNullException("memberName");
+                throw new ArgumentNullException(nameof(memberName));
             }
             
             ErrorMessage = errorMessage;

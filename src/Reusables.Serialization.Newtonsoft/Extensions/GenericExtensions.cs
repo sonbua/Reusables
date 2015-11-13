@@ -17,7 +17,7 @@ namespace Reusables.Serialization.Newtonsoft.Extensions
         {
             if (source == null)
             {
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             }
 
             return JsonConvert.DeserializeObject<T>(source);
@@ -43,7 +43,7 @@ namespace Reusables.Serialization.Newtonsoft.Extensions
         {
             if (source == null)
             {
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             }
 
             using (var stream = new MemoryStream())

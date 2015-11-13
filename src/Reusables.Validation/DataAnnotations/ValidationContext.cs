@@ -8,12 +8,12 @@ namespace Reusables.Validation.DataAnnotations
         {
             if (objectType == null)
             {
-                throw new ArgumentNullException("objectType");
+                throw new ArgumentNullException(nameof(objectType));
             }
 
             if (memberName == null)
             {
-                throw new ArgumentNullException("memberName");
+                throw new ArgumentNullException(nameof(memberName));
             }
 
             ObjectType = objectType;

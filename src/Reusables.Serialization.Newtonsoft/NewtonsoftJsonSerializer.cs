@@ -14,7 +14,7 @@ namespace Reusables.Serialization.Newtonsoft
         {
             if (source == null)
             {
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             }
 
             return source.FromJson<T>();
