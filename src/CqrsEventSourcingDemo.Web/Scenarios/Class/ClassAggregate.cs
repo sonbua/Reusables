@@ -46,7 +46,7 @@ namespace CqrsEventSourcingDemo.Web.Scenarios.Class
         {
             Version++;
 
-            this.InvokeEventOptional(@event);
+            this.Replay(@event);
         }
 
         private void When(NewClassAdded @event)
