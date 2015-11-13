@@ -1,6 +1,6 @@
 ﻿@using Reusables.Util.Extensions
 
-@model CqrsEventSourcingDemo.Web.Scenarios.Class.ListAllClasses.ClassDto[]
+@model CqrsEventSourcingDemo.Web.Scenarios.Class.ClassView[]
 
 @{
     ViewBag.Title = "All Classes";
@@ -10,6 +10,18 @@
 @if (Model.IsNullOrEmpty())
 {
     <p>No class</p>
+}
+else
+{
+    <table  class="table table-hover table-bordered">
+        @foreach (var classView in Model)
+        {
+            <tr>
+                <td>@classView.Id</td>
+                <td>@classView.Name</td>
+            </tr>
+        }
+    </table>
 }
 
 <hr />

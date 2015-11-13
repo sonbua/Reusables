@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Reusables.EventSourcing;
 
-namespace CqrsEventSourcingDemo.Web.Abstractions
+namespace Reusables.EventSourcing
 {
     public interface IAggregateFactory
     {

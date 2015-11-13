@@ -1,6 +1,4 @@
-using Reusables.EventSourcing;
-
-namespace CqrsEventSourcingDemo.Web.Abstractions
+namespace Reusables.EventSourcing
 {
     public interface IEventPublisher
     {

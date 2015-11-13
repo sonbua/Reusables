@@ -193,13 +193,9 @@
     <Compile Include="Abstractions\CompositeValidator.cs" />
     <Compile Include="Abstractions\Decorators\LoggingDecoratorCommandHandler.cs" />
     <Compile Include="Abstractions\Decorators\ValidationDecoratorCommandHandler.cs" />
-    <Compile Include="Abstractions\EventPublisher.cs" />
-    <Compile Include="Abstractions\Handlers\AsyncCommandHandler.cs" />
-    <Compile Include="Abstractions\Handlers\CommandHandler.cs" />
-    <Compile Include="Abstractions\IAggregateFactory.cs" />
-    <Compile Include="Abstractions\IEventHandler.cs" />
-    <Compile Include="Abstractions\IEventPublisher.cs" />
     <Compile Include="Abstractions\InMemoryRepository.cs" />
+    <Compile Include="Abstractions\Views\InMemoryViewDatabase.cs" />
+    <Compile Include="Abstractions\Views\InMemoryViewSet.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DependencyResolverConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -221,6 +217,12 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenarios\Class\AddNewClass\AddNewClassCommand.cs" />
+    <Compile Include="Scenarios\Class\AddNewClass\AddNewClassCommandHandler.cs" />
+    <Compile Include="Scenarios\Class\AddNewClass\NewClassAdded.cs" />
+    <Compile Include="Scenarios\Class\ClassAggregate.cs" />
+    <Compile Include="Scenarios\Class\ClassView.cs" />
+    <Compile Include="Scenarios\Class\ClassViewObserver.cs" />
     <Compile Include="Scenarios\Class\ListAllClasses\ListAllClassesQuery.cs" />
     <Compile Include="Scenarios\Class\ListAllClasses\ListAllClassesQueryHandler.cs" />
     <Compile Include="Startup.cs" />
@@ -300,7 +302,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="CompositionRoot\" />
-    <Folder Include="Scenarios\Class\AddNewClass\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

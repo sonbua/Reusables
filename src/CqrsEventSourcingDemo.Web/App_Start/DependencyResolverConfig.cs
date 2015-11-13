@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CqrsEventSourcingDemo.Web.Abstractions;
 using CqrsEventSourcingDemo.Web.Abstractions.Decorators;
+using CqrsEventSourcingDemo.Web.Abstractions.Views;
 using NLog;
 using Reusables.Cqrs;
 using Reusables.Diagnostics.Logging;
@@ -61,7 +62,13 @@ namespace CqrsEventSourcingDemo.Web
             container.Register<IAggregateFactory, AggregateFactory>();
 
             // Event publisher
-            container.Register<IEventPublisher>(() => new EventPublisher(type => (IEnumerable<IEventHandler>) container.GetAllInstances(type)));
+            container.Register<IEventPublisher>(() => new EventPublisher(type => (IEnumerable<IEventSubscriber>) container.GetAllInstances(type)));
+
+            // Event handlers
+            container.RegisterCollection(typeof (IEventSubscriber<>), typeof (MvcApplication).Assembly);
+
+            // View database
+            container.Register<IViewDatabase, InMemoryViewDatabase>();
 
             // Verify
             container.Verify();

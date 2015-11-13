@@ -1,14 +1,22 @@
+using System.Linq;
+using CqrsEventSourcingDemo.Web.Controllers;
 using Reusables.Cqrs;
+using Reusables.EventSourcing;
 
 namespace CqrsEventSourcingDemo.Web.Scenarios.Class.ListAllClasses
 {
-    public class ListAllClassesQueryHandler : QueryHandler<ListAllClassesQuery, ClassDto[]>
+    public class ListAllClassesQueryHandler : QueryHandler<ListAllClassesQuery, ClassView[]>
     {
+        private readonly IViewDatabase _viewDatabase;
 
-
-        public override ClassDto[] Handle(ListAllClassesQuery query)
+        public ListAllClassesQueryHandler(IViewDatabase viewDatabase)
         {
-            return new ClassDto[0];
+            _viewDatabase = viewDatabase;
+        }
+
+        public override ClassView[] Handle(ListAllClassesQuery query)
+        {
+            return _viewDatabase.Set<ClassView>().ToArray();
         }
     }
 }
