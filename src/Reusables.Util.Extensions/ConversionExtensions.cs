@@ -1,4 +1,5 @@
 ﻿using System;
+using Reusables.Diagnostics.Contracts;
 
 namespace Reusables.Util.Extensions
 {
@@ -14,10 +15,7 @@ namespace Reusables.Util.Extensions
         /// <returns></returns>
         public static byte[] GetBytes(this string str)
         {
-            if (str == null)
-            {
-                throw new ArgumentNullException(nameof(str));
-            }
+            Requires.IsNotNull(str, nameof(str));
 
             var bytes = new byte[str.Length*sizeof (char)];
             Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
@@ -31,10 +29,7 @@ namespace Reusables.Util.Extensions
         /// <returns></returns>
         public static string GetString(this byte[] bytes)
         {
-            if (bytes == null)
-            {
-                throw new ArgumentNullException(nameof(bytes));
-            }
+            Requires.IsNotNull(bytes, nameof(bytes));
 
             var chars = new char[bytes.Length/sizeof (char)];
             Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);

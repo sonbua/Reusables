@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Reusables.Diagnostics.Contracts;
 
 namespace Reusables.Validation
 {
@@ -8,16 +8,9 @@ namespace Reusables.Validation
 
         public ValidationResult(string errorMessage, string memberName)
         {
-            if (errorMessage == null)
-            {
-                throw new ArgumentNullException(nameof(errorMessage));
-            }
+            Requires.IsNotNull(errorMessage, nameof(errorMessage));
+            Requires.IsNotNull(memberName, nameof(memberName));
 
-            if (memberName == null)
-            {
-                throw new ArgumentNullException(nameof(memberName));
-            }
-            
             ErrorMessage = errorMessage;
             MemberName = memberName;
         }

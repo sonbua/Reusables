@@ -1,5 +1,6 @@
 using System;
 using Reusables.DataAnnotations;
+using Reusables.Diagnostics.Contracts;
 
 namespace Reusables.Validation.DataAnnotations
 {
@@ -7,10 +8,7 @@ namespace Reusables.Validation.DataAnnotations
     {
         public override ValidationResult Validate(object value, ValidationContext context, MaxLengthAttribute attribute)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
+            Requires.IsNotNull(context, nameof(context));
 
             if (value == null)
             {
@@ -18,7 +16,7 @@ namespace Reusables.Validation.DataAnnotations
             }
 
             var str = value as string;
-            var length = str == null ? ((Array) value).Length : str.Length;
+            var length = str?.Length ?? ((Array) value).Length;
 
             if (length <= attribute.Length)
             {

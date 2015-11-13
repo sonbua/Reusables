@@ -1,5 +1,6 @@
 using System;
 using Reusables.DataAnnotations;
+using Reusables.Diagnostics.Contracts;
 
 namespace Reusables.Validation.DataAnnotations
 {
@@ -7,10 +8,7 @@ namespace Reusables.Validation.DataAnnotations
     {
         public override ValidationResult Validate(object value, ValidationContext context, MinLengthAttribute attribute)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
+            Requires.IsNotNull(context, nameof(context));
 
             if (value == null)
             {

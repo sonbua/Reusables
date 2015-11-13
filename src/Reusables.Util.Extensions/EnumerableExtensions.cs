@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Reusables.Diagnostics.Contracts;
 
 namespace Reusables.Util.Extensions
 {
@@ -20,14 +21,8 @@ namespace Reusables.Util.Extensions
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="selector"/> is null.</exception>
         public static string BuildString<T>(this IEnumerable<T> source, Func<T, string> selector)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-            if (selector == null)
-            {
-                throw new ArgumentNullException(nameof(selector));
-            }
+            Requires.IsNotNull(source, nameof(source));
+            Requires.IsNotNull(selector, nameof(selector));
 
             return BuildStringImpl(source, selector);
         }
@@ -44,10 +39,7 @@ namespace Reusables.Util.Extensions
 
         public static IEnumerable<IEnumerable<T>> Chunk<T>(this IEnumerable<T> source, int chunkSize)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
+            Requires.IsNotNull(source, nameof(source));
 
             if (chunkSize <= 0)
             {
@@ -71,14 +63,8 @@ namespace Reusables.Util.Extensions
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="action"/> is null.</exception>
         public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-            if (action == null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            Requires.IsNotNull(source, nameof(source));
+            Requires.IsNotNull(action, nameof(action));
 
             foreach (var item in source)
             {
@@ -94,10 +80,7 @@ namespace Reusables.Util.Extensions
         /// <returns></returns>
         public static bool IsEmpty<T>(this IEnumerable<T> source)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
+            Requires.IsNotNull(source, nameof(source));
 
             return !source.Any();
         }
@@ -158,15 +141,8 @@ namespace Reusables.Util.Extensions
         /// <returns><c>true</c> if there's no element in the source sequence that satisfies the condition; otherwise, <c>false</c>.</returns>
         public static bool None<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (predicate == null)
-            {
-                throw new ArgumentNullException(nameof(predicate));
-            }
+            Requires.IsNotNull(source, nameof(source));
+            Requires.IsNotNull(predicate, nameof(predicate));
 
             return !source.Any(predicate);
         }

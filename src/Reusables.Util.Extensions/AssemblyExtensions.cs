@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Reusables.Diagnostics.Contracts;
 
 namespace Reusables.Util.Extensions
 {
@@ -17,10 +18,7 @@ namespace Reusables.Util.Extensions
         /// <returns></returns>
         public static IEnumerable<Type> GetLoadableTypes(this Assembly assembly)
         {
-            if (assembly == null)
-            {
-                throw new ArgumentNullException(nameof(assembly));
-            }
+            Requires.IsNotNull(assembly, nameof(assembly));
 
             try
             {

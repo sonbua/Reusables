@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FastMember;
+using Reusables.Diagnostics.Contracts;
 
 namespace Reusables.Util.Extensions
 {
@@ -14,10 +15,7 @@ namespace Reusables.Util.Extensions
         /// <returns></returns>
         public static Dictionary<string, object> ToDictionary<T>(this T instance)
         {
-            if (instance == null)
-            {
-                throw new ArgumentNullException(nameof(instance));
-            }
+            Requires.IsNotNull(instance, nameof(instance));
 
             var typeAccessor = TypeAccessor.Create(instance.GetType());
 

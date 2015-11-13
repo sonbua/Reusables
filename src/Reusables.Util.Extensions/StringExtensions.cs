@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Reusables.Diagnostics.Contracts;
 
 namespace Reusables.Util.Extensions
 {
@@ -20,10 +21,7 @@ namespace Reusables.Util.Extensions
         /// <exception cref="ArgumentNullException"><paramref name="subject"/> is null.</exception>
         public static bool EqualsIgnoreCase(this string subject, string other)
         {
-            if (subject == null)
-            {
-                throw new ArgumentNullException(nameof(subject));
-            }
+            Requires.IsNotNull(subject, nameof(subject));
 
             return subject.Equals(other, StringComparison.InvariantCultureIgnoreCase);
         }
@@ -38,14 +36,8 @@ namespace Reusables.Util.Extensions
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="mask"/> is null.</exception>
         public static string FormatWithMask(this string source, string mask)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-            if (mask == null)
-            {
-                throw new ArgumentNullException(nameof(mask));
-            }
+            Requires.IsNotNull(source, nameof(source));
+            Requires.IsNotNull(mask, nameof(mask));
 
             var maskedInput = string.Empty;
             var index = 0;
@@ -99,15 +91,8 @@ namespace Reusables.Util.Extensions
         /// <returns></returns>
         public static string Merge(this string template, object data, char fieldStartDelimiter = '{', char fieldEndDelimiter = '}')
         {
-            if (template == null)
-            {
-                throw new ArgumentNullException(nameof(template));
-            }
-
-            if (data == null)
-            {
-                throw new ArgumentNullException(nameof(data));
-            }
+            Requires.IsNotNull(template, nameof(template));
+            Requires.IsNotNull(data, nameof(data));
 
             var dataDictionary = data.ToDictionary();
 
@@ -161,14 +146,9 @@ namespace Reusables.Util.Extensions
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="removedChars"/> is null.</exception>
         public static string Remove(this string source, params char[] removedChars)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-            if (removedChars == null)
-            {
-                throw new ArgumentNullException(nameof(removedChars));
-            }
+            Requires.IsNotNull(source, nameof(source));
+            Requires.IsNotNull(removedChars, nameof(removedChars));
+
             if (removedChars.Length == 0)
             {
                 return source;
@@ -186,14 +166,9 @@ namespace Reusables.Util.Extensions
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="removedStrings"/> is null.</exception>
         public static string Remove(this string source, params string[] removedStrings)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-            if (removedStrings == null)
-            {
-                throw new ArgumentNullException(nameof(removedStrings));
-            }
+            Requires.IsNotNull(source, nameof(source));
+            Requires.IsNotNull(removedStrings, nameof(removedStrings));
+
             if (source.Length == 0 || removedStrings.Length == 0)
             {
                 return source;
@@ -212,14 +187,9 @@ namespace Reusables.Util.Extensions
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="oldChars"/> is null.</exception>
         public static string Replace(this string source, char[] oldChars, string substituent)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-            if (oldChars == null)
-            {
-                throw new ArgumentNullException(nameof(oldChars));
-            }
+            Requires.IsNotNull(source, nameof(source));
+            Requires.IsNotNull(oldChars, nameof(oldChars));
+
             if (source.Length == 0 || oldChars.Length == 0)
             {
                 return source;
@@ -248,14 +218,8 @@ namespace Reusables.Util.Extensions
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="oldStrings"/> is null.</exception>
         public static string Replace(this string source, string[] oldStrings, string substituent)
         {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-            if (oldStrings == null)
-            {
-                throw new ArgumentNullException(nameof(oldStrings));
-            }
+            Requires.IsNotNull(source, nameof(source));
+            Requires.IsNotNull(oldStrings, nameof(oldStrings));
 
             return source.ReplaceImpl(oldStrings, substituent);
         }

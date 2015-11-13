@@ -1,5 +1,5 @@
-using System;
 using System.IO;
+using Reusables.Diagnostics.Contracts;
 
 namespace Reusables.Util.Extensions
 {
@@ -7,10 +7,7 @@ namespace Reusables.Util.Extensions
     {
         public static bool TryToRewind(this Stream stream)
         {
-            if (stream == null)
-            {
-                throw new ArgumentNullException(nameof(stream));
-            }
+            Requires.IsNotNull(stream, nameof(stream));
 
             if (stream.CanSeek)
             {
