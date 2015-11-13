@@ -1,4 +1,3 @@
-using CqrsEventSourcingDemo.Web.Controllers;
 using Reusables.Cqrs;
 
 namespace CqrsEventSourcingDemo.Web.Scenarios.Class.ListAllClasses

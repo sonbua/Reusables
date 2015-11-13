@@ -1,5 +1,4 @@
 using System.Linq;
-using CqrsEventSourcingDemo.Web.Controllers;
 using Reusables.Cqrs;
 using Reusables.EventSourcing;
 
