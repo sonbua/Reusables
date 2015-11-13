@@ -11,22 +11,28 @@ namespace CqrsEventSourcingDemo.Web.Abstractions
     public class InMemoryRepository : IRepository
     {
         private static readonly Dictionary<Guid, List<EventData>> _eventStorage = new Dictionary<Guid, List<EventData>>();
+        private readonly IAggregateFactory _aggregateFactory;
 
-        public TAggregate GetById<TAggregate>(Guid id) where TAggregate : Aggregate, new()
+        public InMemoryRepository(IAggregateFactory aggregateFactory)
+        {
+            _aggregateFactory = aggregateFactory;
+        }
+
+        public TAggregate GetById<TAggregate>(Guid id) where TAggregate : Aggregate
         {
             List<EventData> eventDataHistory;
 
             if (!_eventStorage.TryGetValue(id, out eventDataHistory))
             {
-                return new TAggregate();
+                return _aggregateFactory.Create<TAggregate>(new Event[0]);
             }
 
             var history = eventDataHistory.Select(x => x.FromEventData());
 
-            return new TAggregate().Replay(history);
+            return _aggregateFactory.Create<TAggregate>(history);
         }
 
-        public Task<TAggregate> GetByIdAsync<TAggregate>(Guid id) where TAggregate : Aggregate, new()
+        public Task<TAggregate> GetByIdAsync<TAggregate>(Guid id) where TAggregate : Aggregate
         {
             throw new NotImplementedException();
         }

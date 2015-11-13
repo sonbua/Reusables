@@ -5,7 +5,7 @@ using Reusables.EventSourcing;
 namespace CqrsEventSourcingDemo.Web.Abstractions.Handlers
 {
     public abstract class CommandHandler<TAggregate, TCommand> : ICommandHandler<TCommand>
-        where TAggregate : Aggregate, new()
+        where TAggregate : Aggregate
         where TCommand : Command
     {
         private readonly IRepository _repository;

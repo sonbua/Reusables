@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using CqrsEventSourcingDemo.Web.Abstractions.Handlers;
 using CqrsEventSourcingDemo.Web.Scenarios.Class.ListAllClasses;
@@ -72,6 +73,14 @@ namespace CqrsEventSourcingDemo.Web.Controllers
 
     public class ClassAggregate : Aggregate
     {
+        public ClassAggregate(IEnumerable<Event> history)
+        {
+            foreach (var @event in history)
+            {
+                Apply(@event);
+            }
+        }
+
         public string Name { get; set; }
 
         public void AddNew(Guid id, string className)

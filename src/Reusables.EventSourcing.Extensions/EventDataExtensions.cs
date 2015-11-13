@@ -9,7 +9,7 @@ namespace Reusables.EventSourcing.Extensions
     {
         private static readonly JsonSerializerSettings _serializerSettings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.None};
 
-        public static EventData ToEventData(this object @event, string aggregateType, Guid aggregateId, long version)
+        public static EventData ToEventData(this Event @event, string aggregateType, Guid aggregateId, long version)
         {
             var eventId = Guid.NewGuid();
             var data = JsonConvert.SerializeObject(@event, _serializerSettings);

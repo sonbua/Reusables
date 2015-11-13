@@ -57,6 +57,9 @@ namespace CqrsEventSourcingDemo.Web
             // Repository
             container.Register<IRepository, InMemoryRepository>();
 
+            // Aggregate factory
+            container.Register<IAggregateFactory, AggregateFactory>();
+
             // Verify
             container.Verify();
 
