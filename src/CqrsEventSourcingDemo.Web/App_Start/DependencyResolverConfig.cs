@@ -60,6 +60,9 @@ namespace CqrsEventSourcingDemo.Web
             // Aggregate factory
             container.Register<IAggregateFactory, AggregateFactory>();
 
+            // Event publisher
+            container.Register<IEventPublisher>(() => new EventPublisher(type => (IEnumerable<IEventHandler>) container.GetAllInstances(type)));
+
             // Verify
             container.Verify();
 

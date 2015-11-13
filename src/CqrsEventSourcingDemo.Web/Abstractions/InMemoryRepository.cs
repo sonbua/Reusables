@@ -12,10 +12,12 @@ namespace CqrsEventSourcingDemo.Web.Abstractions
     {
         private static readonly Dictionary<Guid, List<EventData>> _eventStorage = new Dictionary<Guid, List<EventData>>();
         private readonly IAggregateFactory _aggregateFactory;
+        private readonly IEventPublisher _eventPublisher;
 
-        public InMemoryRepository(IAggregateFactory aggregateFactory)
+        public InMemoryRepository(IAggregateFactory aggregateFactory, IEventPublisher eventPublisher)
         {
             _aggregateFactory = aggregateFactory;
+            _eventPublisher = eventPublisher;
         }
 
         public TAggregate GetById<TAggregate>(Guid id) where TAggregate : Aggregate
@@ -60,6 +62,11 @@ namespace CqrsEventSourcingDemo.Web.Abstractions
             else
             {
                 _eventStorage.Add(aggregate.Id, eventsToSave);
+            }
+
+            foreach (var @event in events)
+            {
+                _eventPublisher.Publish(@event);
             }
 
             aggregate.ClearUncommittedEvents();

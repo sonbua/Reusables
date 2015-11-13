@@ -193,9 +193,12 @@
     <Compile Include="Abstractions\CompositeValidator.cs" />
     <Compile Include="Abstractions\Decorators\LoggingDecoratorCommandHandler.cs" />
     <Compile Include="Abstractions\Decorators\ValidationDecoratorCommandHandler.cs" />
+    <Compile Include="Abstractions\EventPublisher.cs" />
     <Compile Include="Abstractions\Handlers\AsyncCommandHandler.cs" />
     <Compile Include="Abstractions\Handlers\CommandHandler.cs" />
     <Compile Include="Abstractions\IAggregateFactory.cs" />
+    <Compile Include="Abstractions\IEventHandler.cs" />
+    <Compile Include="Abstractions\IEventPublisher.cs" />
     <Compile Include="Abstractions\InMemoryRepository.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DependencyResolverConfig.cs" />
