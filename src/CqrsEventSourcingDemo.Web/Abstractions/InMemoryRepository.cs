@@ -43,7 +43,7 @@ namespace CqrsEventSourcingDemo.Web.Abstractions
             var aggregateType = aggregate.GetType().Name;
             var originalVersion = aggregate.Version - events.LongLength + 1;
             var eventsToSave = events.Select(e => e.ToEventData(aggregateType, aggregate.Id, originalVersion++))
-                                     .ToArray();
+                                     .ToList();
 
             List<EventData> existingEvents;
 
@@ -53,7 +53,7 @@ namespace CqrsEventSourcingDemo.Web.Abstractions
             }
             else
             {
-                _eventStorage.Add(aggregate.Id, eventsToSave.ToList());
+                _eventStorage.Add(aggregate.Id, eventsToSave);
             }
 
             aggregate.ClearUncommittedEvents();
