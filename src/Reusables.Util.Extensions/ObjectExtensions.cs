@@ -16,7 +16,7 @@ namespace Reusables.Util.Extensions
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance");
+                throw new ArgumentNullException(nameof(instance));
             }
 
             var typeAccessor = TypeAccessor.Create(instance.GetType());

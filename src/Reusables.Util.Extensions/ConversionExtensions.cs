@@ -16,7 +16,7 @@ namespace Reusables.Util.Extensions
         {
             if (str == null)
             {
-                throw new ArgumentNullException("str");
+                throw new ArgumentNullException(nameof(str));
             }
 
             var bytes = new byte[str.Length*sizeof (char)];
@@ -33,7 +33,7 @@ namespace Reusables.Util.Extensions
         {
             if (bytes == null)
             {
-                throw new ArgumentNullException("bytes");
+                throw new ArgumentNullException(nameof(bytes));
             }
 
             var chars = new char[bytes.Length/sizeof (char)];

@@ -9,7 +9,7 @@ namespace Reusables.Util.Extensions
         {
             if (stream == null)
             {
-                throw new ArgumentNullException("stream");
+                throw new ArgumentNullException(nameof(stream));
             }
 
             if (stream.CanSeek)

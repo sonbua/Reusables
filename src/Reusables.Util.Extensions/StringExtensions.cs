@@ -22,7 +22,7 @@ namespace Reusables.Util.Extensions
         {
             if (subject == null)
             {
-                throw new ArgumentNullException("subject");
+                throw new ArgumentNullException(nameof(subject));
             }
 
             return subject.Equals(other, StringComparison.InvariantCultureIgnoreCase);
@@ -40,11 +40,11 @@ namespace Reusables.Util.Extensions
         {
             if (source == null)
             {
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             }
             if (mask == null)
             {
-                throw new ArgumentNullException("mask");
+                throw new ArgumentNullException(nameof(mask));
             }
 
             var maskedInput = string.Empty;
@@ -101,12 +101,12 @@ namespace Reusables.Util.Extensions
         {
             if (template == null)
             {
-                throw new ArgumentNullException("template");
+                throw new ArgumentNullException(nameof(template));
             }
 
             if (data == null)
             {
-                throw new ArgumentNullException("data");
+                throw new ArgumentNullException(nameof(data));
             }
 
             var dataDictionary = data.ToDictionary();
@@ -163,11 +163,11 @@ namespace Reusables.Util.Extensions
         {
             if (source == null)
             {
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             }
             if (removedChars == null)
             {
-                throw new ArgumentNullException("removedChars");
+                throw new ArgumentNullException(nameof(removedChars));
             }
             if (removedChars.Length == 0)
             {
@@ -188,11 +188,11 @@ namespace Reusables.Util.Extensions
         {
             if (source == null)
             {
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             }
             if (removedStrings == null)
             {
-                throw new ArgumentNullException("removedStrings");
+                throw new ArgumentNullException(nameof(removedStrings));
             }
             if (source.Length == 0 || removedStrings.Length == 0)
             {
@@ -214,11 +214,11 @@ namespace Reusables.Util.Extensions
         {
             if (source == null)
             {
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             }
             if (oldChars == null)
             {
-                throw new ArgumentNullException("oldChars");
+                throw new ArgumentNullException(nameof(oldChars));
             }
             if (source.Length == 0 || oldChars.Length == 0)
             {
@@ -250,11 +250,11 @@ namespace Reusables.Util.Extensions
         {
             if (source == null)
             {
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             }
             if (oldStrings == null)
             {
-                throw new ArgumentNullException("oldStrings");
+                throw new ArgumentNullException(nameof(oldStrings));
             }
 
             return source.ReplaceImpl(oldStrings, substituent);
