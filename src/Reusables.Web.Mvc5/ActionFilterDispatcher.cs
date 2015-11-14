@@ -5,11 +5,11 @@ using System.Web.Mvc;
 
 namespace Reusables.Web.Mvc5
 {
-    public class ActionFilterDispatcher : System.Web.Mvc.IActionFilter
+    public class ActionFilterDispatcher : IActionFilter
     {
-        private readonly Func<Type, IEnumerable<IActionFilter>> _serviceProvider;
+        private readonly Func<Type, IEnumerable<object>> _serviceProvider;
 
-        public ActionFilterDispatcher(Func<Type, IEnumerable<IActionFilter>> serviceProvider)
+        public ActionFilterDispatcher(Func<Type, IEnumerable<object>> serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
@@ -20,9 +20,9 @@ namespace Reusables.Web.Mvc5
 
             foreach (var attribute in ExecutingAttributesOf(filterContext.ActionDescriptor))
             {
-                foreach (var actionFilter in ExecutingActionFiltersOf(attribute))
+                foreach (dynamic actionFilter in ExecutingActionFiltersOf(attribute))
                 {
-                    actionFilter.OnActionExecuting(attribute, filterContext);
+                    actionFilter.OnActionExecuting((dynamic) attribute, (dynamic) filterContext);
 
                     skipNextFilters = actionFilter.SkipNextFilters;
 
@@ -45,9 +45,9 @@ namespace Reusables.Web.Mvc5
 
             foreach (var attribute in ExecutedAttributesOf(filterContext.ActionDescriptor))
             {
-                foreach (var actionFilter in ExecutedActionFiltersOf(attribute))
+                foreach (dynamic actionFilter in ExecutedActionFiltersOf(attribute))
                 {
-                    actionFilter.OnActionExecuted(attribute, filterContext);
+                    actionFilter.OnActionExecuted((dynamic) attribute, (dynamic) filterContext);
 
                     skipNextFilters = actionFilter.SkipNextFilters;
 
@@ -80,17 +80,17 @@ namespace Reusables.Web.Mvc5
             return actionCustomAttributes.Concat(controllerCustomAttributes);
         }
 
-        private IEnumerable<IActionFilter> ExecutingActionFiltersOf(FilterAttribute attribute)
+        private IEnumerable<object> ExecutingActionFiltersOf(FilterAttribute attribute)
         {
-            return ActionFiltersOf(attribute).OrderBy(filter => filter.Order);
+            return ActionFiltersOf(attribute).OrderBy((dynamic filter) => filter.Order);
         }
 
-        private IEnumerable<IActionFilter> ExecutedActionFiltersOf(FilterAttribute attribute)
+        private IEnumerable<object> ExecutedActionFiltersOf(FilterAttribute attribute)
         {
-            return ActionFiltersOf(attribute).OrderByDescending(filter => filter.Order);
+            return ActionFiltersOf(attribute).OrderByDescending((dynamic filter) => filter.Order);
         }
 
-        private IEnumerable<IActionFilter> ActionFiltersOf(FilterAttribute attribute)
+        private IEnumerable<object> ActionFiltersOf(FilterAttribute attribute)
         {
             var filterType = typeof (IActionFilter<>).MakeGenericType(attribute.GetType());
 

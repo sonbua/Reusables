@@ -6,7 +6,7 @@ using Reusables.Web.Mvc5;
 
 namespace CqrsEventSourcingDemo.Web.Controllers.Attributes
 {
-    public class LogExceptionFilterAttribute : ActionFilterBase<ExceptionLoggingAttribute>
+    public class LogExceptionFilterAttribute : IActionFilter<ExceptionLoggingAttribute>
     {
         private readonly ILogger _logger;
 
@@ -15,11 +15,15 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Attributes
             _logger = logger;
         }
 
-        public override void OnActionExecuting(ExceptionLoggingAttribute attribute, ActionExecutingContext filterContext)
+        public int Order { get; }
+
+        public bool SkipNextFilters { get; }
+
+        public void OnActionExecuting(ExceptionLoggingAttribute attribute, ActionExecutingContext filterContext)
         {
         }
 
-        public override void OnActionExecuted(ExceptionLoggingAttribute attribute, ActionExecutedContext filterContext)
+        public void OnActionExecuted(ExceptionLoggingAttribute attribute, ActionExecutedContext filterContext)
         {
             if (filterContext.Exception == null)
             {

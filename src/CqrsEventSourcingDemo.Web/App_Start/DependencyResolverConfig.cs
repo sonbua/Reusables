@@ -74,7 +74,7 @@ namespace CqrsEventSourcingDemo.Web
             container.Verify();
 
             System.Web.Mvc.DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
-            System.Web.Mvc.GlobalFilters.Filters.Add(new ActionFilterDispatcher(type => (IEnumerable<IActionFilter>) container.GetAllInstances(type)));
+            System.Web.Mvc.GlobalFilters.Filters.Add(new ActionFilterDispatcher(type => container.GetAllInstances(type)));
         }
     }
 }
