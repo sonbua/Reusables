@@ -3,9 +3,9 @@ using Reusables.EventSourcing;
 
 namespace CqrsEventSourcingDemo.Web.Scenarios.Class
 {
-    public class ClassView : View
+    public class ClassViewModel : ViewModel
     {
-        public ClassView(Guid id, string name)
+        public ClassViewModel(Guid id, string name)
         {
             Id = id;
             Name = name;

@@ -3,7 +3,7 @@ using Reusables.EventSourcing;
 
 namespace CqrsEventSourcingDemo.Web.Scenarios.Pupil
 {
-    public class PupilViewModel : View
+    public class PupilViewModel : ViewModel
     {
         public string Name { get; set; }
 

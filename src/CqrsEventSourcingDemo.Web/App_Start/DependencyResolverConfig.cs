@@ -67,8 +67,8 @@ namespace CqrsEventSourcingDemo.Web
             // Event handlers
             container.RegisterCollection(typeof (IEventSubscriber<>), typeof (MvcApplication).Assembly);
 
-            // View database
-            container.Register<IViewDatabase, InMemoryViewDatabase>();
+            // View model database
+            container.Register<IViewModelDatabase, InMemoryViewModelDatabase>();
 
             // Verify
             container.Verify();

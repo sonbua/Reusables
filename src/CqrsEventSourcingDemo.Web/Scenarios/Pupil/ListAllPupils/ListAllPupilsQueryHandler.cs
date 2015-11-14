@@ -6,16 +6,16 @@ namespace CqrsEventSourcingDemo.Web.Scenarios.Pupil.ListAllPupils
 {
     public class ListAllPupilsQueryHandler : IQueryHandler<ListAllPupilsQuery, PupilViewModel[]>
     {
-        private readonly IViewDatabase _viewDatabase;
+        private readonly IViewModelDatabase _database;
 
-        public ListAllPupilsQueryHandler(IViewDatabase viewDatabase)
+        public ListAllPupilsQueryHandler(IViewModelDatabase database)
         {
-            _viewDatabase = viewDatabase;
+            _database = database;
         }
 
         public PupilViewModel[] Handle(ListAllPupilsQuery query)
         {
-            return _viewDatabase.Set<PupilViewModel>().ToArray();
+            return _database.Set<PupilViewModel>().ToArray();
         }
     }
 }

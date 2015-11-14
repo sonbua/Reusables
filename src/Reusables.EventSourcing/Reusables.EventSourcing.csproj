@@ -44,10 +44,10 @@
     <Compile Include="IEventSubscriber.cs" />
     <Compile Include="IEventPublisher.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="IViewDatabase.cs" />
-    <Compile Include="IViewSet.cs" />
+    <Compile Include="IViewModelDatabase.cs" />
+    <Compile Include="IViewModelSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View.cs" />
+    <Compile Include="ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Reusables.Cqrs\Reusables.Cqrs.csproj">

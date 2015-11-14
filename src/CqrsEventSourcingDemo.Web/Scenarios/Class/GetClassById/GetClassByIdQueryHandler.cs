@@ -3,18 +3,18 @@ using Reusables.EventSourcing;
 
 namespace CqrsEventSourcingDemo.Web.Scenarios.Class.GetClassById
 {
-    public class GetClassByIdQueryHandler : IQueryHandler<GetClassByIdQuery, ClassView>
+    public class GetClassByIdQueryHandler : IQueryHandler<GetClassByIdQuery, ClassViewModel>
     {
-        private readonly IViewDatabase _viewDatabase;
+        private readonly IViewModelDatabase _database;
 
-        public GetClassByIdQueryHandler(IViewDatabase viewDatabase)
+        public GetClassByIdQueryHandler(IViewModelDatabase database)
         {
-            _viewDatabase = viewDatabase;
+            _database = database;
         }
 
-        public ClassView Handle(GetClassByIdQuery query)
+        public ClassViewModel Handle(GetClassByIdQuery query)
         {
-            return _viewDatabase.Set<ClassView>().GetById(query.Id);
+            return _database.Set<ClassViewModel>().GetById(query.Id);
         }
     }
 }

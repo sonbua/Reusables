@@ -9,28 +9,28 @@ namespace CqrsEventSourcingDemo.Web.Scenarios.Class
                                             IEventSubscriber<ClassRenamed>,
                                             IEventSubscriber<ClassRemoved>
     {
-        private readonly IViewDatabase _viewDatabase;
+        private readonly IViewModelDatabase _database;
 
-        public ClassViewEventSubscriber(IViewDatabase viewDatabase)
+        public ClassViewEventSubscriber(IViewModelDatabase database)
         {
-            _viewDatabase = viewDatabase;
+            _database = database;
         }
 
         public void Handle(NewClassAdded @event)
         {
-            _viewDatabase.Set<ClassView>().Add(new ClassView(@event.Id, @event.ClassName));
+            _database.Set<ClassViewModel>().Add(new ClassViewModel(@event.Id, @event.ClassName));
         }
 
         public void Handle(ClassRenamed @event)
         {
-            var view = _viewDatabase.Set<ClassView>().GetById(@event.Id);
+            var viewModel = _database.Set<ClassViewModel>().GetById(@event.Id);
 
-            view.Name = @event.NewName;
+            viewModel.Name = @event.NewName;
         }
 
         public void Handle(ClassRemoved @event)
         {
-            _viewDatabase.Set<ClassView>().Remove(@event.Id);
+            _database.Set<ClassViewModel>().Remove(@event.Id);
         }
     }
 }

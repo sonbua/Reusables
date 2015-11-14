@@ -17,9 +17,9 @@ namespace CqrsEventSourcingDemo.Web.Controllers.PSMS
         {
             var query = new ListAllPupilsQuery();
 
-            var pupilViews = _dispatcher.DispatchQuery(query);
+            var viewModels = _dispatcher.DispatchQuery(query);
 
-            return View(pupilViews);
+            return View(viewModels);
         }
     }
 }

@@ -22,9 +22,9 @@ namespace CqrsEventSourcingDemo.Web.Controllers.PSMS
         {
             var query = new ListAllClassesQuery();
 
-            var classes = _dispatcher.DispatchQuery(query);
+            var viewModels = _dispatcher.DispatchQuery(query);
 
-            return View(classes);
+            return View(viewModels);
         }
 
         public ActionResult Add()
@@ -49,9 +49,9 @@ namespace CqrsEventSourcingDemo.Web.Controllers.PSMS
         {
             var query = new GetClassByIdQuery {Id = id};
 
-            var classView = _dispatcher.DispatchQuery(query);
+            var viewModel = _dispatcher.DispatchQuery(query);
 
-            return View(classView);
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -72,9 +72,9 @@ namespace CqrsEventSourcingDemo.Web.Controllers.PSMS
         {
             var query = new GetClassByIdQuery {Id = id};
 
-            var classView = _dispatcher.DispatchQuery(query);
+            var viewModel = _dispatcher.DispatchQuery(query);
 
-            return View(classView);
+            return View(viewModel);
         }
 
         [HttpPost]

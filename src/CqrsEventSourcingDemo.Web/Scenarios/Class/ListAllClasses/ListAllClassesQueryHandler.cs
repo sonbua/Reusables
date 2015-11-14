@@ -4,18 +4,18 @@ using Reusables.EventSourcing;
 
 namespace CqrsEventSourcingDemo.Web.Scenarios.Class.ListAllClasses
 {
-    public class ListAllClassesQueryHandler : IQueryHandler<ListAllClassesQuery, ClassView[]>
+    public class ListAllClassesQueryHandler : IQueryHandler<ListAllClassesQuery, ClassViewModel[]>
     {
-        private readonly IViewDatabase _viewDatabase;
+        private readonly IViewModelDatabase _database;
 
-        public ListAllClassesQueryHandler(IViewDatabase viewDatabase)
+        public ListAllClassesQueryHandler(IViewModelDatabase database)
         {
-            _viewDatabase = viewDatabase;
+            _database = database;
         }
 
-        public ClassView[] Handle(ListAllClassesQuery query)
+        public ClassViewModel[] Handle(ListAllClassesQuery query)
         {
-            return _viewDatabase.Set<ClassView>().ToArray();
+            return _database.Set<ClassViewModel>().ToArray();
         }
     }
 }

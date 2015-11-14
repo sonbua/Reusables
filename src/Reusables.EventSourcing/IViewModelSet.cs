@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Reusables.EventSourcing
 {
-    public interface IViewSet<TView> : IEnumerable<TView> where TView : View
+    public interface IViewModelSet<TView> : IEnumerable<TView> where TView : ViewModel
     {
         void Add(TView view);
 
