@@ -33,18 +33,18 @@ namespace Reusables.Cqrs
         {
             var handlerType = typeof (IQueryHandler<,>).MakeGenericType(query.GetType(), typeof (TResult));
 
-            var handler = (IQueryHandler<TResult>) _serviceProvider.GetService(handlerType);
+            dynamic handler = _serviceProvider.GetService(handlerType);
 
-            return handler.Handle(query);
+            return handler.Handle((dynamic) query);
         }
 
         public async Task<TResult> DispatchQueryAsync<TResult>(AsyncQuery<TResult> query)
         {
             var handlerType = typeof (IAsyncQueryHandler<,>).MakeGenericType(query.GetType(), typeof (TResult));
 
-            var handler = (IAsyncQueryHandler<TResult>) _serviceProvider.GetService(handlerType);
+            dynamic handler = _serviceProvider.GetService(handlerType);
 
-            return await handler.HandleAsync(query).ConfigureAwait(false);
+            return await handler.HandleAsync((dynamic) query).ConfigureAwait(false);
         }
     }
 }

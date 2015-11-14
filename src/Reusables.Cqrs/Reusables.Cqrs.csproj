@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -42,7 +43,6 @@
     <Compile Include="IQueryDispatcher.cs" />
     <Compile Include="IQueryHandler.cs" />
     <Compile Include="Query.cs" />
-    <Compile Include="QueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

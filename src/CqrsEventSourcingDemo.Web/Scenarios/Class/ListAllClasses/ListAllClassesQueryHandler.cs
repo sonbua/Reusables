@@ -4,7 +4,7 @@ using Reusables.EventSourcing;
 
 namespace CqrsEventSourcingDemo.Web.Scenarios.Class.ListAllClasses
 {
-    public class ListAllClassesQueryHandler : QueryHandler<ListAllClassesQuery, ClassView[]>
+    public class ListAllClassesQueryHandler : IQueryHandler<ListAllClassesQuery, ClassView[]>
     {
         private readonly IViewDatabase _viewDatabase;
 
@@ -13,7 +13,7 @@ namespace CqrsEventSourcingDemo.Web.Scenarios.Class.ListAllClasses
             _viewDatabase = viewDatabase;
         }
 
-        public override ClassView[] Handle(ListAllClassesQuery query)
+        public ClassView[] Handle(ListAllClassesQuery query)
         {
             return _viewDatabase.Set<ClassView>().ToArray();
         }

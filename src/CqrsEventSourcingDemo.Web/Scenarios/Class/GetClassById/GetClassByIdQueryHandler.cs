@@ -3,7 +3,7 @@ using Reusables.EventSourcing;
 
 namespace CqrsEventSourcingDemo.Web.Scenarios.Class.GetClassById
 {
-    public class GetClassByIdQueryHandler : QueryHandler<GetClassByIdQuery, ClassView>
+    public class GetClassByIdQueryHandler : IQueryHandler<GetClassByIdQuery, ClassView>
     {
         private readonly IViewDatabase _viewDatabase;
 
@@ -12,7 +12,7 @@ namespace CqrsEventSourcingDemo.Web.Scenarios.Class.GetClassById
             _viewDatabase = viewDatabase;
         }
 
-        public override ClassView Handle(GetClassByIdQuery query)
+        public ClassView Handle(GetClassByIdQuery query)
         {
             return _viewDatabase.Set<ClassView>().GetById(query.Id);
         }
