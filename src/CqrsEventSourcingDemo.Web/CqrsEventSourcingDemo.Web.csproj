@@ -206,10 +206,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Attributes\ExceptionLoggingAttribute.cs" />
     <Compile Include="Controllers\Attributes\LogExceptionFilterAttribute.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PSMS\BaseController.cs" />
+    <Compile Include="Controllers\PSMS\ClassController.cs" />
+    <Compile Include="Controllers\PSMS\PupilController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -233,6 +234,9 @@
     <Compile Include="Scenarios\Class\RenameClass\ClassRenamed.cs" />
     <Compile Include="Scenarios\Class\RenameClass\RenameClassCommand.cs" />
     <Compile Include="Scenarios\Class\RenameClass\RenameClassCommandHandler.cs" />
+    <Compile Include="Scenarios\Pupil\ListAllPupils\ListAllPupilsQuery.cs" />
+    <Compile Include="Scenarios\Pupil\ListAllPupils\ListAllPupilsQueryHandler.cs" />
+    <Compile Include="Scenarios\Pupil\PupilViewModel.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -308,6 +312,7 @@
     <None Include="Views\Class\Index.cshtml" />
     <None Include="Views\Class\Remove.cshtml" />
     <None Include="Views\Class\Rename.cshtml" />
+    <None Include="Views\Pupil\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

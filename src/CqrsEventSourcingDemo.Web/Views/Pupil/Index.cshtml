@@ -1,0 +1,24 @@
+﻿@using Reusables.Util.Extensions
+@model CqrsEventSourcingDemo.Web.Scenarios.Pupil.PupilViewModel[]
+
+@{
+    ViewBag.Title = "All Pupils";
+}
+
+<h2>All Pupils</h2>
+
+@if (Model.IsNullOrEmpty())
+{
+    <p>No pupil</p>
+}
+else
+{
+    <table class="table table-hover table-bordered">
+        @foreach (var pupilView in Model)
+        {
+            <tr>
+                <td>@pupilView.Id</td>
+            </tr>
+        }
+    </table>
+}
