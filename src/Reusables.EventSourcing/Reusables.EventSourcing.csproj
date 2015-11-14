@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -38,7 +39,6 @@
     <Compile Include="CommandHandler.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventData.cs" />
-    <Compile Include="Subscriber.cs" />
     <Compile Include="EventPublisher.cs" />
     <Compile Include="IAggregateFactory.cs" />
     <Compile Include="IEventSubscriber.cs" />

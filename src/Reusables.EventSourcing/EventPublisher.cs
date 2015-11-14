@@ -5,9 +5,9 @@ namespace Reusables.EventSourcing
 {
     public class EventPublisher : IEventPublisher
     {
-        private readonly Func<Type, IEnumerable<IEventSubscriber>> _serviceProvider;
+        private readonly Func<Type, IEnumerable<object>> _serviceProvider;
 
-        public EventPublisher(Func<Type, IEnumerable<IEventSubscriber>> serviceProvider)
+        public EventPublisher(Func<Type, IEnumerable<object>> serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
@@ -18,9 +18,9 @@ namespace Reusables.EventSourcing
 
             var handlers = _serviceProvider.Invoke(handlerType);
 
-            foreach (var handler in handlers)
+            foreach (dynamic handler in handlers)
             {
-                handler.Handle(@event);
+                handler.Handle((dynamic) @event);
             }
         }
     }
