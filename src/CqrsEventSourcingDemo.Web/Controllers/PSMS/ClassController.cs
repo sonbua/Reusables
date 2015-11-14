@@ -7,7 +7,7 @@ using CqrsEventSourcingDemo.Web.Scenarios.Class.RemoveClass;
 using CqrsEventSourcingDemo.Web.Scenarios.Class.RenameClass;
 using Reusables.Cqrs;
 
-namespace CqrsEventSourcingDemo.Web.Controllers
+namespace CqrsEventSourcingDemo.Web.Controllers.PSMS
 {
     public class ClassController : BaseController
     {
