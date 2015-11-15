@@ -206,11 +206,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Attributes\ExceptionLoggingAttribute.cs" />
     <Compile Include="Controllers\Attributes\LogExceptionFilterAttribute.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PSMS\BaseController.cs" />
-    <Compile Include="Controllers\PSMS\ClassController.cs" />
-    <Compile Include="Controllers\PSMS\PupilController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -218,22 +216,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scenarios\Class\ClassAggregate.cs" />
-    <Compile Include="Scenarios\Class\ClassViewModel.cs" />
-    <Compile Include="Scenarios\Class\Commands\ClassCommandHandlers.cs" />
-    <Compile Include="Scenarios\Class\Events\ClassEventSubscribers.cs" />
-    <Compile Include="Scenarios\Class\Queries\GetClassByIdQuery.cs" />
-    <Compile Include="Scenarios\Class\Queries\ListAllClassesQuery.cs" />
-    <Compile Include="Scenarios\Class\Queries\ClassQueryHandlers.cs" />
-    <Compile Include="Scenarios\Class\Commands\AddNewClass.cs" />
-    <Compile Include="Scenarios\Class\Commands\RemoveClass.cs" />
-    <Compile Include="Scenarios\Class\Commands\RenameClass.cs" />
-    <Compile Include="Scenarios\Class\Events\ClassRemoved.cs" />
-    <Compile Include="Scenarios\Class\Events\ClassRenamed.cs" />
-    <Compile Include="Scenarios\Class\Events\NewClassAdded.cs" />
-    <Compile Include="Scenarios\Pupil\ListAllPupils\ListAllPupilsQuery.cs" />
-    <Compile Include="Scenarios\Pupil\ListAllPupils\ListAllPupilsQueryHandler.cs" />
-    <Compile Include="Scenarios\Pupil\PupilViewModel.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -305,14 +287,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <None Include="Views\Class\Add.cshtml" />
-    <None Include="Views\Class\Index.cshtml" />
-    <None Include="Views\Class\Remove.cshtml" />
-    <None Include="Views\Class\Rename.cshtml" />
-    <None Include="Views\Pupil\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scenarios\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
