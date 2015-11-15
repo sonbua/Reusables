@@ -1,6 +1,4 @@
-﻿using Reusables.EventSourcing;
-
-namespace CqrsEventSourcingDemo.Web.Abstractions.Views
+﻿namespace CqrsEventSourcingDemo.Web.Abstractions.Views
 {
     public class InMemoryViewModelDatabase : IViewModelDatabase
     {

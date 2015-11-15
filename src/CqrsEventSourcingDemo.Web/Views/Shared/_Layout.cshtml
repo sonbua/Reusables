@@ -39,6 +39,11 @@
                         {
                             <li>@Html.ActionLink(staff, "Todo", "WaitStaff", new {id = @staff}, null)</li>
                         }
+                        <li class="text-uppercase">Open Tabs</li>
+                        @foreach (int tableNumber in ViewBag.ActiveTables)
+                        {
+                            <li>@Html.ActionLink(tableNumber.ToString(), "Status", "Tab", new {id = tableNumber}, null)</li>
+                        }
                     </ul>
                 </div>
             </div>

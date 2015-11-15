@@ -1,4 +1,4 @@
-namespace Reusables.EventSourcing
+namespace CqrsEventSourcingDemo.Web.Abstractions.Views
 {
     public interface IViewModelDatabase
     {

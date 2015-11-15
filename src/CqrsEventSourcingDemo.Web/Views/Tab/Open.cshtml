@@ -1,0 +1,26 @@
+﻿@model CqrsEventSourcingDemo.Web.Domain.Commands.Tab.OpenTab
+
+@{
+    ViewBag.Title = "Open Tab";
+}
+
+<h2>Open Tab</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.TableNumber, new {@class = "control-label"})
+        @Html.TextBoxFor(m => m.TableNumber, new {@class = "form-control"})
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Waiter)
+        @Html.DropDownListFor(m => m.Waiter,
+                              (ViewBag.WaitStaff as List<string>).Select(w => new SelectListItem {Text = w, Value = w}),
+                              new {@class = "form-control"})
+    </div>
+
+    <br>
+
+    <button type="submit" class="btn btn-primary">Open Tab</button>
+}

@@ -17,9 +17,9 @@ namespace CqrsEventSourcingDemo.Web.Abstractions.Views
 
         public void Update(Guid id, Action<TViewModel> updateAction)
         {
-            var view = _viewModels.Single(x => x.Id == id);
+            var viewModel = GetById(id);
 
-            updateAction(view);
+            updateAction(viewModel);
         }
 
         public void Remove(Guid id)

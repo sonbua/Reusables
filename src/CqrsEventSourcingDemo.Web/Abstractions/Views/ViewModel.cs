@@ -1,6 +1,6 @@
 using System;
 
-namespace Reusables.EventSourcing
+namespace CqrsEventSourcingDemo.Web.Abstractions.Views
 {
     public abstract class ViewModel
     {

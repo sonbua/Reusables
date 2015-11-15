@@ -34,7 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -196,6 +196,9 @@
     <Compile Include="Abstractions\InMemoryEventStore.cs" />
     <Compile Include="Abstractions\Views\InMemoryViewModelDatabase.cs" />
     <Compile Include="Abstractions\Views\InMemoryViewModelSet.cs" />
+    <Compile Include="Abstractions\Views\IViewModelDatabase.cs" />
+    <Compile Include="Abstractions\Views\IViewModelSet.cs" />
+    <Compile Include="Abstractions\Views\ViewModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DependencyResolverConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -212,12 +215,21 @@
     <Compile Include="Controllers\Cafe\WaitStaffController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Domain\Commands\Tab\OpenTab.cs" />
+    <Compile Include="Domain\Commands\Tab\TabAggregate.cs" />
+    <Compile Include="Domain\Commands\Tab\TabService.cs" />
+    <Compile Include="Domain\Events\Tab\TabOpened.cs" />
+    <Compile Include="Domain\ReadModels\Tab\ActiveTableNumbersQuery.cs" />
+    <Compile Include="Domain\ReadModels\Tab\Tab.cs" />
+    <Compile Include="Domain\ReadModels\Tab\TabItem.cs" />
+    <Compile Include="Domain\ReadModels\Tab\TabReadModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -290,11 +302,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Views\Tab\Open.cshtml" />
+    <None Include="Views\Tab\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scenarios\" />
-    <Folder Include="Views\Tab\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
