@@ -5,7 +5,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
 {
     public class WaitStaffController : BaseController
     {
-        public ActionResult Todo(Guid id)
+        public ActionResult Todo(string id)
         {
             return Content("TODO");
         }

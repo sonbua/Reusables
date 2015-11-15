@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -37,13 +36,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Attributes
                 new MenuItem {MenuNumber = 14, Description = "Beef Stroganoff", Price = 8.50M},
             };
 
-        public static List<Staff> WaitStaff = new List<Staff>
-                                              {
-                                                  new Staff {Id = Guid.NewGuid(), Name = "Jack"},
-                                                  new Staff {Id = Guid.NewGuid(), Name = "Lena"},
-                                                  new Staff {Id = Guid.NewGuid(), Name = "Pedro"},
-                                                  new Staff {Id = Guid.NewGuid(), Name = "Anastasia"},
-                                              };
+        public static List<string> WaitStaff = new List<string> {"Jack", "Lena", "Pedro", "Anastasia"};
     }
 
     public class MenuItem
@@ -55,12 +48,5 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Attributes
         public decimal Price { get; set; }
 
         public bool IsDrink { get; set; }
-    }
-
-    public class Staff
-    {
-        public Guid Id { get; set; }
-
-        public string Name { get; set; }
     }
 }

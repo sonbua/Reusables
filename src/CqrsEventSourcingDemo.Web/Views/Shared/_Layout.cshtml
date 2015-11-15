@@ -35,9 +35,9 @@
                 <div class="well">
                     <ul class="nav nav-stacked">
                         <li class="text-uppercase">Wait Staff Todo Lists</li>
-                        @foreach (Staff staff in ViewBag.WaitStaff)
+                        @foreach (string staff in ViewBag.WaitStaff)
                         {
-                            <li>@Html.ActionLink(staff.Name, "Todo", "WaitStaff", new {id = @staff.Id}, null)</li>
+                            <li>@Html.ActionLink(staff, "Todo", "WaitStaff", new {id = @staff}, null)</li>
                         }
                     </ul>
                 </div>
