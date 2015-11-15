@@ -1,6 +1,6 @@
 namespace Reusables.EventSourcing
 {
-    public interface IEventSubscriber<TEvent> where TEvent : Event
+    public interface IEventSubscriber<TEvent>
     {
         void Handle(TEvent @event);
     }

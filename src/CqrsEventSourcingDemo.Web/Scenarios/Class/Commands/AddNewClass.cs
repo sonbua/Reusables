@@ -1,10 +1,9 @@
 using System;
-using Reusables.Cqrs;
 using Reusables.DataAnnotations;
 
-namespace CqrsEventSourcingDemo.Web.Scenarios.Class.AddNewClass
+namespace CqrsEventSourcingDemo.Web.Scenarios.Class.Commands
 {
-    public class AddNewClassCommand : Command
+    public class AddNewClass
     {
         public Guid ClassId { get; set; }
 

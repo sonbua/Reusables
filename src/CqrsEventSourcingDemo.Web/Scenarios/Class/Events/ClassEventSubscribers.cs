@@ -1,17 +1,14 @@
-﻿using CqrsEventSourcingDemo.Web.Scenarios.Class.AddNewClass;
-using CqrsEventSourcingDemo.Web.Scenarios.Class.RemoveClass;
-using CqrsEventSourcingDemo.Web.Scenarios.Class.RenameClass;
-using Reusables.EventSourcing;
+﻿using Reusables.EventSourcing;
 
-namespace CqrsEventSourcingDemo.Web.Scenarios.Class
+namespace CqrsEventSourcingDemo.Web.Scenarios.Class.Events
 {
-    public class ClassViewEventSubscriber : IEventSubscriber<NewClassAdded>,
-                                            IEventSubscriber<ClassRenamed>,
-                                            IEventSubscriber<ClassRemoved>
+    public class ClassEventSubscribers : IEventSubscriber<NewClassAdded>,
+                                         IEventSubscriber<ClassRenamed>,
+                                         IEventSubscriber<ClassRemoved>
     {
         private readonly IViewModelDatabase _database;
 
-        public ClassViewEventSubscriber(IViewModelDatabase database)
+        public ClassEventSubscribers(IViewModelDatabase database)
         {
             _database = database;
         }

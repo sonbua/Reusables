@@ -5,7 +5,7 @@ using Reusables.Serialization.Newtonsoft.Extensions;
 
 namespace CqrsEventSourcingDemo.Web.Abstractions.Decorators
 {
-    public class LoggingDecoratorCommandHandler<TCommand> : ICommandHandler<TCommand> where TCommand : Command
+    public class LoggingDecoratorCommandHandler<TCommand> : ICommandHandler<TCommand>
     {
         private readonly ILogger _logger;
         private readonly ICommandHandler<TCommand> _innerHandler;

@@ -8,13 +8,13 @@ using Reusables.Util.Extensions;
 
 namespace CqrsEventSourcingDemo.Web.Abstractions
 {
-    public class InMemoryRepository : IRepository
+    public class InMemoryEventStore : IEventStore
     {
         private static readonly Dictionary<Guid, List<EventData>> _eventStorage = new Dictionary<Guid, List<EventData>>();
         private readonly IAggregateFactory _aggregateFactory;
         private readonly IEventPublisher _eventPublisher;
 
-        public InMemoryRepository(IAggregateFactory aggregateFactory, IEventPublisher eventPublisher)
+        public InMemoryEventStore(IAggregateFactory aggregateFactory, IEventPublisher eventPublisher)
         {
             _aggregateFactory = aggregateFactory;
             _eventPublisher = eventPublisher;
@@ -26,7 +26,7 @@ namespace CqrsEventSourcingDemo.Web.Abstractions
 
             if (!_eventStorage.TryGetValue(id, out eventDataHistory))
             {
-                return _aggregateFactory.Create<TAggregate>(new Event[0]);
+                return _aggregateFactory.Create<TAggregate>(new object[0]);
             }
 
             var history = eventDataHistory.Select(x => x.FromEventData());
@@ -39,7 +39,7 @@ namespace CqrsEventSourcingDemo.Web.Abstractions
             throw new NotImplementedException();
         }
 
-        public void Save(Aggregate aggregate)
+        public void Save<TAggregate>(TAggregate aggregate) where TAggregate : Aggregate
         {
             var events = aggregate.GetUncommittedEvents();
 
@@ -72,7 +72,7 @@ namespace CqrsEventSourcingDemo.Web.Abstractions
             aggregate.ClearUncommittedEvents();
         }
 
-        public Task SaveAsync(Aggregate aggregate)
+        public Task SaveAsync<TAggregate>(TAggregate aggregate) where TAggregate : Aggregate
         {
             throw new NotImplementedException();
         }

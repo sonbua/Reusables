@@ -15,14 +15,14 @@ namespace Reusables.Cqrs
             _serviceProvider = serviceProvider;
         }
 
-        public void DispatchCommand<TCommand>(TCommand command) where TCommand : Command
+        public void DispatchCommand<TCommand>(TCommand command)
         {
             var handler = (ICommandHandler<TCommand>) _serviceProvider.GetService(typeof (ICommandHandler<TCommand>));
 
             handler.Handle(command);
         }
 
-        public async Task DispatchCommandAsync<TAsyncCommand>(TAsyncCommand command) where TAsyncCommand : AsyncCommand
+        public async Task DispatchCommandAsync<TAsyncCommand>(TAsyncCommand command)
         {
             var handler = (IAsyncCommandHandler<TAsyncCommand>) _serviceProvider.GetService(typeof (IAsyncCommandHandler<TAsyncCommand>));
 

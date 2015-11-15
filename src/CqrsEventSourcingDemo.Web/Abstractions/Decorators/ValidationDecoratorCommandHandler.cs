@@ -3,7 +3,7 @@ using Reusables.Validation;
 
 namespace CqrsEventSourcingDemo.Web.Abstractions.Decorators
 {
-    public class ValidationDecoratorCommandHandler<TCommand> : ICommandHandler<TCommand> where TCommand : Command
+    public class ValidationDecoratorCommandHandler<TCommand> : ICommandHandler<TCommand>
     {
         private readonly IValidator<TCommand> _validator;
         private readonly ICommandHandler<TCommand> _innerHandler;

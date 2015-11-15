@@ -4,6 +4,6 @@ namespace Reusables.EventSourcing
 {
     public interface IAggregateFactory
     {
-        TAggregate Create<TAggregate>(IEnumerable<Event> history) where TAggregate : Aggregate;
+        TAggregate Create<TAggregate>(IEnumerable<object> history) where TAggregate : Aggregate;
     }
 }

@@ -35,7 +35,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command.cs" />
     <Compile Include="IRequestDispatcher.cs" />
     <Compile Include="RequestDispatcher.cs" />
     <Compile Include="ICommandDispatcher.cs" />

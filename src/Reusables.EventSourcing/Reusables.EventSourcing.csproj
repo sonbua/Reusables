@@ -36,14 +36,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aggregate.cs" />
-    <Compile Include="CommandHandler.cs" />
-    <Compile Include="Event.cs" />
     <Compile Include="EventData.cs" />
     <Compile Include="EventPublisher.cs" />
     <Compile Include="IAggregateFactory.cs" />
     <Compile Include="IEventSubscriber.cs" />
     <Compile Include="IEventPublisher.cs" />
-    <Compile Include="IRepository.cs" />
+    <Compile Include="IEventStore.cs" />
     <Compile Include="IViewModelDatabase.cs" />
     <Compile Include="IViewModelSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

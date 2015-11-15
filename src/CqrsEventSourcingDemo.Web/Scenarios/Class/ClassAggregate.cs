@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using CqrsEventSourcingDemo.Web.Scenarios.Class.AddNewClass;
-using CqrsEventSourcingDemo.Web.Scenarios.Class.RemoveClass;
-using CqrsEventSourcingDemo.Web.Scenarios.Class.RenameClass;
+using CqrsEventSourcingDemo.Web.Scenarios.Class.Events;
 using Reusables.EventSourcing;
 using Reusables.EventSourcing.Extensions;
 
@@ -10,7 +8,7 @@ namespace CqrsEventSourcingDemo.Web.Scenarios.Class
 {
     public class ClassAggregate : Aggregate
     {
-        public ClassAggregate(IEnumerable<Event> history)
+        public ClassAggregate(IEnumerable<object> history)
         {
             foreach (var @event in history)
             {
@@ -35,14 +33,14 @@ namespace CqrsEventSourcingDemo.Web.Scenarios.Class
             Publish(new ClassRemoved {Id = id});
         }
 
-        private void Publish(Event @event)
+        private void Publish<TEvent>(TEvent @event)
         {
             UncommittedEvents.Add(@event);
 
             Apply(@event);
         }
 
-        private void Apply(Event @event)
+        private void Apply<TEvent>(TEvent @event)
         {
             Version++;
 

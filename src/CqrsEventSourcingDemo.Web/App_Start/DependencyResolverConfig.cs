@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using CqrsEventSourcingDemo.Web.Abstractions;
 using CqrsEventSourcingDemo.Web.Abstractions.Decorators;
 using CqrsEventSourcingDemo.Web.Abstractions.Views;
@@ -56,7 +55,7 @@ namespace CqrsEventSourcingDemo.Web
             container.RegisterCollection(typeof (IActionFilter<>), typeof (MvcApplication).Assembly);
 
             // Repository
-            container.Register<IRepository, InMemoryRepository>();
+            container.Register<IEventStore, InMemoryEventStore>();
 
             // Aggregate factory
             container.Register<IAggregateFactory, AggregateFactory>();

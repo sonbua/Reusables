@@ -3,14 +3,14 @@ using System.Threading.Tasks;
 
 namespace Reusables.EventSourcing
 {
-    public interface IRepository
+    public interface IEventStore
     {
         TAggregate GetById<TAggregate>(Guid id) where TAggregate : Aggregate;
 
         Task<TAggregate> GetByIdAsync<TAggregate>(Guid id) where TAggregate : Aggregate;
 
-        void Save(Aggregate aggregate);
+        void Save<TAggregate>(TAggregate aggregate) where TAggregate : Aggregate;
 
-        Task SaveAsync(Aggregate aggregate);
+        Task SaveAsync<TAggregate>(TAggregate aggregate) where TAggregate : Aggregate;
     }
 }

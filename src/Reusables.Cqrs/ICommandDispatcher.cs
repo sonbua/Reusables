@@ -7,8 +7,8 @@ namespace Reusables.Cqrs
     /// </summary>
     public interface ICommandDispatcher
     {
-        void DispatchCommand<TCommand>(TCommand command) where TCommand : Command;
+        void DispatchCommand<TCommand>(TCommand command);
 
-        Task DispatchCommandAsync<TAsyncCommand>(TAsyncCommand command) where TAsyncCommand : AsyncCommand;
+        Task DispatchCommandAsync<TAsyncCommand>(TAsyncCommand command);
     }
 }

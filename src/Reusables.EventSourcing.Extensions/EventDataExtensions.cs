@@ -9,7 +9,7 @@ namespace Reusables.EventSourcing.Extensions
     {
         private static readonly JsonSerializerSettings _serializerSettings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.None};
 
-        public static EventData ToEventData(this Event @event, string aggregateType, Guid aggregateId, long version)
+        public static EventData ToEventData<TEvent>(this TEvent @event, string aggregateType, Guid aggregateId, long version)
         {
             var eventId = Guid.NewGuid();
             var data = JsonConvert.SerializeObject(@event, _serializerSettings);
@@ -33,11 +33,11 @@ namespace Reusables.EventSourcing.Extensions
                    };
         }
 
-        public static Event FromEventData(this EventData eventData)
+        public static object FromEventData(this EventData eventData)
         {
             var eventClrTypeName = JObject.Parse(eventData.Metadata).Property("EventClrType").Value;
 
-            return (Event) JsonConvert.DeserializeObject(eventData.Event, Type.GetType((string) eventClrTypeName));
+            return JsonConvert.DeserializeObject(eventData.Event, Type.GetType((string) eventClrTypeName));
         }
     }
 }

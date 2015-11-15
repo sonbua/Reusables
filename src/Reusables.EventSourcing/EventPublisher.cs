@@ -12,7 +12,7 @@ namespace Reusables.EventSourcing
             _serviceProvider = serviceProvider;
         }
 
-        public void Publish<TEvent>(TEvent @event) where TEvent : Event
+        public void Publish<TEvent>(TEvent @event)
         {
             var handlerType = typeof (IEventSubscriber<>).MakeGenericType(@event.GetType());
 

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
-using CqrsEventSourcingDemo.Web.Scenarios.Class.AddNewClass;
-using CqrsEventSourcingDemo.Web.Scenarios.Class.GetClassById;
-using CqrsEventSourcingDemo.Web.Scenarios.Class.ListAllClasses;
-using CqrsEventSourcingDemo.Web.Scenarios.Class.RemoveClass;
-using CqrsEventSourcingDemo.Web.Scenarios.Class.RenameClass;
+using CqrsEventSourcingDemo.Web.Scenarios.Class.Commands;
+using CqrsEventSourcingDemo.Web.Scenarios.Class.Queries;
 using Reusables.Cqrs;
 
 namespace CqrsEventSourcingDemo.Web.Controllers.PSMS
@@ -35,7 +32,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers.PSMS
         [HttpPost]
         public ActionResult Add(string className)
         {
-            var command = new AddNewClassCommand
+            var command = new AddNewClass
                           {
                               ClassName = className
                           };
@@ -57,7 +54,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers.PSMS
         [HttpPost]
         public ActionResult Rename(Guid id, string newName)
         {
-            var command = new RenameClassCommand
+            var command = new RenameClass
                           {
                               Id = id,
                               NewName = newName
@@ -80,7 +77,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers.PSMS
         [HttpPost]
         public ActionResult RemoveImpl(Guid id)
         {
-            var command = new RemoveClassCommand {Id = id};
+            var command = new RemoveClass {Id = id};
 
             _dispatcher.DispatchCommand(command);
 

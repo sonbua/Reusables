@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using CqrsEventSourcingDemo.Web.Controllers.PSMS;
 
 namespace CqrsEventSourcingDemo.Web.Controllers
 {
@@ -6,6 +7,8 @@ namespace CqrsEventSourcingDemo.Web.Controllers
     {
         public ActionResult Index()
         {
+            AddMockData();
+
             return View();
         }
 
@@ -21,6 +24,16 @@ namespace CqrsEventSourcingDemo.Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        private void AddMockData()
+        {
+            var classController = DependencyResolver.Current.GetService<ClassController>();
+
+            classController.Add("Toan hoc");
+            classController.Add("Vat li");
+            classController.Add("Hoa hoc");
+            classController.Add("Sinh hoc");
         }
     }
 }

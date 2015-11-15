@@ -1,10 +1,9 @@
 using System;
-using Reusables.Cqrs;
 using Reusables.DataAnnotations;
 
-namespace CqrsEventSourcingDemo.Web.Scenarios.Class.RenameClass
+namespace CqrsEventSourcingDemo.Web.Scenarios.Class.Commands
 {
-    public class RenameClassCommand : Command
+    public class RenameClass
     {
         public Guid Id { get; set; }
 
