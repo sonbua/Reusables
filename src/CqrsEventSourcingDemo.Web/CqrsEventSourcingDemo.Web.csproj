@@ -189,16 +189,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\AggregateFactory.cs" />
     <Compile Include="Abstractions\CompositeValidator.cs" />
     <Compile Include="Abstractions\Decorators\LoggingDecoratorCommandHandler.cs" />
     <Compile Include="Abstractions\Decorators\ValidationDecoratorCommandHandler.cs" />
-    <Compile Include="Abstractions\InMemoryEventStore.cs" />
-    <Compile Include="Abstractions\Views\InMemoryViewModelDatabase.cs" />
-    <Compile Include="Abstractions\Views\InMemoryViewModelSet.cs" />
-    <Compile Include="Abstractions\Views\IViewModelDatabase.cs" />
-    <Compile Include="Abstractions\Views\IViewModelSet.cs" />
-    <Compile Include="Abstractions\Views\ViewModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DependencyResolverConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -215,14 +208,6 @@
     <Compile Include="Controllers\Cafe\WaitStaffController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Domain\Commands\Tab\OpenTab.cs" />
-    <Compile Include="Domain\Commands\Tab\TabAggregate.cs" />
-    <Compile Include="Domain\Commands\Tab\TabService.cs" />
-    <Compile Include="Domain\Events\Tab\TabOpened.cs" />
-    <Compile Include="Domain\ReadModels\Tab\ActiveTableNumbersQuery.cs" />
-    <Compile Include="Domain\ReadModels\Tab\Tab.cs" />
-    <Compile Include="Domain\ReadModels\Tab\TabItem.cs" />
-    <Compile Include="Domain\ReadModels\Tab\TabReadModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -307,6 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Domain\ReadModels\" />
     <Folder Include="Scenarios\" />
   </ItemGroup>
   <ItemGroup>
@@ -314,6 +300,26 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CqrsEventSourcingDemo.AggregateRoot\CqrsEventSourcingDemo.AggregateRoot.csproj">
+      <Project>{34c4a496-b4e9-4ec8-aecb-0704abad051b}</Project>
+      <Name>CqrsEventSourcingDemo.AggregateRoot</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CqrsEventSourcingDemo.Command\CqrsEventSourcingDemo.Command.csproj">
+      <Project>{2682fdce-4ea6-4d22-9023-9ba1bc534dc5}</Project>
+      <Name>CqrsEventSourcingDemo.Command</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CqrsEventSourcingDemo.Event\CqrsEventSourcingDemo.Event.csproj">
+      <Project>{256b0685-8f12-4a60-9d8e-d75925b7aa35}</Project>
+      <Name>CqrsEventSourcingDemo.Event</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CqrsEventSourcingDemo.Infrastructure\CqrsEventSourcingDemo.Infrastructure.csproj">
+      <Project>{8a919dbe-a6cb-4d23-a85d-54333a1b26d6}</Project>
+      <Name>CqrsEventSourcingDemo.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CqrsEventSourcingDemo.ReadModel\CqrsEventSourcingDemo.ReadModel.csproj">
+      <Project>{5a7b15bf-ca34-4d40-bc2a-2fa9d7defd6c}</Project>
+      <Name>CqrsEventSourcingDemo.ReadModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Reusables.Cqrs\Reusables.Cqrs.csproj">
       <Project>{5E7E00EB-AA72-4EF1-9BA6-17C0C3C9A7DC}</Project>
       <Name>Reusables.Cqrs</Name>
@@ -330,10 +336,6 @@
       <Project>{7E1A4672-ACCC-4B48-8510-734EDA9A372A}</Project>
       <Name>Reusables.Diagnostics.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Reusables.EventSourcing.Extensions\Reusables.EventSourcing.Extensions.csproj">
-      <Project>{91cf2b13-0de4-474d-9e6a-4e7483238d59}</Project>
-      <Name>Reusables.EventSourcing.Extensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Reusables.EventSourcing\Reusables.EventSourcing.csproj">
       <Project>{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}</Project>
       <Name>Reusables.EventSourcing</Name>
@@ -342,10 +344,6 @@
       <Project>{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}</Project>
       <Name>Reusables.Serialization.Newtonsoft</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Reusables.Util.Extensions\Reusables.Util.Extensions.csproj">
-      <Project>{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD}</Project>
-      <Name>Reusables.Util.Extensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Reusables.Validation\Reusables.Validation.csproj">
       <Project>{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}</Project>
       <Name>Reusables.Validation</Name>
@@ -353,10 +351,6 @@
     <ProjectReference Include="..\Reusables.Web.Mvc5\Reusables.Web.Mvc5.csproj">
       <Project>{A6FCD242-9112-481B-A1F1-36DF8121ED8D}</Project>
       <Name>Reusables.Web.Mvc5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Reusables\Reusables.csproj">
-      <Project>{8A6F0955-9952-43CC-ACD8-327FF2DB890B}</Project>
-      <Name>Reusables</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

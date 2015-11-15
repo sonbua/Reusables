@@ -1,4 +1,6 @@
-﻿namespace CqrsEventSourcingDemo.Web.Abstractions.Views
+﻿using CqrsEventSourcingDemo.ReadModel;
+
+namespace CqrsEventSourcingDemo.Infrastructure
 {
     public class InMemoryViewModelDatabase : IViewModelDatabase
     {

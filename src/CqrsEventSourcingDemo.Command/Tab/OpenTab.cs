@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CqrsEventSourcingDemo.Web.Domain.Commands.Tab
+namespace CqrsEventSourcingDemo.Command.Tab
 {
     public class OpenTab
     {

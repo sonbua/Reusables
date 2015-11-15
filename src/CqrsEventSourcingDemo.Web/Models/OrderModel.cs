@@ -4,10 +4,10 @@ namespace CqrsEventSourcingDemo.Web.Models
 {
     public class OrderModel
     {
-        public List<OrderItem> Items { get; set; }
+        public List<OrderLineItem> Items { get; set; }
     }
 
-    public class OrderItem
+    public class OrderLineItem
     {
         public int MenuNumber { get; set; }
 

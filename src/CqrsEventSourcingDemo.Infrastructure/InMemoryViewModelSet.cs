@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Reusables.EventSourcing;
+using CqrsEventSourcingDemo.ReadModel;
 
-namespace CqrsEventSourcingDemo.Web.Abstractions.Views
+namespace CqrsEventSourcingDemo.Infrastructure
 {
     public class InMemoryViewModelSet<TViewModel> : IViewModelSet<TViewModel>, IEnumerable<TViewModel> where TViewModel : ViewModel
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CqrsEventSourcingDemo.Web.Abstractions.Views
+namespace CqrsEventSourcingDemo.ReadModel
 {
     public interface IViewModelSet<TViewModel> : IEnumerable<TViewModel> where TViewModel : ViewModel
     {

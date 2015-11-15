@@ -5,3 +5,31 @@
 }
 
 <h2>Place Order</h2>
+
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Menu #</td>
+                <td>Description</td>
+                <td>Number to Order</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i=0;i< Model.Items.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Model.Items[i].MenuNumber
+                        @Html.HiddenFor(m => m.Items[i].MenuNumber)
+                    </td>
+                    <td>@Model.Items[i].Description</td>
+                    <td>@Html.TextBoxFor(m => Model.Items[i].NumberToOrder, new {@class = "form-control"})</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Place Order</button>
+}

@@ -1,4 +1,4 @@
-namespace CqrsEventSourcingDemo.Web.Abstractions.Views
+namespace CqrsEventSourcingDemo.ReadModel
 {
     public interface IViewModelDatabase
     {

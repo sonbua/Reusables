@@ -1,6 +1,6 @@
 using System;
 
-namespace CqrsEventSourcingDemo.Web.Domain.Events.Tab
+namespace CqrsEventSourcingDemo.Event.Tab
 {
     public class TabOpened
     {

@@ -1,10 +1,13 @@
 ﻿using System;
+using CqrsEventSourcingDemo.AggregateRoot;
+using CqrsEventSourcingDemo.Command.Tab;
+using CqrsEventSourcingDemo.Infrastructure;
+using CqrsEventSourcingDemo.ReadModel;
+using CqrsEventSourcingDemo.ReadModel.Tab;
 using CqrsEventSourcingDemo.Web.Abstractions;
 using CqrsEventSourcingDemo.Web.Abstractions.Decorators;
-using CqrsEventSourcingDemo.Web.Abstractions.Views;
 using NLog;
 using Reusables.Cqrs;
-using Reusables.Diagnostics.Logging;
 using Reusables.Diagnostics.Logging.NLog;
 using Reusables.EventSourcing;
 using Reusables.Validation;
@@ -31,12 +34,12 @@ namespace CqrsEventSourcingDemo.Web
             container.Register<IRequestDispatcher, RequestDispatcher>();
 
             // Command handlers
-            container.Register(typeof (ICommandHandler<>), new[] {typeof (MvcApplication).Assembly});
+            container.Register(typeof (ICommandHandler<>), new[] {typeof (TabService).Assembly});
             container.RegisterDecorator(typeof (ICommandHandler<>), typeof (ValidationDecoratorCommandHandler<>));
             container.RegisterDecorator(typeof (ICommandHandler<>), typeof (LoggingDecoratorCommandHandler<>));
 
             // Query handlers
-            container.Register(typeof (IQueryHandler<,>), new[] {typeof (MvcApplication).Assembly});
+            container.Register(typeof (IQueryHandler<,>), new[] {typeof (TabReadModel).Assembly});
 
             // Validators
             container.RegisterSingleton(typeof (IValidator<>), typeof (CompositeValidator<>));
@@ -47,8 +50,7 @@ namespace CqrsEventSourcingDemo.Web
             container.Register(typeof (IValidationAttributeValidator<>), new[] {typeof (IValidationAttributeValidator<>).Assembly});
 
             // Loggers
-            container.RegisterSingleton<ILogger, CompositeLogger>();
-            container.RegisterCollection<ILogger>(new[] {typeof (NLogLogger)});
+            container.RegisterSingleton<ILogger, NLogLogger>();
             container.RegisterSingleton(() => LogManager.GetLogger("NLog"));
 
             // Action filters
@@ -61,10 +63,10 @@ namespace CqrsEventSourcingDemo.Web
             container.Register<IAggregateFactory, AggregateFactory>();
 
             // Event publisher
-            container.Register<IEventPublisher>(() => new EventPublisher(type => container.GetAllInstances(type)));
+            container.Register<IEventPublisher>(() => new EventPublisher(type => container.GetAllInstances(type), container.GetInstance<ILogger>()));
 
             // Event handlers
-            container.RegisterCollection(typeof (IEventSubscriber<>), typeof (MvcApplication).Assembly);
+            container.RegisterCollection(typeof (IEventSubscriber<>), new[] {typeof (TabReadModel).Assembly});
 
             // View model database
             container.Register<IViewModelDatabase, InMemoryViewModelDatabase>();

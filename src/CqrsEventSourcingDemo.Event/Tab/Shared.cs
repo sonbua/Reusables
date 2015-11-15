@@ -1,10 +1,12 @@
-﻿namespace CqrsEventSourcingDemo.Web.Domain.ReadModels.Tab
+﻿namespace CqrsEventSourcingDemo.Event.Tab
 {
-    public class TabItem
+    public class OrderedItem
     {
         public int MenuNumber { get; set; }
 
         public string Description { get; set; }
+
+        public bool IsDrink { get; set; }
 
         public decimal Price { get; set; }
     }

@@ -6,7 +6,7 @@ using Reusables.EventSourcing;
 using Reusables.EventSourcing.Extensions;
 using Reusables.Util.Extensions;
 
-namespace CqrsEventSourcingDemo.Web.Abstractions
+namespace CqrsEventSourcingDemo.Infrastructure
 {
     public class InMemoryEventStore : IEventStore
     {
@@ -29,7 +29,7 @@ namespace CqrsEventSourcingDemo.Web.Abstractions
                 return _aggregateFactory.Create<TAggregate>(new object[0]);
             }
 
-            var history = eventDataHistory.Select(x => x.FromEventData());
+            var history = eventDataHistory.Select(x => EventDataExtensions.FromEventData(x));
 
             return _aggregateFactory.Create<TAggregate>(history);
         }

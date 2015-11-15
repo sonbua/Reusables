@@ -1,6 +1,6 @@
 ﻿using Reusables.Cqrs;
 
-namespace CqrsEventSourcingDemo.Web.Domain.ReadModels.Tab
+namespace CqrsEventSourcingDemo.ReadModel.Tab
 {
     public class ActiveTableNumbersQuery : Query<int[]>
     {

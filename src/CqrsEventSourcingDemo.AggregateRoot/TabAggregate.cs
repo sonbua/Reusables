@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using CqrsEventSourcingDemo.Web.Domain.Events.Tab;
+using CqrsEventSourcingDemo.Event.Tab;
 using Reusables.EventSourcing;
 using Reusables.EventSourcing.Extensions;
 
-namespace CqrsEventSourcingDemo.Web.Domain.Commands.Tab
+namespace CqrsEventSourcingDemo.AggregateRoot
 {
     public class TabAggregate : Aggregate
     {
+        private readonly List<OrderedItem> _outstandingDrinks = new List<OrderedItem>();
+        private readonly List<OrderedItem> _outstandingFood = new List<OrderedItem>();
         private bool _open;
 
         public TabAggregate(IEnumerable<object> history)
@@ -28,6 +30,21 @@ namespace CqrsEventSourcingDemo.Web.Domain.Commands.Tab
                     });
         }
 
+        public void PlaceOrder(Guid tabId, List<OrderedItem> orderedItems)
+        {
+            Publish(new DrinkOrdered
+                    {
+                        TabId = tabId,
+                        Items = orderedItems.FindAll(item => item.IsDrink)
+                    });
+
+            Publish(new FoodOrdered
+                    {
+                        TabId = tabId,
+                        Items = orderedItems.FindAll(item => !item.IsDrink)
+                    });
+        }
+
         private void Publish<TEvent>(TEvent @event)
         {
             UncommittedEvents.Add(@event);
@@ -45,6 +62,16 @@ namespace CqrsEventSourcingDemo.Web.Domain.Commands.Tab
         private void When(TabOpened @event)
         {
             _open = true;
+        }
+
+        private void When(DrinkOrdered @event)
+        {
+            _outstandingDrinks.AddRange(@event.Items);
+        }
+
+        private void When(FoodOrdered @event)
+        {
+            _outstandingFood.AddRange(@event.Items);
         }
     }
 }

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}</ProjectGuid>
+    <ProjectGuid>{8A919DBE-A6CB-4D23-A85D-54333A1B26D6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Reusables.EventSourcing</RootNamespace>
-    <AssemblyName>Reusables.EventSourcing</AssemblyName>
+    <RootNamespace>CqrsEventSourcingDemo.Infrastructure</RootNamespace>
+    <AssemblyName>CqrsEventSourcingDemo.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,24 +30,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aggregate.cs" />
-    <Compile Include="EventData.cs" />
-    <Compile Include="EventPublisher.cs" />
-    <Compile Include="IAggregateFactory.cs" />
-    <Compile Include="IEventSubscriber.cs" />
-    <Compile Include="IEventPublisher.cs" />
-    <Compile Include="IEventStore.cs" />
+    <Compile Include="InMemoryEventStore.cs" />
+    <Compile Include="InMemoryViewModelDatabase.cs" />
+    <Compile Include="InMemoryViewModelSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Reusables.Diagnostics.Logging\Reusables.Diagnostics.Logging.csproj">
-      <Project>{7E1A4672-ACCC-4B48-8510-734EDA9A372A}</Project>
-      <Name>Reusables.Diagnostics.Logging</Name>
+    <ProjectReference Include="..\CqrsEventSourcingDemo.ReadModel\CqrsEventSourcingDemo.ReadModel.csproj">
+      <Project>{5a7b15bf-ca34-4d40-bc2a-2fa9d7defd6c}</Project>
+      <Name>CqrsEventSourcingDemo.ReadModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reusables.EventSourcing.Extensions\Reusables.EventSourcing.Extensions.csproj">
+      <Project>{91cf2b13-0de4-474d-9e6a-4e7483238d59}</Project>
+      <Name>Reusables.EventSourcing.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reusables.EventSourcing\Reusables.EventSourcing.csproj">
+      <Project>{fb2bb5ae-e541-4e1c-9231-69d4f12a5b06}</Project>
+      <Name>Reusables.EventSourcing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reusables.Util.Extensions\Reusables.Util.Extensions.csproj">
+      <Project>{b93b3dec-c90e-4f3f-a23d-cc976e2192dd}</Project>
+      <Name>Reusables.Util.Extensions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

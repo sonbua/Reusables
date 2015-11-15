@@ -19,32 +19,56 @@ namespace Reusables.Cqrs
         {
             var handler = (ICommandHandler<TCommand>) _serviceProvider.GetService(typeof (ICommandHandler<TCommand>));
 
-            handler.Handle(command);
+            if (handler != null)
+            {
+                handler.Handle(command);
+                return;
+            }
+
+            throw new NotSupportedException($"No handler found for this command: {typeof (TCommand)}");
         }
 
         public async Task DispatchCommandAsync<TAsyncCommand>(TAsyncCommand command)
         {
             var handler = (IAsyncCommandHandler<TAsyncCommand>) _serviceProvider.GetService(typeof (IAsyncCommandHandler<TAsyncCommand>));
 
-            await handler.HandleAsync(command).ConfigureAwait(false);
+            if (handler != null)
+            {
+                await handler.HandleAsync(command).ConfigureAwait(false);
+                return;
+            }
+
+            throw new NotSupportedException($"No handler found for this command: {typeof (TAsyncCommand)}");
         }
 
         public TResult DispatchQuery<TResult>(Query<TResult> query)
         {
-            var handlerType = typeof (IQueryHandler<,>).MakeGenericType(query.GetType(), typeof (TResult));
+            var queryType = query.GetType();
+            var handlerType = typeof (IQueryHandler<,>).MakeGenericType(queryType, typeof (TResult));
 
             dynamic handler = _serviceProvider.GetService(handlerType);
 
-            return handler.Handle((dynamic) query);
+            if (handler != null)
+            {
+                return handler.Handle((dynamic) query);
+            }
+
+            throw new NotSupportedException($"No handler found for this query: {queryType}");
         }
 
         public async Task<TResult> DispatchQueryAsync<TResult>(AsyncQuery<TResult> query)
         {
-            var handlerType = typeof (IAsyncQueryHandler<,>).MakeGenericType(query.GetType(), typeof (TResult));
+            var queryType = query.GetType();
+            var handlerType = typeof (IAsyncQueryHandler<,>).MakeGenericType(queryType, typeof (TResult));
 
             dynamic handler = _serviceProvider.GetService(handlerType);
 
-            return await handler.HandleAsync((dynamic) query).ConfigureAwait(false);
+            if (handler != null)
+            {
+                return await handler.HandleAsync((dynamic) query).ConfigureAwait(false);
+            }
+
+            throw new NotSupportedException($"No handler found for this query: {queryType}");
         }
     }
 }

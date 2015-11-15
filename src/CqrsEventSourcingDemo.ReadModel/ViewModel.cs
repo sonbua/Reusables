@@ -1,6 +1,6 @@
 using System;
 
-namespace CqrsEventSourcingDemo.Web.Abstractions.Views
+namespace CqrsEventSourcingDemo.ReadModel
 {
     public abstract class ViewModel
     {

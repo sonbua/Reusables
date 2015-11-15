@@ -1,13 +1,18 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
-using CqrsEventSourcingDemo.Web.Domain.ReadModels.Tab;
+using CqrsEventSourcingDemo.ReadModel.Tab;
 using Reusables.Cqrs;
 
 namespace CqrsEventSourcingDemo.Web.Controllers.Attributes
 {
     public class IncludeLayoutDataAttribute : ActionFilterAttribute
     {
-        private readonly IRequestDispatcher _dispatcher = DependencyResolver.Current.GetService<IRequestDispatcher>();
+        private readonly IRequestDispatcher _dispatcher;
+
+        public IncludeLayoutDataAttribute()
+        {
+            _dispatcher = DependencyResolver.Current.GetService<IRequestDispatcher>();
+        }
 
         public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
