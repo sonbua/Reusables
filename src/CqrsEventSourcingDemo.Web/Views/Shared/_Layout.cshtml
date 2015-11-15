@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using CqrsEventSourcingDemo.Web.Controllers.Attributes
+@using CqrsEventSourcingDemo.Web.Controllers.Cafe
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,13 +23,30 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Open Tab", "Open", "Tab")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="well">
+                    <ul class="nav nav-stacked">
+                        <li class="text-uppercase">Wait Staff Todo Lists</li>
+                        @foreach (Staff staff in ViewBag.WaitStaff)
+                        {
+                            <li>@Html.ActionLink(staff.Name, "Todo", "WaitStaff", new {id = @staff.Id}, null)</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                @RenderBody()
+            </div>
+        </div>
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - A CQRS/ES Demo Application</p>
