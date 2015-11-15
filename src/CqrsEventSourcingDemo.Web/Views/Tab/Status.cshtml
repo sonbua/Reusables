@@ -1,0 +1,112 @@
+﻿@model CqrsEventSourcingDemo.ReadModel.Tab.TabStatus
+
+@{
+    ViewBag.Title = "Tab Status";
+}
+
+<h2>Tab for Table @Model.TableNumber</h2>
+
+<div>
+    <i class="glyphicon-plus"></i>
+    @Html.ActionLink("Order Food/Drink", "Order", new {id = Model.TableNumber})
+</div>
+
+@if (Model.ToServe.Any())
+{
+    using (Html.BeginForm("MarkServed", "Tab", new {id = Model.TableNumber}))
+    {
+        <br/>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3>Items to Serve</h3>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Menu #</th>
+                        <th>Description</th>
+                        <th>Mark Served</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ var i = 0; }
+                    @foreach (var item in Model.ToServe)
+                    {
+                        <tr>
+                            <td>@item.MenuNumber</td>
+                            <td>@item.Description</td>
+                            <td>
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBox($"served_{i++}_{item.MenuNumber}")
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-primary">Mark Served</button>
+            </div>
+        </div>
+    }
+}
+
+@if (Model.InPreparation.Any())
+{
+    <br/>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Food in Preparation</h3>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Menu #</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.InPreparation)
+                {
+                    <tr>
+                        <td>@item.MenuNumber</td>
+                        <td>@item.Description</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@if (Model.Served.Any())
+{
+    <br/>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Items Already Served</h3>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Menu #</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Served)
+                {
+                    <tr>
+                        <td>@item.MenuNumber</td>
+                        <td>@item.Description</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

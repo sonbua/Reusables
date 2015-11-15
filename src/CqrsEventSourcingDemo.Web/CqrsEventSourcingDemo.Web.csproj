@@ -289,6 +289,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <None Include="Views\Tab\Open.cshtml" />
     <None Include="Views\Tab\Order.cshtml" />
+    <None Include="Views\Tab\Status.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,6 +8,7 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
 {
     public class TabReadModel : IQueryHandler<ActiveTableNumbersQuery, int[]>,
                                 IQueryHandler<TabIdForTableQuery, Guid>,
+                                IQueryHandler<TabForTableQuery, TabStatus>,
                                 IEventSubscriber<TabOpened>,
                                 IEventSubscriber<DrinkOrdered>,
                                 IEventSubscriber<FoodOrdered>
@@ -30,6 +31,21 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
                             .Single(tab => tab.TableNumber == query.TableNumber &&
                                            tab.Status == TabStatuses.Open)
                             .Id;
+        }
+
+        public TabStatus Handle(TabForTableQuery query)
+        {
+            var tab = _database.Set<Tab>().Single(x => x.TableNumber == query.TableNumber &&
+                                                       x.Status == TabStatuses.Open);
+
+            return new TabStatus
+                   {
+                       TabId = tab.Id,
+                       TableNumber = tab.TableNumber,
+                       ToServe = tab.ToServe,
+                       InPreparation = tab.InPreparation,
+                       Served = tab.Served
+                   };
         }
 
         public void Handle(TabOpened @event)
