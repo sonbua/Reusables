@@ -1,4 +1,5 @@
 ﻿@using Reusables.Util.Extensions
+
 @model CqrsEventSourcingDemo.Web.Scenarios.Pupil.PupilViewModel[]
 
 @{
@@ -18,7 +19,12 @@ else
         {
             <tr>
                 <td>@pupilView.Id</td>
+                <td>@pupilView.Name</td>
+                <td>@pupilView.DateOfBirth</td>
+                <td>@pupilView.ClassName</td>
             </tr>
         }
     </table>
 }
+
+<hr />
