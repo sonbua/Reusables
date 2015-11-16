@@ -204,6 +204,7 @@
     <Compile Include="Controllers\Attributes\IncludeLayoutDataAttribute.cs" />
     <Compile Include="Controllers\Attributes\LogExceptionFilterAttribute.cs" />
     <Compile Include="Controllers\Cafe\BaseController.cs" />
+    <Compile Include="Controllers\Cafe\ChefController.cs" />
     <Compile Include="Controllers\Cafe\TabController.cs" />
     <Compile Include="Controllers\Cafe\WaitStaffController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -287,6 +288,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Views\Chef\Index.cshtml" />
     <None Include="Views\Tab\Open.cshtml" />
     <None Include="Views\Tab\Order.cshtml" />
     <None Include="Views\Tab\Status.cshtml" />

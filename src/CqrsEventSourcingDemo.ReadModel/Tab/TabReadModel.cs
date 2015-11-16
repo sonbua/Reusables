@@ -72,7 +72,7 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
 
         public void Handle(DrinkOrdered @event)
         {
-            var tab = GetTabById(@event.TabId);
+            var tab = _database.Set<Tab>().GetById(@event.TabId);
             var drinksToServe = @event.Items.Select(item => new TabItem
                                                             {
                                                                 MenuNumber = item.MenuNumber,
@@ -85,7 +85,7 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
 
         public void Handle(FoodOrdered @event)
         {
-            var tab = GetTabById(@event.TabId);
+            var tab = _database.Set<Tab>().GetById(@event.TabId);
             var foodInPreparation = @event.Items.Select(item => new TabItem
                                                                 {
                                                                     MenuNumber = item.MenuNumber,
@@ -98,7 +98,7 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
 
         public void Handle(DrinksServed @event)
         {
-            var tab = GetTabById(@event.TabId);
+            var tab = _database.Set<Tab>().GetById(@event.TabId);
 
             foreach (var drinkMenuNumber in @event.MenuNumbers)
             {
@@ -108,11 +108,6 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
 
                 tab.Served.Add(servedDrink);
             }
-        }
-
-        private Tab GetTabById(Guid id)
-        {
-            return _database.Set<Tab>().Single(tab => tab.Id == id);
         }
     }
 }

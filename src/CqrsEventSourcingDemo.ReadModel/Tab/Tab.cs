@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CqrsEventSourcingDemo.Event.Tab;
 
 namespace CqrsEventSourcingDemo.ReadModel.Tab
 {
@@ -52,5 +53,28 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
     {
         Open = 0,
         Closed = 1
+    }
+
+    public class TodoList : ViewModel
+    {
+        public Guid TabId { get; set; }
+
+        public List<TodoItem> Items { get; set; }
+    }
+
+    public class TodoItem
+    {
+        public int MenuNumber { get; set; }
+
+        public string Description { get; set; }
+
+        public static explicit operator TodoItem(OrderedItem orderedItem)
+        {
+            return new TodoItem
+                   {
+                       MenuNumber = orderedItem.MenuNumber,
+                       Description = orderedItem.Description
+                   };
+        }
     }
 }

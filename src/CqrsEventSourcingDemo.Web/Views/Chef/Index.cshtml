@@ -1,0 +1,50 @@
+﻿@model CqrsEventSourcingDemo.ReadModel.Tab.TodoList[]
+
+@{
+    ViewBag.Title = "Chef Todo List";
+}
+
+<h2>Meals To Prepare</h2>
+
+@foreach (var todoList in Model)
+{
+    @Html.Hidden("tabId", todoList.TabId)
+
+    using (Html.BeginForm("MarkPrepared", "Chef"))
+    {
+        <div class="panel panel-warning">
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Menu #</th>
+                            <th>Description</th>
+                            <th>Prepared</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ var i = 0; }
+                        @foreach (var item in todoList.Items)
+                        {
+                            <tr>
+                                <td>@item.MenuNumber</td>
+                                <td>@item.Description</td>
+                                <td>
+                                    <div class="checkbox">
+                                        <label>
+                                            @Html.CheckBox($"prepared_{i++}_{item.MenuNumber}")
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-primary">Mark Prepared</button>
+            </div>
+        </div>
+    }
+}

@@ -39,6 +39,8 @@
     <Compile Include="IViewModelSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tab\ActiveTableNumbers.cs" />
+    <Compile Include="Tab\ChefTodoListReadModel.cs" />
+    <Compile Include="Tab\GetTodoLists.cs" />
     <Compile Include="Tab\Tab.cs" />
     <Compile Include="Tab\TabForTable.cs" />
     <Compile Include="Tab\TabIdForTable.cs" />
