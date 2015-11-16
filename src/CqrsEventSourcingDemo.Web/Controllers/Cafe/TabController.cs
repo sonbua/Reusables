@@ -55,7 +55,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
         {
             _dispatcher.DispatchCommand(new PlaceOrder
                                         {
-                                            TabId = _dispatcher.DispatchQuery(new TabIdForTableQuery {TableNumber = id}),
+                                            TabId = _dispatcher.DispatchQuery(new TabIdForTable {TableNumber = id}),
                                             Items = OrderedItems(orderModel).ToList()
                                         });
 
@@ -83,14 +83,14 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
 
         public ActionResult Status(int id)
         {
-            var tabStatus = _dispatcher.DispatchQuery(new TabForTableQuery {TableNumber = id});
+            var tabStatus = _dispatcher.DispatchQuery(new TabForTable {TableNumber = id});
 
             return View(tabStatus);
         }
 
         public ActionResult MarkServed(int id, FormCollection form)
         {
-            var tabId = _dispatcher.DispatchQuery(new TabIdForTableQuery {TableNumber = id});
+            var tabId = _dispatcher.DispatchQuery(new TabIdForTable {TableNumber = id});
 
             var servedItemsPattern = new Regex("^served_\\d+_(\\d+)$", RegexOptions.Compiled);
             var servedMenuNumbers = form.AllKeys

@@ -23,7 +23,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Attributes
                 var bag = viewResult.ViewBag;
 
                 bag.WaitStaff = StaticData.WaitStaff;
-                bag.ActiveTables = _dispatcher.DispatchQuery(new ActiveTableNumbersQuery());
+                bag.ActiveTables = _dispatcher.DispatchQuery(new ActiveTableNumbers());
             }
         }
     }

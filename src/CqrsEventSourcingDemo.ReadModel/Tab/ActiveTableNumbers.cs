@@ -2,7 +2,7 @@
 
 namespace CqrsEventSourcingDemo.ReadModel.Tab
 {
-    public class ActiveTableNumbersQuery : Query<int[]>
+    public class ActiveTableNumbers : Query<int[]>
     {
     }
 }

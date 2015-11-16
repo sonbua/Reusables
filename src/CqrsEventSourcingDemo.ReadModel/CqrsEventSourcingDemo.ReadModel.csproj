@@ -38,10 +38,10 @@
     <Compile Include="IViewModelDatabase.cs" />
     <Compile Include="IViewModelSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tab\ActiveTableNumbersQuery.cs" />
+    <Compile Include="Tab\ActiveTableNumbers.cs" />
     <Compile Include="Tab\Tab.cs" />
-    <Compile Include="Tab\TabForTableQuery.cs" />
-    <Compile Include="Tab\TabIdForTableQuery.cs" />
+    <Compile Include="Tab\TabForTable.cs" />
+    <Compile Include="Tab\TabIdForTable.cs" />
     <Compile Include="Tab\TabReadModel.cs" />
     <Compile Include="Tab\TodoListForWaiter.cs" />
     <Compile Include="ViewModel.cs" />

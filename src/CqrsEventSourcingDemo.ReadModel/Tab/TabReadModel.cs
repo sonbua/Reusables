@@ -7,9 +7,9 @@ using Reusables.EventSourcing;
 
 namespace CqrsEventSourcingDemo.ReadModel.Tab
 {
-    public class TabReadModel : IQueryHandler<ActiveTableNumbersQuery, int[]>,
-                                IQueryHandler<TabIdForTableQuery, Guid>,
-                                IQueryHandler<TabForTableQuery, TabStatus>,
+    public class TabReadModel : IQueryHandler<ActiveTableNumbers, int[]>,
+                                IQueryHandler<TabIdForTable, Guid>,
+                                IQueryHandler<TabForTable, TabStatus>,
                                 IQueryHandler<TodoListForWaiter, IDictionary<int, TabItem[]>>,
                                 IEventSubscriber<TabOpened>,
                                 IEventSubscriber<DrinkOrdered>,
@@ -23,12 +23,12 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
             _database = database;
         }
 
-        public int[] Handle(ActiveTableNumbersQuery query)
+        public int[] Handle(ActiveTableNumbers query)
         {
             return _database.Set<Tab>().Select(x => x.TableNumber).ToArray();
         }
 
-        public Guid Handle(TabIdForTableQuery query)
+        public Guid Handle(TabIdForTable query)
         {
             return _database.Set<Tab>()
                             .Single(tab => tab.TableNumber == query.TableNumber &&
@@ -36,7 +36,7 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
                             .Id;
         }
 
-        public TabStatus Handle(TabForTableQuery query)
+        public TabStatus Handle(TabForTable query)
         {
             var tab = _database.Set<Tab>().Single(x => x.TableNumber == query.TableNumber &&
                                                        x.Status == TabStatuses.Open);
