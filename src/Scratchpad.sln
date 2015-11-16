@@ -3,53 +3,53 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationSectionHandlerDemo", "ConfigurationSectionHandlerDemo\ConfigurationSectionHandlerDemo.csproj", "{5D3E74CD-9D1C-435D-B546-354037ABDFF1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables", "Reusables\Reusables.csproj", "{8A6F0955-9952-43CC-ACD8-327FF2DB890B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Web.Mvc5", "Reusables.Web.Mvc5\Reusables.Web.Mvc5.csproj", "{A6FCD242-9112-481B-A1F1-36DF8121ED8D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reusables", "Reusables", "{61D0BC57-AFCC-4913-B467-4BE91D89CA01}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Cqrs", "Reusables.Cqrs\Reusables.Cqrs.csproj", "{5E7E00EB-AA72-4EF1-9BA6-17C0C3C9A7DC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Configuration", "Reusables.Configuration\Reusables.Configuration.csproj", "{FCBB27A9-9FF0-4A08-823F-9CB73D827286}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{E1B89800-37AB-4E3E-912F-5B0680600976}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.DataAnnotations", "Reusables.DataAnnotations\Reusables.DataAnnotations.csproj", "{F4BFAC1B-4638-447E-A562-2DF8C146A8D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationSectionHandlerDemo", "ConfigurationSectionHandlerDemo\ConfigurationSectionHandlerDemo.csproj", "{5D3E74CD-9D1C-435D-B546-354037ABDFF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Validation", "Reusables.Validation\Reusables.Validation.csproj", "{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Util.Extensions", "Reusables.Util.Extensions\Reusables.Util.Extensions.csproj", "{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Util.Extensions.Tests", "Reusables.Util.Extensions.Tests\Reusables.Util.Extensions.Tests.csproj", "{300E5E34-0B24-459A-B804-1E5C56E5F0F1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Serialization", "Reusables.Serialization\Reusables.Serialization.csproj", "{6F8C4016-0BED-4DCF-B61A-AA7C105BBADE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Serialization.Newtonsoft", "Reusables.Serialization.Newtonsoft\Reusables.Serialization.Newtonsoft.csproj", "{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.EventSourcing", "Reusables.EventSourcing\Reusables.EventSourcing.csproj", "{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsEventSourcingDemo.Web", "CqrsEventSourcingDemo.Web\CqrsEventSourcingDemo.Web.csproj", "{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Diagnostics.Logging", "Reusables.Diagnostics.Logging\Reusables.Diagnostics.Logging.csproj", "{7E1A4672-ACCC-4B48-8510-734EDA9A372A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Diagnostics.Logging.NLog", "Reusables.Diagnostics.Logging.NLog\Reusables.Diagnostics.Logging.NLog.csproj", "{053901AD-9BC6-4009-B484-EC0D6D9C43C5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.EventSourcing.Extensions", "Reusables.EventSourcing.Extensions\Reusables.EventSourcing.Extensions.csproj", "{91CF2B13-0DE4-474D-9E6A-4E7483238D59}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Diagnostics.Contracts", "Reusables.Diagnostics.Contracts\Reusables.Diagnostics.Contracts.csproj", "{A120D214-0B8B-4F1E-B707-A6655EFBC626}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsEventSourcingDemo.AggregateRoot", "CqrsEventSourcingDemo.AggregateRoot\CqrsEventSourcingDemo.AggregateRoot.csproj", "{34C4A496-B4E9-4EC8-AECB-0704ABAD051B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsEventSourcingDemo.Command", "CqrsEventSourcingDemo.Command\CqrsEventSourcingDemo.Command.csproj", "{2682FDCE-4EA6-4D22-9023-9BA1BC534DC5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsEventSourcingDemo.Event", "CqrsEventSourcingDemo.Event\CqrsEventSourcingDemo.Event.csproj", "{256B0685-8F12-4A60-9D8E-D75925B7AA35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsEventSourcingDemo.ReadModel", "CqrsEventSourcingDemo.ReadModel\CqrsEventSourcingDemo.ReadModel.csproj", "{5A7B15BF-CA34-4D40-BC2A-2FA9D7DEFD6C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsEventSourcingDemo.Infrastructure", "CqrsEventSourcingDemo.Infrastructure\CqrsEventSourcingDemo.Infrastructure.csproj", "{8A919DBE-A6CB-4D23-A85D-54333A1B26D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsEventSourcingDemo.AggregateRoot", "CqrsEventSourcingDemo.AggregateRoot\CqrsEventSourcingDemo.AggregateRoot.csproj", "{34C4A496-B4E9-4EC8-AECB-0704ABAD051B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsEventSourcingDemo.ReadModel", "CqrsEventSourcingDemo.ReadModel\CqrsEventSourcingDemo.ReadModel.csproj", "{5A7B15BF-CA34-4D40-BC2A-2FA9D7DEFD6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqrsEventSourcingDemo.Web", "CqrsEventSourcingDemo.Web\CqrsEventSourcingDemo.Web.csproj", "{5B93F3AC-0F3D-4AB4-BF13-109B1A17E3F1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reusables", "Reusables", "{61D0BC57-AFCC-4913-B467-4BE91D89CA01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables", "Reusables\Reusables.csproj", "{8A6F0955-9952-43CC-ACD8-327FF2DB890B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Configuration", "Reusables.Configuration\Reusables.Configuration.csproj", "{FCBB27A9-9FF0-4A08-823F-9CB73D827286}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Cqrs", "Reusables.Cqrs\Reusables.Cqrs.csproj", "{5E7E00EB-AA72-4EF1-9BA6-17C0C3C9A7DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.DataAnnotations", "Reusables.DataAnnotations\Reusables.DataAnnotations.csproj", "{F4BFAC1B-4638-447E-A562-2DF8C146A8D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Diagnostics.Contracts", "Reusables.Diagnostics.Contracts\Reusables.Diagnostics.Contracts.csproj", "{A120D214-0B8B-4F1E-B707-A6655EFBC626}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Diagnostics.Logging", "Reusables.Diagnostics.Logging\Reusables.Diagnostics.Logging.csproj", "{7E1A4672-ACCC-4B48-8510-734EDA9A372A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Diagnostics.Logging.NLog", "Reusables.Diagnostics.Logging.NLog\Reusables.Diagnostics.Logging.NLog.csproj", "{053901AD-9BC6-4009-B484-EC0D6D9C43C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.EventSourcing", "Reusables.EventSourcing\Reusables.EventSourcing.csproj", "{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.EventSourcing.Extensions", "Reusables.EventSourcing.Extensions\Reusables.EventSourcing.Extensions.csproj", "{91CF2B13-0DE4-474D-9E6A-4E7483238D59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Serialization", "Reusables.Serialization\Reusables.Serialization.csproj", "{6F8C4016-0BED-4DCF-B61A-AA7C105BBADE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Serialization.Newtonsoft", "Reusables.Serialization.Newtonsoft\Reusables.Serialization.Newtonsoft.csproj", "{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Util.Extensions", "Reusables.Util.Extensions\Reusables.Util.Extensions.csproj", "{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Util.Extensions.Tests", "Reusables.Util.Extensions.Tests\Reusables.Util.Extensions.Tests.csproj", "{300E5E34-0B24-459A-B804-1E5C56E5F0F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Validation", "Reusables.Validation\Reusables.Validation.csproj", "{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Web.Mvc5", "Reusables.Web.Mvc5\Reusables.Web.Mvc5.csproj", "{A6FCD242-9112-481B-A1F1-36DF8121ED8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
