@@ -28,7 +28,7 @@ namespace CqrsEventSourcingDemo.Command.Tab
 
         public void Handle(PlaceOrder command)
         {
-            _eventStore.Act<TabAggregate>(command.TabId, aggregate => aggregate.PlaceOrder(command.TabId, command.Items));
+            _eventStore.Act<TabAggregate>(command.TabId, aggregate => aggregate.PlaceOrder(command.Items));
         }
 
         public void Handle(MarkDrinksServed command)

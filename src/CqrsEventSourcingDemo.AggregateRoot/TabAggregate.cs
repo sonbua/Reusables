@@ -31,8 +31,7 @@ namespace CqrsEventSourcingDemo.AggregateRoot
                     });
         }
 
-        // TODO: remove tabId param, get from aggregate
-        public void PlaceOrder(Guid tabId, List<OrderedItem> orderedItems)
+        public void PlaceOrder(List<OrderedItem> orderedItems)
         {
             var drinks = orderedItems.FindAll(item => item.IsDrink);
 
@@ -40,7 +39,7 @@ namespace CqrsEventSourcingDemo.AggregateRoot
             {
                 Publish(new DrinkOrdered
                         {
-                            TabId = tabId,
+                            TabId = Id,
                             Items = drinks
                         });
             }
@@ -51,7 +50,7 @@ namespace CqrsEventSourcingDemo.AggregateRoot
             {
                 Publish(new FoodOrdered
                         {
-                            TabId = tabId,
+                            TabId = Id,
                             Items = food
                         });
             }
