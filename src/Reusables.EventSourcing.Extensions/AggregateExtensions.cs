@@ -9,7 +9,7 @@ namespace Reusables.EventSourcing.Extensions
     {
         private static readonly MethodInfo _internalPreserveStackTraceMethod = typeof (Exception).GetMethod("InternalPreserveStackTrace", BindingFlags.Instance | BindingFlags.NonPublic);
 
-        public static void Replay<TAggregate, TEvent>(this TAggregate aggregate, TEvent @event) where TAggregate : Aggregate
+        public static void ApplyEventOptionally<TAggregate, TEvent>(this TAggregate aggregate, TEvent @event) where TAggregate : Aggregate
         {
             MethodInfo handler;
             var eventType = @event.GetType();

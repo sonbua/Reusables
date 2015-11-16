@@ -76,7 +76,7 @@ namespace CqrsEventSourcingDemo.AggregateRoot
         {
             Version++;
 
-            this.Replay(@event);
+            this.ApplyEventOptionally(@event);
         }
 
         private void When(TabOpened @event)
