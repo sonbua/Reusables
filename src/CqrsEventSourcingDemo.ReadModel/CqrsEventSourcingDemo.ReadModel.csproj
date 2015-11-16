@@ -43,6 +43,7 @@
     <Compile Include="Tab\TabForTableQuery.cs" />
     <Compile Include="Tab\TabIdForTableQuery.cs" />
     <Compile Include="Tab\TabReadModel.cs" />
+    <Compile Include="Tab\TodoListForWaiter.cs" />
     <Compile Include="ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

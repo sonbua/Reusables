@@ -290,6 +290,7 @@
     <None Include="Views\Tab\Open.cshtml" />
     <None Include="Views\Tab\Order.cshtml" />
     <None Include="Views\Tab\Status.cshtml" />
+    <Content Include="Views\WaitStaff\Todo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

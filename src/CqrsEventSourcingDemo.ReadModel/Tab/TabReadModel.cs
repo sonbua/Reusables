@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CqrsEventSourcingDemo.Event.Tab;
 using Reusables.Cqrs;
@@ -9,6 +10,7 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
     public class TabReadModel : IQueryHandler<ActiveTableNumbersQuery, int[]>,
                                 IQueryHandler<TabIdForTableQuery, Guid>,
                                 IQueryHandler<TabForTableQuery, TabStatus>,
+                                IQueryHandler<TodoListForWaiter, IDictionary<int, TabItem[]>>,
                                 IEventSubscriber<TabOpened>,
                                 IEventSubscriber<DrinkOrdered>,
                                 IEventSubscriber<FoodOrdered>,
@@ -47,6 +49,14 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
                        InPreparation = tab.InPreparation,
                        Served = tab.Served
                    };
+        }
+
+        public IDictionary<int, TabItem[]> Handle(TodoListForWaiter query)
+        {
+            return _database.Set<Tab>()
+                            .Where(tab => tab.Status == TabStatuses.Open)
+                            .Where(tab => tab.Waiter == query.StaffId)
+                            .ToDictionary(tab => tab.TableNumber, tab => tab.ToServe.ToArray());
         }
 
         public void Handle(TabOpened @event)
