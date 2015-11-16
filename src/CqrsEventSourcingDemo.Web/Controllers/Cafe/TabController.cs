@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using CqrsEventSourcingDemo.Command.Tab;
 using CqrsEventSourcingDemo.Event.Tab;
@@ -87,9 +88,59 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
             return View(tabStatus);
         }
 
-        public ActionResult MarkServed(int id)
+        public ActionResult MarkServed(int id, FormCollection form)
         {
-            return Content("TODO");
+            var tabId = _dispatcher.DispatchQuery(new TabIdForTableQuery {TableNumber = id});
+
+            var servedItemsPattern = new Regex("^served_\\d+_(\\d+)$", RegexOptions.Compiled);
+            var servedMenuNumbers = form.AllKeys
+                                        .Where(key => servedItemsPattern.IsMatch(key))
+                                        .Where(key => form[key] != "false")
+                                        .Select(key => servedItemsPattern.Match(key))
+                                        .Select(match => match.Groups[1].Value)
+                                        .Select(int.Parse)
+                                        .ToList();
+
+            DispatchCommands(tabId, servedMenuNumbers);
+
+            return RedirectToAction("Status", new {id = id});
+        }
+
+        private void DispatchCommands(Guid tabId, List<int> servedMenuNumbers)
+        {
+            var isDrinkLookup = StaticData.Menu.ToDictionary(menuItem => menuItem.MenuNumber, menuItem => menuItem.IsDrink);
+
+            DispatchMarkDrinksServedCommand(tabId, servedMenuNumbers, isDrinkLookup);
+
+            DispatchMarkFoodServedCommand(tabId, servedMenuNumbers, isDrinkLookup);
+        }
+
+        private void DispatchMarkDrinksServedCommand(Guid tabId, List<int> servedMenuNumbers, Dictionary<int, bool> isDrinkLookup)
+        {
+            var drinks = servedMenuNumbers.Where(item => isDrinkLookup[item]).ToList();
+
+            if (drinks.Any())
+            {
+                _dispatcher.DispatchCommand(new MarkDrinksServed
+                                            {
+                                                TabId = tabId,
+                                                MenuNumbers = servedMenuNumbers
+                                            });
+            }
+        }
+
+        private void DispatchMarkFoodServedCommand(Guid tabId, List<int> servedMenuNumbers, Dictionary<int, bool> isDrinkLookup)
+        {
+            var food = servedMenuNumbers.Where(item => !isDrinkLookup[item]).ToList();
+
+            if (food.Any())
+            {
+                _dispatcher.DispatchCommand(new MarkFoodServed
+                                            {
+                                                Id = tabId,
+                                                MenuNumbers = food
+                                            });
+            }
         }
     }
 }

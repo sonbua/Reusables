@@ -11,7 +11,8 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
                                 IQueryHandler<TabForTableQuery, TabStatus>,
                                 IEventSubscriber<TabOpened>,
                                 IEventSubscriber<DrinkOrdered>,
-                                IEventSubscriber<FoodOrdered>
+                                IEventSubscriber<FoodOrdered>,
+                                IEventSubscriber<DrinksServed>
     {
         private readonly IViewModelDatabase _database;
 
@@ -83,6 +84,20 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
                                                                 });
 
             tab.InPreparation.AddRange(foodInPreparation);
+        }
+
+        public void Handle(DrinksServed @event)
+        {
+            var tab = GetTabById(@event.TabId);
+
+            foreach (var drinkMenuNumber in @event.MenuNumbers)
+            {
+                var servedDrink = tab.ToServe.FirstOrDefault(drink => drink.MenuNumber == drinkMenuNumber);
+
+                tab.ToServe.Remove(servedDrink);
+
+                tab.Served.Add(servedDrink);
+            }
         }
 
         private Tab GetTabById(Guid id)

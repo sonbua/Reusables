@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CqrsEventSourcingDemo.Event.Tab;
 using Reusables.EventSourcing;
 using Reusables.EventSourcing.Extensions;
@@ -30,18 +31,38 @@ namespace CqrsEventSourcingDemo.AggregateRoot
                     });
         }
 
+        // TODO: remove tabId param, get from aggregate
         public void PlaceOrder(Guid tabId, List<OrderedItem> orderedItems)
         {
-            Publish(new DrinkOrdered
-                    {
-                        TabId = tabId,
-                        Items = orderedItems.FindAll(item => item.IsDrink)
-                    });
+            var drinks = orderedItems.FindAll(item => item.IsDrink);
 
-            Publish(new FoodOrdered
+            if (drinks.Any())
+            {
+                Publish(new DrinkOrdered
+                        {
+                            TabId = tabId,
+                            Items = drinks
+                        });
+            }
+
+            var food = orderedItems.FindAll(item => !item.IsDrink);
+
+            if (food.Any())
+            {
+                Publish(new FoodOrdered
+                        {
+                            TabId = tabId,
+                            Items = food
+                        });
+            }
+        }
+
+        public void MarkDrinkServed(List<int> menuNumbers)
+        {
+            Publish(new DrinksServed
                     {
-                        TabId = tabId,
-                        Items = orderedItems.FindAll(item => !item.IsDrink)
+                        TabId = Id,
+                        MenuNumbers = menuNumbers
                     });
         }
 
@@ -61,6 +82,7 @@ namespace CqrsEventSourcingDemo.AggregateRoot
 
         private void When(TabOpened @event)
         {
+            Id = @event.Id;
             _open = true;
         }
 
@@ -72,6 +94,16 @@ namespace CqrsEventSourcingDemo.AggregateRoot
         private void When(FoodOrdered @event)
         {
             _outstandingFood.AddRange(@event.Items);
+        }
+
+        private void When(DrinksServed @event)
+        {
+            foreach (var drinkMenuNumber in @event.MenuNumbers)
+            {
+                var drinkToRemove = _outstandingDrinks.FirstOrDefault(drink => drink.MenuNumber == drinkMenuNumber);
+
+                _outstandingDrinks.Remove(drinkToRemove);
+            }
         }
     }
 }
