@@ -12,6 +12,11 @@ namespace Reusables.Diagnostics.Logging.NLog
             _innerLogger = innerLogger;
         }
 
+        public void Debug(Exception exception)
+        {
+            _innerLogger.Debug(exception);
+        }
+
         public void Debug(Exception exception, string message, params object[] args)
         {
             _innerLogger.Debug(exception, message, args);
@@ -20,6 +25,11 @@ namespace Reusables.Diagnostics.Logging.NLog
         public void Debug(string message, params object[] args)
         {
             _innerLogger.Debug(message, args);
+        }
+
+        public void Info(Exception exception)
+        {
+            _innerLogger.Info(exception);
         }
 
         public void Info(Exception exception, string message, params object[] args)
@@ -32,6 +42,11 @@ namespace Reusables.Diagnostics.Logging.NLog
             _innerLogger.Info(message, args);
         }
 
+        public void Warn(Exception exception)
+        {
+            _innerLogger.Warn(exception);
+        }
+
         public void Warn(Exception exception, string message, params object[] args)
         {
             _innerLogger.Warn(exception, message, args);
@@ -42,6 +57,11 @@ namespace Reusables.Diagnostics.Logging.NLog
             _innerLogger.Warn(message, args);
         }
 
+        public void Error(Exception exception)
+        {
+            _innerLogger.Error(exception);
+        }
+
         public void Error(Exception exception, string message, params object[] args)
         {
             _innerLogger.Error(exception, message, args);
@@ -50,6 +70,11 @@ namespace Reusables.Diagnostics.Logging.NLog
         public void Error(string message, params object[] args)
         {
             _innerLogger.Error(message, args);
+        }
+
+        public void Fatal(Exception exception)
+        {
+            _innerLogger.Fatal(exception);
         }
 
         public void Fatal(Exception exception, string message, params object[] args)

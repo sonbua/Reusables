@@ -12,6 +12,14 @@ namespace Reusables.Diagnostics.Logging
             _loggers = loggers;
         }
 
+        public void Debug(Exception exception)
+        {
+            foreach (var logger in _loggers)
+            {
+                logger.Debug(exception);
+            }
+        }
+
         public void Debug(Exception exception, string message, params object[] args)
         {
             foreach (var logger in _loggers)
@@ -25,6 +33,14 @@ namespace Reusables.Diagnostics.Logging
             foreach (var logger in _loggers)
             {
                 logger.Debug(message, args);
+            }
+        }
+
+        public void Info(Exception exception)
+        {
+            foreach (var logger in _loggers)
+            {
+                logger.Info(exception);
             }
         }
 
@@ -44,6 +60,14 @@ namespace Reusables.Diagnostics.Logging
             }
         }
 
+        public void Warn(Exception exception)
+        {
+            foreach (var logger in _loggers)
+            {
+                logger.Warn(exception);
+            }
+        }
+
         public void Warn(Exception exception, string message, params object[] args)
         {
             foreach (var logger in _loggers)
@@ -60,6 +84,14 @@ namespace Reusables.Diagnostics.Logging
             }
         }
 
+        public void Error(Exception exception)
+        {
+            foreach (var logger in _loggers)
+            {
+                logger.Error(exception);
+            }
+        }
+
         public void Error(Exception exception, string message, params object[] args)
         {
             foreach (var logger in _loggers)
@@ -73,6 +105,14 @@ namespace Reusables.Diagnostics.Logging
             foreach (var logger in _loggers)
             {
                 logger.Error(message, args);
+            }
+        }
+
+        public void Fatal(Exception exception)
+        {
+            foreach (var logger in _loggers)
+            {
+                logger.Fatal(exception);
             }
         }
 
