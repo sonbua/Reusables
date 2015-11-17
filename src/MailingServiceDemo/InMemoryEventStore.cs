@@ -29,7 +29,7 @@ namespace MailingServiceDemo
                 return _aggregateFactory.Create<TAggregate>(new object[0]);
             }
 
-            var history = eventDataHistory.Select(x => EventDataExtensions.FromEventData(x));
+            var history = eventDataHistory.Select(x => x.FromEventData());
 
             return _aggregateFactory.Create<TAggregate>(history);
         }

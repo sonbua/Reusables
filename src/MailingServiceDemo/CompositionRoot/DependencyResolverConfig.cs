@@ -13,7 +13,7 @@ namespace MailingServiceDemo.CompositionRoot
 {
     public class DependencyResolverConfig
     {
-        public static void RegisterDependencies()
+        public static Container RegisterDependencies()
         {
             var container = new Container();
 
@@ -58,6 +58,8 @@ namespace MailingServiceDemo.CompositionRoot
 
             // Verify
             container.Verify();
+
+            return container;
         }
     }
 }
