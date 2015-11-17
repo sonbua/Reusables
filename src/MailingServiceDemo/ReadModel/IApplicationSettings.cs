@@ -2,11 +2,11 @@
 {
     public interface IApplicationSettings
     {
-        int MaxRetry { get; }
+        int MaxAttempt { get; }
     }
 
     public class FakeApplicationSettings : IApplicationSettings
     {
-        public int MaxRetry => 3;
+        public int MaxAttempt => 3;
     }
 }
