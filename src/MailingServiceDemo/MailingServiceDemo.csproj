@@ -44,8 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggregateFactory.cs" />
-    <Compile Include="AggregateRoot\MailAggregate.cs" />
-    <Compile Include="Command\MailService.cs" />
+    <Compile Include="AggregateRoot\MailingAggregate.cs" />
+    <Compile Include="Command\MailingService.cs" />
     <Compile Include="Command\SendMail.cs" />
     <Compile Include="CompositeValidator.cs" />
     <Compile Include="CompositionRoot\DependencyResolverConfig.cs" />

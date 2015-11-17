@@ -6,11 +6,11 @@ using Reusables.EventSourcing.Extensions;
 
 namespace MailingServiceDemo.Command
 {
-    public class MailService : ICommandHandler<SendMail>
+    public class MailingService : ICommandHandler<SendMail>
     {
         private readonly IEventStore _eventStore;
 
-        public MailService(IEventStore eventStore)
+        public MailingService(IEventStore eventStore)
         {
             _eventStore = eventStore;
         }
@@ -19,7 +19,7 @@ namespace MailingServiceDemo.Command
         {
             var id = Guid.NewGuid();
 
-            _eventStore.Act<MailAggregate>(id, aggregate => aggregate.SendMail(id, command.Messages, command.Priority));
+            _eventStore.Act<MailingAggregate>(id, aggregate => aggregate.SendMail(id, command.Messages, command.Priority));
 
             command.Id = id;
         }

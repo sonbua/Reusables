@@ -7,9 +7,9 @@ using Reusables.EventSourcing.Extensions;
 
 namespace MailingServiceDemo.AggregateRoot
 {
-    public class MailAggregate : Aggregate
+    public class MailingAggregate : Aggregate
     {
-        public MailAggregate(IEnumerable<object> history)
+        public MailingAggregate(IEnumerable<object> history)
         {
             foreach (var @event in history)
             {
