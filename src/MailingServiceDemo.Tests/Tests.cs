@@ -24,7 +24,7 @@ namespace MailingServiceDemo.Tests
 
         [Theory]
         [AutoData]
-        public void HasSendMailCommandHandler()
+        public void ShouldHaveSendMailCommandHandler()
         {
             // arrange
             var sendMail = new SendMail {Messages = new[] {new MailMessage()}};
@@ -38,7 +38,7 @@ namespace MailingServiceDemo.Tests
         }
 
         [Fact]
-        public void HasMailRequestReceivedEventSubscriber()
+        public void ShouldHaveMailRequestReceivedEventSubscriber()
         {
             // arrange
 
@@ -49,7 +49,7 @@ namespace MailingServiceDemo.Tests
         }
 
         [Fact]
-        public void SavesAllMailMessagesToDatabase()
+        public void ShouldSaveAllMailMessagesToDatabase()
         {
             // arrange
             var sendMail = new SendMail {Messages = new[] {new MailMessage(), new MailMessage()}};
