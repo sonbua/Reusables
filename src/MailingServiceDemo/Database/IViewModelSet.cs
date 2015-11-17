@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MailingServiceDemo
+namespace MailingServiceDemo.Database
 {
     public interface IViewModelSet<TViewModel> : IEnumerable<TViewModel> where TViewModel : ViewModel
     {

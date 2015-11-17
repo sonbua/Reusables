@@ -1,4 +1,4 @@
-namespace MailingServiceDemo
+namespace MailingServiceDemo.Database
 {
     public interface IViewModelDatabase
     {

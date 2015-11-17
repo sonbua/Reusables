@@ -44,17 +44,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggregateFactory.cs" />
-    <Compile Include="AggregateRoot\MailingAggregate.cs" />
     <Compile Include="Command\MailingService.cs" />
     <Compile Include="Command\SendMail.cs" />
     <Compile Include="CompositeValidator.cs" />
     <Compile Include="CompositionRoot\DependencyResolverConfig.cs" />
     <Compile Include="Event\MailRequestReceived.cs" />
-    <Compile Include="InMemoryEventStore.cs" />
-    <Compile Include="InMemoryViewModelDatabase.cs" />
-    <Compile Include="InMemoryViewModelSet.cs" />
-    <Compile Include="IViewModelDatabase.cs" />
-    <Compile Include="IViewModelSet.cs" />
+    <Compile Include="Event\MessageQueued.cs" />
+    <Compile Include="Event\MessageSent.cs" />
+    <Compile Include="Event\SendingFailed.cs" />
+    <Compile Include="Database\InMemoryEventStore.cs" />
+    <Compile Include="Database\InMemoryViewModelDatabase.cs" />
+    <Compile Include="Database\InMemoryViewModelSet.cs" />
+    <Compile Include="ISmtpClientWrapper.cs" />
+    <Compile Include="Database\IViewModelDatabase.cs" />
+    <Compile Include="Database\IViewModelSet.cs" />
+    <Compile Include="MailSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadModel\OutboxMessage.cs" />
     <Compile Include="ReadModel\OutboxReadModel.cs" />

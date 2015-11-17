@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MailingServiceDemo
+namespace MailingServiceDemo.Database
 {
     public class InMemoryViewModelSet<TViewModel> : IViewModelSet<TViewModel>, IEnumerable<TViewModel> where TViewModel : ViewModel
     {

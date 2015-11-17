@@ -6,7 +6,7 @@ using Reusables.EventSourcing;
 using Reusables.EventSourcing.Extensions;
 using Reusables.Util.Extensions;
 
-namespace MailingServiceDemo
+namespace MailingServiceDemo.Database
 {
     public class InMemoryEventStore : IEventStore
     {

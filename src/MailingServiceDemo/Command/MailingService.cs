@@ -1,25 +1,29 @@
 ﻿using System;
-using MailingServiceDemo.AggregateRoot;
+using MailingServiceDemo.Event;
 using Reusables.Cqrs;
 using Reusables.EventSourcing;
-using Reusables.EventSourcing.Extensions;
 
 namespace MailingServiceDemo.Command
 {
     public class MailingService : ICommandHandler<SendMail>
     {
-        private readonly IEventStore _eventStore;
+        private readonly IEventPublisher _eventPublisher;
 
-        public MailingService(IEventStore eventStore)
+        public MailingService(IEventPublisher eventPublisher)
         {
-            _eventStore = eventStore;
+            _eventPublisher = eventPublisher;
         }
 
         public void Handle(SendMail command)
         {
             var id = Guid.NewGuid();
 
-            _eventStore.Act<MailingAggregate>(id, aggregate => aggregate.SendMail(id, command.Messages, command.Priority));
+            _eventPublisher.Publish(new MailRequestReceived
+                                    {
+                                        Id = id,
+                                        Messages = command.Messages,
+                                        Priority = command.Priority
+                                    });
 
             command.Id = id;
         }

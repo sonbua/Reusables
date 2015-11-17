@@ -1,4 +1,5 @@
 ﻿using System;
+using MailingServiceDemo.Database;
 using NLog;
 using Reusables.Cqrs;
 using Reusables.Diagnostics.Logging.NLog;
@@ -11,12 +12,15 @@ using ILogger = Reusables.Diagnostics.Logging.ILogger;
 
 namespace MailingServiceDemo.CompositionRoot
 {
-    public class DependencyResolverConfig
+    public static class DependencyResolverConfig
     {
-        public static Container RegisterDependencies()
+        public static Container Build()
         {
-            var container = new Container();
+            return new Container();
+        }
 
+        public static Container RegisterDependencies(this Container container)
+        {
             // Container
             container.Register<IServiceProvider>(() => container);
 
@@ -41,21 +45,29 @@ namespace MailingServiceDemo.CompositionRoot
             container.RegisterSingleton<ILogger, NLogLogger>();
             container.RegisterSingleton(() => LogManager.GetLogger("NLog"));
 
-            // Repository
-            container.Register<IEventStore, InMemoryEventStore>();
-
             // Aggregate factory
             container.Register<IAggregateFactory, AggregateFactory>();
 
             // Event publisher
             container.Register<IEventPublisher>(() => new EventPublisher(type => container.GetAllInstances(type), container.GetInstance<ILogger>()));
+            container.Register<IAsyncEventPublisher>(() => new AsyncEventPublisher(type => container.GetAllInstances(type), container.GetInstance<ILogger>()));
 
             // Event handlers
             container.RegisterCollection(typeof (IEventSubscriber<>), new[] {typeof (DependencyResolverConfig).Assembly});
 
+            return container;
+        }
+
+        public static Container RegisterDatabases(this Container container)
+        {
             // View model database
             container.RegisterSingleton<IViewModelDatabase, InMemoryViewModelDatabase>();
 
+            return container;
+        }
+
+        public static Container Verify(this Container container)
+        {
             // Verify
             container.Verify();
 

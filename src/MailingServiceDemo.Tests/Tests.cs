@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net.Mail;
 using MailingServiceDemo.Command;
 using MailingServiceDemo.CompositionRoot;
+using MailingServiceDemo.Database;
 using MailingServiceDemo.Event;
 using MailingServiceDemo.ReadModel;
 using Ploeh.AutoFixture.Xunit2;
@@ -19,7 +20,9 @@ namespace MailingServiceDemo.Tests
 
         public Tests()
         {
-            _container = DependencyResolverConfig.RegisterDependencies();
+            _container = DependencyResolverConfig.Build()
+                                                 .RegisterDependencies()
+                                                 .RegisterTestDatabases();
         }
 
         [Theory]
@@ -61,6 +64,24 @@ namespace MailingServiceDemo.Tests
 
             // assert
             Assert.Equal(2, viewModelDatabase.Set<OutboxMessage>().Count());
+        }
+    }
+
+    internal static class ContainerExtensions
+    {
+        public static Container RegisterTestDatabases(this Container container)
+        {
+            // View model database
+            container.RegisterSingleton<IViewModelDatabase>(() =>
+                                                            {
+                                                                var database = new InMemoryViewModelDatabase();
+
+                                                                database.Clean();
+
+                                                                return database;
+                                                            });
+
+            return container;
         }
     }
 }

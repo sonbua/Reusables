@@ -3,10 +3,12 @@ using System.Net.Mail;
 
 namespace MailingServiceDemo.ReadModel
 {
-    public class OutboxMessage : ViewModel
+    public class SentMessage : ViewModel
     {
-        public Guid RequestId { get; set; }
+        public Guid MessageId { get; set; }
 
         public MailMessage Message { get; set; }
+
+        public DateTime SentAt { get; set; }
     }
 }
