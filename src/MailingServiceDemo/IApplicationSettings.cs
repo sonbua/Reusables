@@ -1,4 +1,4 @@
-﻿namespace MailingServiceDemo.ReadModel
+﻿namespace MailingServiceDemo
 {
     public interface IApplicationSettings
     {

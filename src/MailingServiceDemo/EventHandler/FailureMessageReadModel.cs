@@ -1,9 +1,10 @@
 ﻿using System.Linq;
 using MailingServiceDemo.Database;
 using MailingServiceDemo.Event;
+using MailingServiceDemo.ReadModel;
 using Reusables.EventSourcing;
 
-namespace MailingServiceDemo.ReadModel
+namespace MailingServiceDemo.EventHandler
 {
     public class FailureMessageReadModel : IEventSubscriber<SendingFailed>
     {

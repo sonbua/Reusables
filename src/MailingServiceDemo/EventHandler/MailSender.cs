@@ -3,7 +3,7 @@ using MailingServiceDemo.Event;
 using Reusables.Diagnostics.Logging;
 using Reusables.EventSourcing;
 
-namespace MailingServiceDemo
+namespace MailingServiceDemo.EventHandler
 {
     public class MailSender : IEventSubscriber<MessageQueued>
     {
