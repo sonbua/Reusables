@@ -6,11 +6,11 @@ using Reusables.Cqrs;
 
 namespace MailingServiceDemo.QueryHandler
 {
-    public class PostOffice : IQueryHandler<MostUrgentMessage, OutboxMessage>
+    public class MessageStore : IQueryHandler<MostUrgentMessage, OutboxMessage>
     {
         private readonly IViewModelDatabase _database;
 
-        public PostOffice(IViewModelDatabase database)
+        public MessageStore(IViewModelDatabase database)
         {
             _database = database;
         }

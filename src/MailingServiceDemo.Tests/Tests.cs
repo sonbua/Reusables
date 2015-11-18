@@ -4,7 +4,6 @@ using System.Net.NetworkInformation;
 using MailingServiceDemo.Command;
 using MailingServiceDemo.CompositionRoot;
 using MailingServiceDemo.Database;
-using MailingServiceDemo.Event;
 using MailingServiceDemo.ReadModel;
 using Ploeh.AutoFixture.Xunit2;
 using Reusables.Cqrs;
@@ -37,28 +36,25 @@ namespace MailingServiceDemo.Tests
 
         [Theory]
         [AutoData]
-        public void ShouldHaveSendMailCommandHandler()
+        public void SimulatesEmailSendingProcess()
         {
             // arrange
-            var sendMail = new SendMail {Messages = new[] {new MailMessage(), new MailMessage(), new MailMessage()}};
             var dispatcher = _container.GetInstance<IRequestDispatcher>();
+            var sendMail = new SendMail
+                           {
+                               Messages = new[]
+                                          {
+                                              new MailMessage(),
+                                              new MailMessage(),
+                                              new MailMessage()
+                                          }
+                           };
 
             // act
             dispatcher.DispatchCommand(sendMail);
 
             // assert
             Assert.True(sendMail.Id != Guid.Empty);
-        }
-
-        [Fact]
-        public void ShouldHaveMailRequestReceivedEventSubscriber()
-        {
-            // arrange
-
-            // act
-
-            // assert
-            Assert.NotEmpty(_container.GetAllInstances<IEventSubscriber<MailRequestReceived>>());
         }
     }
 
@@ -316,8 +312,8 @@ namespace MailingServiceDemo.Tests
                 _logger.Info($"   > {message.ToJson()}");
             }
 
-            _logger.Info($">> {nameof(FailureMessage)} table:");
-            foreach (var message in _database.Set<FailureMessage>())
+            _logger.Info($">> {nameof(FaultMessage)} table:");
+            foreach (var message in _database.Set<FaultMessage>())
             {
                 _logger.Info($"   > {message.ToJson()}");
             }
@@ -328,8 +324,8 @@ namespace MailingServiceDemo.Tests
                 _logger.Info($"   > {message.ToJson()}");
             }
 
-            _logger.Info($">> {nameof(AnalysisRequiredMessage)} table:");
-            foreach (var message in _database.Set<AnalysisRequiredMessage>())
+            _logger.Info($">> {nameof(SuspiciousMessage)} table:");
+            foreach (var message in _database.Set<SuspiciousMessage>())
             {
                 _logger.Info($"   > {message.ToJson()}");
             }
