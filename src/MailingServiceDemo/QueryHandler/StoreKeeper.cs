@@ -6,11 +6,11 @@ using Reusables.Cqrs;
 
 namespace MailingServiceDemo.QueryHandler
 {
-    public class MessageStore : IQueryHandler<MostUrgentMessage, OutboxMessage>
+    public class StoreKeeper : IQueryHandler<MostUrgentMessage, OutboxMessage>
     {
         private readonly IDbContext _database;
 
-        public MessageStore(IDbContext database)
+        public StoreKeeper(IDbContext database)
         {
             _database = database;
         }

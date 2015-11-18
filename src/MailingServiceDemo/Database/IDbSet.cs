@@ -5,7 +5,7 @@ namespace MailingServiceDemo.Database
 {
     public interface IDbSet<TEntity> : IEnumerable<TEntity> where TEntity : Entity
     {
-        void Add(TEntity view);
+        void Add(TEntity entity);
 
         void Update(Guid id, Action<TEntity> updateAction);
 

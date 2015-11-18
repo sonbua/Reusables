@@ -36,25 +36,35 @@ namespace MailingServiceDemo.Tests
 
         [Theory]
         [AutoData]
-        public void SimulatesEmailSendingProcess()
+        public void SimulatesBusinessProcess()
         {
             // arrange
             var dispatcher = _container.GetInstance<IRequestDispatcher>();
-            var sendMail = new SendMail
-                           {
-                               Messages = new[]
-                                          {
-                                              new MailMessage(),
-                                              new MailMessage(),
-                                              new MailMessage()
-                                          }
-                           };
+            var sendBatchMail1 = new SendBatchMail
+                                 {
+                                     Messages = new[]
+                                                {
+                                                    new MailMessage {Subject = "Delay 1", Priority = MailPriority.Low},
+                                                    new MailMessage {Subject = "Express 1", Priority = MailPriority.High},
+                                                    new MailMessage {Subject = "Standard 1", Priority = MailPriority.Normal},
+                                                }
+                                 };
+            var sendBatchMail2 = new SendBatchMail
+                                 {
+                                     Messages = new[]
+                                                {
+                                                    new MailMessage {Subject = "Delay 2", Priority = MailPriority.Low},
+                                                    new MailMessage {Subject = "Express 2", Priority = MailPriority.High},
+                                                    new MailMessage {Subject = "Standard 2", Priority = MailPriority.Normal},
+                                                }
+                                 };
 
             // act
-            dispatcher.DispatchCommand(sendMail);
+            dispatcher.DispatchCommand(sendBatchMail1);
+            dispatcher.DispatchCommand(sendBatchMail2);
 
             // assert
-            Assert.True(sendMail.Id != Guid.Empty);
+            Assert.True(sendBatchMail1.Id != Guid.Empty);
         }
     }
 
@@ -169,8 +179,16 @@ namespace MailingServiceDemo.Tests
         {
             var exceptions = new Exception[]
                              {
-                                 new SmtpException("unauthorized access"),
+                                 new NetworkInformationException(1),
+                                 new NetworkInformationException(2),
                                  new NetworkInformationException(3),
+                                 new NetworkInformationException(4),
+                                 new NetworkInformationException(5),
+                                 new NetworkInformationException(6),
+                                 new NetworkInformationException(7),
+                                 new NetworkInformationException(8),
+                                 new NetworkInformationException(9),
+                                 new SmtpException("unauthorized access"),
                                  new EntryPointNotFoundException("could not connect to email service"),
                              };
 

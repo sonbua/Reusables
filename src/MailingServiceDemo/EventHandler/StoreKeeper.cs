@@ -7,16 +7,16 @@ using Reusables.EventSourcing;
 
 namespace MailingServiceDemo.EventHandler
 {
-    public class MesasgeStore : IEventSubscriber<MailRequestReceived>,
-                                IEventSubscriber<MessageSent>,
-                                IEventSubscriber<SendingFailed>,
-                                IEventSubscriber<AnalysisRequired>
+    public class StoreKeeper : IEventSubscriber<MailRequestReceived>,
+                               IEventSubscriber<MessageSent>,
+                               IEventSubscriber<SendingFailed>,
+                               IEventSubscriber<AnalysisRequired>
     {
         private readonly IDbContext _database;
         private readonly IEventPublisher _eventPublisher;
         private readonly IApplicationSettings _settings;
 
-        public MesasgeStore(IDbContext database, IEventPublisher eventPublisher, IApplicationSettings settings)
+        public StoreKeeper(IDbContext database, IEventPublisher eventPublisher, IApplicationSettings settings)
         {
             _database = database;
             _eventPublisher = eventPublisher;
@@ -27,16 +27,15 @@ namespace MailingServiceDemo.EventHandler
         {
             foreach (var mailMessage in @event.Messages)
             {
-                var outboxMessage = new OutboxMessage
-                                    {
-                                        Id = Guid.NewGuid(),
-                                        RequestId = @event.Id,
-                                        Message = mailMessage,
-                                        Priority = @event.Priority,
-                                        QueuedAt = DateTime.UtcNow
-                                    };
-
-                _database.Set<OutboxMessage>().Add(outboxMessage);
+                _database.Set<OutboxMessage>()
+                         .Add(new OutboxMessage
+                              {
+                                  Id = Guid.NewGuid(),
+                                  RequestId = @event.Id,
+                                  Message = mailMessage,
+                                  Priority = @event.Priority,
+                                  QueuedAt = DateTime.UtcNow
+                              });
             }
 
             _eventPublisher.Publish(new MessageQueued());

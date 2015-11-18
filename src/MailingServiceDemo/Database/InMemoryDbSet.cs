@@ -7,33 +7,33 @@ namespace MailingServiceDemo.Database
 {
     public class InMemoryDbSet<TEntity> : IDbSet<TEntity>, IEnumerable<TEntity> where TEntity : Entity
     {
-        private readonly ICollection<TEntity> _viewModels = new List<TEntity>();
+        private readonly ICollection<TEntity> _set = new List<TEntity>();
 
-        public void Add(TEntity view)
+        public void Add(TEntity entity)
         {
-            _viewModels.Add(view);
+            _set.Add(entity);
         }
 
         public void Update(Guid id, Action<TEntity> updateAction)
         {
-            var viewModel = GetById(id);
+            var entity = GetById(id);
 
-            updateAction(viewModel);
+            updateAction(entity);
         }
 
         public void Remove(Guid id)
         {
-            _viewModels.Remove(GetById(id));
+            _set.Remove(GetById(id));
         }
 
         public TEntity GetById(Guid id)
         {
-            return _viewModels.Single(x => x.Id == id);
+            return _set.Single(x => x.Id == id);
         }
 
         public IEnumerator<TEntity> GetEnumerator()
         {
-            return _viewModels.GetEnumerator();
+            return _set.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -43,7 +43,7 @@ namespace MailingServiceDemo.Database
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _viewModels;
+            return _set;
         }
     }
 }

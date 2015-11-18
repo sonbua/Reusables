@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandler\PostOffice.cs" />
-    <Compile Include="Command\SendMail.cs" />
+    <Compile Include="Command\SendBatchMail.cs" />
     <Compile Include="CompositeValidator.cs" />
     <Compile Include="CompositionRoot\DependencyResolverConfig.cs" />
     <Compile Include="EventHandler\MailCarrier.cs" />
@@ -59,13 +59,13 @@
     <Compile Include="Database\IDbContext.cs" />
     <Compile Include="Database\IDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryHandler\MessageStore.cs" />
+    <Compile Include="QueryHandler\StoreKeeper.cs" />
     <Compile Include="Query\MostUrgentMessage.cs" />
     <Compile Include="Model\SuspiciousMessage.cs" />
     <Compile Include="Model\FaultMessage.cs" />
     <Compile Include="IApplicationSettings.cs" />
     <Compile Include="Model\OutboxMessage.cs" />
-    <Compile Include="EventHandler\MesasgeStore.cs" />
+    <Compile Include="EventHandler\StoreKeeper.cs" />
     <Compile Include="Model\SentMessage.cs" />
     <Compile Include="Model\Entity.cs" />
   </ItemGroup>
