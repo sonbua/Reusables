@@ -8,5 +8,9 @@ namespace MailingServiceDemo.ReadModel
         public Guid RequestId { get; set; }
 
         public MailMessage Message { get; set; }
+
+        public int Priority { get; set; }
+
+        public DateTime QueuedAt { get; set; }
     }
 }

@@ -41,10 +41,6 @@ namespace MailingServiceDemo.CompositionRoot
             // Data annotations validators
             container.Register(typeof (IValidationAttributeValidator<>), new[] {typeof (IValidationAttributeValidator<>).Assembly});
 
-            // Loggers
-            container.RegisterSingleton<ILogger, NLogLogger>();
-            container.RegisterSingleton(() => LogManager.GetLogger("NLog"));
-
             // Aggregate factory
             container.Register<IAggregateFactory, AggregateFactory>();
 
@@ -58,6 +54,15 @@ namespace MailingServiceDemo.CompositionRoot
             return container;
         }
 
+        public static Container RegisterLoggers(this Container container)
+        {
+            // Loggers
+            container.RegisterSingleton<ILogger, NLogLogger>();
+            container.RegisterSingleton(() => LogManager.GetLogger("NLog"));
+
+            return container;
+        }
+
         public static Container RegisterDatabases(this Container container)
         {
             // View model database
@@ -66,7 +71,7 @@ namespace MailingServiceDemo.CompositionRoot
             return container;
         }
 
-        public static Container Verify(this Container container)
+        public static Container VerifyContainer(this Container container)
         {
             // Verify
             container.Verify();

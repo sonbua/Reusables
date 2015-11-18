@@ -73,9 +73,17 @@
       <Project>{5E7E00EB-AA72-4EF1-9BA6-17C0C3C9A7DC}</Project>
       <Name>Reusables.Cqrs</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reusables.Diagnostics.Logging\Reusables.Diagnostics.Logging.csproj">
+      <Project>{7E1A4672-ACCC-4B48-8510-734EDA9A372A}</Project>
+      <Name>Reusables.Diagnostics.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Reusables.EventSourcing\Reusables.EventSourcing.csproj">
       <Project>{FB2BB5AE-E541-4E1C-9231-69D4F12A5B06}</Project>
       <Name>Reusables.EventSourcing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reusables.Serialization.Newtonsoft\Reusables.Serialization.Newtonsoft.csproj">
+      <Project>{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}</Project>
+      <Name>Reusables.Serialization.Newtonsoft</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -5,21 +5,21 @@ namespace MailingServiceDemo.Database
 {
     public class InMemoryViewModelDatabase : IViewModelDatabase
     {
-        private readonly ISet<Type> _cachedTypes;
+        public ISet<Type> CachedSetTypes { get; }
 
         public InMemoryViewModelDatabase()
         {
-            _cachedTypes = new HashSet<Type>();
+            CachedSetTypes = new HashSet<Type>();
         }
 
         public IViewModelSet<TViewModel> Set<TViewModel>() where TViewModel : ViewModel
         {
-            if (_cachedTypes.Contains(typeof (TViewModel)))
+            if (CachedSetTypes.Contains(typeof (TViewModel)))
             {
                 return Cache<TViewModel>.Instance;
             }
 
-            _cachedTypes.Add(typeof (TViewModel));
+            CachedSetTypes.Add(typeof (TViewModel));
             Cache<TViewModel>.Instance = null;
 
             return Cache<TViewModel>.Instance;
@@ -27,7 +27,7 @@ namespace MailingServiceDemo.Database
 
         public void Clean()
         {
-            _cachedTypes.Clear();
+            CachedSetTypes.Clear();
         }
 
         private class Cache<TViewModel> where TViewModel : ViewModel

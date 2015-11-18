@@ -5,11 +5,11 @@ using Reusables.EventSourcing;
 
 namespace MailingServiceDemo.EventHandler
 {
-    public class SentMessageReadModel : IEventSubscriber<MessageSent>
+    public class SentMessageRepo : IEventSubscriber<MessageSent>
     {
         private readonly IViewModelDatabase _database;
 
-        public SentMessageReadModel(IViewModelDatabase database)
+        public SentMessageRepo(IViewModelDatabase database)
         {
             _database = database;
         }
@@ -18,7 +18,7 @@ namespace MailingServiceDemo.EventHandler
         {
             _database.Set<SentMessage>().Add(new SentMessage
                                              {
-                                                 MessageId = @event.MessageId,
+                                                 Id = @event.MessageId,
                                                  Message = @event.Message,
                                                  SentAt = @event.SentAt
                                              });

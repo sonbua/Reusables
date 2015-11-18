@@ -6,13 +6,13 @@ using Reusables.EventSourcing;
 
 namespace MailingServiceDemo.EventHandler
 {
-    public class FailureMessageReadModel : IEventSubscriber<SendingFailed>
+    public class FailureMessageRepo : IEventSubscriber<SendingFailed>
     {
         private readonly IViewModelDatabase _database;
         private readonly IApplicationSettings _settings;
         private readonly IEventPublisher _eventPublisher;
 
-        public FailureMessageReadModel(IViewModelDatabase database, IApplicationSettings settings, IEventPublisher eventPublisher)
+        public FailureMessageRepo(IViewModelDatabase database, IApplicationSettings settings, IEventPublisher eventPublisher)
         {
             _database = database;
             _settings = settings;
@@ -32,14 +32,16 @@ namespace MailingServiceDemo.EventHandler
             var attemptCount = _database.Set<FailureMessage>().Count(message => message.MessageId == @event.MessageId);
             if (attemptCount >= _settings.MaxAttempt)
             {
+                _eventPublisher.Publish(new AnalysisRequired
+                                        {
+                                            MessageId = @event.MessageId,
+                                            Message = @event.Message
+                                        });
+
                 return;
             }
 
-            _eventPublisher.Publish(new MessageQueued
-                                    {
-                                        MessageId = @event.MessageId,
-                                        Message = @event.Message
-                                    });
+            _eventPublisher.Publish(new MessageQueued());
         }
     }
 }
