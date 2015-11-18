@@ -6,11 +6,11 @@ using Reusables.EventSourcing;
 
 namespace MailingServiceDemo.CommandHandler
 {
-    public class MailingService : ICommandHandler<SendMail>
+    public class PostOffice : ICommandHandler<SendMail>
     {
         private readonly IEventPublisher _eventPublisher;
 
-        public MailingService(IEventPublisher eventPublisher)
+        public PostOffice(IEventPublisher eventPublisher)
         {
             _eventPublisher = eventPublisher;
         }

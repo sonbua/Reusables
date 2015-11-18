@@ -3,7 +3,7 @@ using System.Net.Mail;
 
 namespace MailingServiceDemo.ReadModel
 {
-    public class FaultMessage : ViewModel
+    public class FaultMessage : Entity
     {
         public Guid MessageId { get; set; }
 

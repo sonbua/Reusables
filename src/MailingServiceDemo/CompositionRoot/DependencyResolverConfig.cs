@@ -41,14 +41,11 @@ namespace MailingServiceDemo.CompositionRoot
             // Data annotations validators
             container.Register(typeof (IValidationAttributeValidator<>), new[] {typeof (IValidationAttributeValidator<>).Assembly});
 
-            // Aggregate factory
-            container.Register<IAggregateFactory, AggregateFactory>();
-
             // Event publisher
             container.Register<IEventPublisher>(() => new EventPublisher(type => container.GetAllInstances(type), container.GetInstance<ILogger>()));
             container.Register<IAsyncEventPublisher>(() => new AsyncEventPublisher(type => container.GetAllInstances(type), container.GetInstance<ILogger>()));
 
-            // Event handlers
+            // Event subscribers
             container.RegisterCollection(typeof (IEventSubscriber<>), new[] {typeof (DependencyResolverConfig).Assembly});
 
             return container;
@@ -65,8 +62,8 @@ namespace MailingServiceDemo.CompositionRoot
 
         public static Container RegisterDatabases(this Container container)
         {
-            // View model database
-            container.RegisterSingleton<IViewModelDatabase, InMemoryViewModelDatabase>();
+            // Database
+            container.RegisterSingleton<IDbContext, InMemoryDbContext>();
 
             return container;
         }

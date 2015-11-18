@@ -12,11 +12,11 @@ namespace MailingServiceDemo.EventHandler
                                 IEventSubscriber<SendingFailed>,
                                 IEventSubscriber<AnalysisRequired>
     {
-        private readonly IViewModelDatabase _database;
+        private readonly IDbContext _database;
         private readonly IEventPublisher _eventPublisher;
         private readonly IApplicationSettings _settings;
 
-        public MesasgeStore(IViewModelDatabase database, IEventPublisher eventPublisher, IApplicationSettings settings)
+        public MesasgeStore(IDbContext database, IEventPublisher eventPublisher, IApplicationSettings settings)
         {
             _database = database;
             _eventPublisher = eventPublisher;

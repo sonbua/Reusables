@@ -43,8 +43,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AggregateFactory.cs" />
-    <Compile Include="CommandHandler\MailingService.cs" />
+    <Compile Include="CommandHandler\PostOffice.cs" />
     <Compile Include="Command\SendMail.cs" />
     <Compile Include="CompositeValidator.cs" />
     <Compile Include="CompositionRoot\DependencyResolverConfig.cs" />
@@ -54,22 +53,21 @@
     <Compile Include="Event\MessageQueued.cs" />
     <Compile Include="Event\MessageSent.cs" />
     <Compile Include="Event\SendingFailed.cs" />
-    <Compile Include="Database\InMemoryEventStore.cs" />
-    <Compile Include="Database\InMemoryViewModelDatabase.cs" />
-    <Compile Include="Database\InMemoryViewModelSet.cs" />
+    <Compile Include="Database\InMemoryDbContext.cs" />
+    <Compile Include="Database\InMemoryDbSet.cs" />
     <Compile Include="ISmtpClientWrapper.cs" />
-    <Compile Include="Database\IViewModelDatabase.cs" />
-    <Compile Include="Database\IViewModelSet.cs" />
+    <Compile Include="Database\IDbContext.cs" />
+    <Compile Include="Database\IDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandler\MessageStore.cs" />
     <Compile Include="Query\MostUrgentMessage.cs" />
-    <Compile Include="ReadModel\SuspiciousMessage.cs" />
-    <Compile Include="ReadModel\FaultMessage.cs" />
+    <Compile Include="Model\SuspiciousMessage.cs" />
+    <Compile Include="Model\FaultMessage.cs" />
     <Compile Include="IApplicationSettings.cs" />
-    <Compile Include="ReadModel\OutboxMessage.cs" />
+    <Compile Include="Model\OutboxMessage.cs" />
     <Compile Include="EventHandler\MesasgeStore.cs" />
-    <Compile Include="ReadModel\SentMessage.cs" />
-    <Compile Include="ViewModel.cs" />
+    <Compile Include="Model\SentMessage.cs" />
+    <Compile Include="Model\Entity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Reusables.Cqrs\Reusables.Cqrs.csproj">

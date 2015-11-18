@@ -8,9 +8,9 @@ namespace MailingServiceDemo.QueryHandler
 {
     public class MessageStore : IQueryHandler<MostUrgentMessage, OutboxMessage>
     {
-        private readonly IViewModelDatabase _database;
+        private readonly IDbContext _database;
 
-        public MessageStore(IViewModelDatabase database)
+        public MessageStore(IDbContext database)
         {
             _database = database;
         }

@@ -5,16 +5,16 @@ using System.Linq;
 
 namespace MailingServiceDemo.Database
 {
-    public class InMemoryViewModelSet<TViewModel> : IViewModelSet<TViewModel>, IEnumerable<TViewModel> where TViewModel : ViewModel
+    public class InMemoryDbSet<TEntity> : IDbSet<TEntity>, IEnumerable<TEntity> where TEntity : Entity
     {
-        private readonly ICollection<TViewModel> _viewModels = new List<TViewModel>();
+        private readonly ICollection<TEntity> _viewModels = new List<TEntity>();
 
-        public void Add(TViewModel view)
+        public void Add(TEntity view)
         {
             _viewModels.Add(view);
         }
 
-        public void Update(Guid id, Action<TViewModel> updateAction)
+        public void Update(Guid id, Action<TEntity> updateAction)
         {
             var viewModel = GetById(id);
 
@@ -26,12 +26,12 @@ namespace MailingServiceDemo.Database
             _viewModels.Remove(GetById(id));
         }
 
-        public TViewModel GetById(Guid id)
+        public TEntity GetById(Guid id)
         {
             return _viewModels.Single(x => x.Id == id);
         }
 
-        public IEnumerator<TViewModel> GetEnumerator()
+        public IEnumerator<TEntity> GetEnumerator()
         {
             return _viewModels.GetEnumerator();
         }
@@ -41,7 +41,7 @@ namespace MailingServiceDemo.Database
             return GetEnumerator();
         }
 
-        public IEnumerable<TViewModel> GetAll()
+        public IEnumerable<TEntity> GetAll()
         {
             return _viewModels;
         }

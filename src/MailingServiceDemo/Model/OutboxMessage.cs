@@ -3,7 +3,7 @@ using System.Net.Mail;
 
 namespace MailingServiceDemo.ReadModel
 {
-    public class OutboxMessage : ViewModel
+    public class OutboxMessage : Entity
     {
         public Guid RequestId { get; set; }
 

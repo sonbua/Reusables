@@ -63,14 +63,14 @@ namespace MailingServiceDemo.Tests
         public static Container RegisterFakeDatabases(this Container container)
         {
             // View model database
-            container.RegisterSingleton<IViewModelDatabase>(() =>
-                                                            {
-                                                                var database = new InMemoryViewModelDatabase();
+            container.RegisterSingleton<IDbContext>(() =>
+                                                    {
+                                                        var database = new InMemoryDbContext();
 
-                                                                database.Clean();
+                                                        database.Clean();
 
-                                                                return database;
-                                                            });
+                                                        return database;
+                                                    });
 
             return container;
         }
@@ -290,10 +290,10 @@ namespace MailingServiceDemo.Tests
     public class CommandHandlerDiagnostics<TCommand> : ICommandHandler<TCommand>
     {
         private readonly ICommandHandler<TCommand> _innerHandler;
-        private readonly IViewModelDatabase _database;
+        private readonly IDbContext _database;
         private readonly ILogger _logger;
 
-        public CommandHandlerDiagnostics(ICommandHandler<TCommand> innerHandler, IViewModelDatabase database, ILogger logger)
+        public CommandHandlerDiagnostics(ICommandHandler<TCommand> innerHandler, IDbContext database, ILogger logger)
         {
             _innerHandler = innerHandler;
             _database = database;

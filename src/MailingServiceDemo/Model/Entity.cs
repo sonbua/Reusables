@@ -2,7 +2,7 @@ using System;
 
 namespace MailingServiceDemo
 {
-    public abstract class ViewModel
+    public abstract class Entity
     {
         public Guid Id { get; set; }
     }
