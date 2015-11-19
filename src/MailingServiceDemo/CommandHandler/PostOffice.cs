@@ -23,7 +23,6 @@ namespace MailingServiceDemo.CommandHandler
                                     {
                                         Id = id,
                                         Messages = command.Messages,
-                                        Priority = command.Priority
                                     });
 
             command.Id = id;

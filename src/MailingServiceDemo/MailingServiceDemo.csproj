@@ -47,11 +47,13 @@
     <Compile Include="Command\SendBatchMail.cs" />
     <Compile Include="CompositeValidator.cs" />
     <Compile Include="CompositionRoot\DependencyResolverConfig.cs" />
+    <Compile Include="EventHandler\DeliveryManager.cs" />
     <Compile Include="EventHandler\MailCarrier.cs" />
     <Compile Include="Event\AnalysisRequired.cs" />
     <Compile Include="Event\MailRequestReceived.cs" />
-    <Compile Include="Event\MessageQueued.cs" />
+    <Compile Include="Event\DeliveryNeeded.cs" />
     <Compile Include="Event\MessageSent.cs" />
+    <Compile Include="Event\OutboxManagementNeeded.cs" />
     <Compile Include="Event\SendingFailed.cs" />
     <Compile Include="Database\InMemoryDbContext.cs" />
     <Compile Include="Database\InMemoryDbSet.cs" />

@@ -4,7 +4,7 @@ using System.Net.NetworkInformation;
 using MailingServiceDemo.Command;
 using MailingServiceDemo.CompositionRoot;
 using MailingServiceDemo.Database;
-using MailingServiceDemo.ReadModel;
+using MailingServiceDemo.Model;
 using Ploeh.AutoFixture.Xunit2;
 using Reusables.Cqrs;
 using Reusables.Diagnostics.Logging;
@@ -44,7 +44,7 @@ namespace MailingServiceDemo.Tests
                                  {
                                      Messages = new[]
                                                 {
-                                                    new MailMessage {Subject = "Delay 1", Priority = MailPriority.Low},
+                                                    new MailMessage {Subject = "Delayed 1", Priority = MailPriority.Low},
                                                     new MailMessage {Subject = "Express 1", Priority = MailPriority.High},
                                                     new MailMessage {Subject = "Standard 1", Priority = MailPriority.Normal},
                                                 }
@@ -53,7 +53,7 @@ namespace MailingServiceDemo.Tests
                                  {
                                      Messages = new[]
                                                 {
-                                                    new MailMessage {Subject = "Delay 2", Priority = MailPriority.Low},
+                                                    new MailMessage {Subject = "Delayed 2", Priority = MailPriority.Low},
                                                     new MailMessage {Subject = "Express 2", Priority = MailPriority.High},
                                                     new MailMessage {Subject = "Standard 2", Priority = MailPriority.Normal},
                                                 }
@@ -308,13 +308,13 @@ namespace MailingServiceDemo.Tests
     public class CommandHandlerDiagnostics<TCommand> : ICommandHandler<TCommand>
     {
         private readonly ICommandHandler<TCommand> _innerHandler;
-        private readonly IDbContext _database;
+        private readonly IDbContext _dbContext;
         private readonly ILogger _logger;
 
-        public CommandHandlerDiagnostics(ICommandHandler<TCommand> innerHandler, IDbContext database, ILogger logger)
+        public CommandHandlerDiagnostics(ICommandHandler<TCommand> innerHandler, IDbContext dbContext, ILogger logger)
         {
             _innerHandler = innerHandler;
-            _database = database;
+            _dbContext = dbContext;
             _logger = logger;
         }
 
@@ -325,28 +325,30 @@ namespace MailingServiceDemo.Tests
             _logger.Info($"Handled {typeof (TCommand).Name} command: {command.ToJson()}");
 
             _logger.Info($">> {nameof(OutboxMessage)} table:");
-            foreach (var message in _database.Set<OutboxMessage>())
+            foreach (var message in _dbContext.Set<OutboxMessage>())
             {
                 _logger.Info($"   > {message.ToJson()}");
             }
 
             _logger.Info($">> {nameof(FaultMessage)} table:");
-            foreach (var message in _database.Set<FaultMessage>())
+            foreach (var message in _dbContext.Set<FaultMessage>())
             {
                 _logger.Info($"   > {message.ToJson()}");
             }
 
             _logger.Info($">> {nameof(SentMessage)} table:");
-            foreach (var message in _database.Set<SentMessage>())
+            foreach (var message in _dbContext.Set<SentMessage>())
             {
                 _logger.Info($"   > {message.ToJson()}");
             }
 
             _logger.Info($">> {nameof(SuspiciousMessage)} table:");
-            foreach (var message in _database.Set<SuspiciousMessage>())
+            foreach (var message in _dbContext.Set<SuspiciousMessage>())
             {
                 _logger.Info($"   > {message.ToJson()}");
             }
+
+            _logger.Info(string.Empty);
         }
     }
 }

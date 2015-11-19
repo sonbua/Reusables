@@ -5,6 +5,8 @@ namespace MailingServiceDemo.Event
 {
     public class SendingFailed
     {
+        public Guid RequestId { get; set; }
+
         public Guid MessageId { get; set; }
 
         public MailMessage Message { get; set; }

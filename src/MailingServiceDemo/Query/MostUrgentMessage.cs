@@ -1,4 +1,4 @@
-using MailingServiceDemo.ReadModel;
+using MailingServiceDemo.Model;
 using Reusables.Cqrs;
 
 namespace MailingServiceDemo.Query

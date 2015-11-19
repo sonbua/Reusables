@@ -8,7 +8,5 @@ namespace MailingServiceDemo.Command
         public Guid Id { get; set; }
 
         public MailMessage[] Messages { get; set; }
-
-        public int Priority { get; set; }
     }
 }

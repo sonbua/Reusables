@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Mail;
 
-namespace MailingServiceDemo.ReadModel
+namespace MailingServiceDemo.Model
 {
     public class SuspiciousMessage : Entity
     {

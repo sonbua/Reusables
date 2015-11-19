@@ -1,6 +1,6 @@
 using System;
 
-namespace MailingServiceDemo
+namespace MailingServiceDemo.Model
 {
     public abstract class Entity
     {
