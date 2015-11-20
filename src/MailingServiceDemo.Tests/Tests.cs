@@ -8,7 +8,6 @@ using MailingServiceDemo.Command;
 using MailingServiceDemo.CompositionRoot;
 using MailingServiceDemo.Database;
 using MailingServiceDemo.Model;
-using Ploeh.AutoFixture.Xunit2;
 using Reusables.Cqrs;
 using Reusables.Diagnostics.Logging;
 using Reusables.EventSourcing;

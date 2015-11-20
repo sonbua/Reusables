@@ -7,11 +7,12 @@ using Reusables.EventSourcing;
 
 namespace MailingServiceDemo.EventHandler
 {
-    public class StoreKeeper : IEventSubscriber<MailRequestReceived>,
+    public class StoreKeeper : IEventSubscriber<MailRequestAccepted>,
                                IEventSubscriber<DeliveryNeeded>,
                                IEventSubscriber<MessageSent>,
                                IEventSubscriber<SendingFailed>,
                                IEventSubscriber<FaultAnalysisRequired>,
+                               IEventSubscriber<FaultMessageRequeueNeeded>,
                                IEventSubscriber<ManualAnalysisRequired>
     {
         private readonly IDbContext _dbContext;
@@ -25,7 +26,7 @@ namespace MailingServiceDemo.EventHandler
             _settings = settings;
         }
 
-        public void Handle(MailRequestReceived @event)
+        public void Handle(MailRequestAccepted @event)
         {
             foreach (var mailMessage in @event.Messages)
             {
@@ -110,6 +111,14 @@ namespace MailingServiceDemo.EventHandler
                 return;
             }
 
+            _eventPublisher.Publish(new FaultMessageRequeueNeeded
+                                    {
+                                        MessageId = @event.MessageId
+                                    });
+        }
+
+        public void Handle(FaultMessageRequeueNeeded @event)
+        {
             var ongoingMessage = _dbContext.Set<OngoingMessage>().GetById(@event.MessageId);
 
             _dbContext.Set<OutboxMessage>().Add(new OutboxMessage

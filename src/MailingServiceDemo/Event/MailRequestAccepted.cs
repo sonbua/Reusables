@@ -3,7 +3,7 @@ using System.Net.Mail;
 
 namespace MailingServiceDemo.Event
 {
-    public class MailRequestReceived
+    public class MailRequestAccepted
     {
         public Guid Id { get; set; }
 

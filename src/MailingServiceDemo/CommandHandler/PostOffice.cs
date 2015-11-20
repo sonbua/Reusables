@@ -19,7 +19,7 @@ namespace MailingServiceDemo.CommandHandler
         {
             var id = Guid.NewGuid();
 
-            _eventPublisher.Publish(new MailRequestReceived
+            _eventPublisher.Publish(new MailRequestAccepted
                                     {
                                         Id = id,
                                         Messages = command.Messages,

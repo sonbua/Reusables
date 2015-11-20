@@ -50,9 +50,10 @@
     <Compile Include="EventHandler\OperationOfficer.cs" />
     <Compile Include="EventHandler\MailCarrier.cs" />
     <Compile Include="Event\FaultAnalysisRequired.cs" />
+    <Compile Include="Event\FaultMessageRequeueNeeded.cs" />
     <Compile Include="Event\ManualAnalysisRequired.cs" />
     <Compile Include="Event\DeliveryNeeded.cs" />
-    <Compile Include="Event\MailRequestReceived.cs" />
+    <Compile Include="Event\MailRequestAccepted.cs" />
     <Compile Include="Event\DeliveryReady.cs" />
     <Compile Include="Event\MessageSent.cs" />
     <Compile Include="Event\OutboxManagementNeeded.cs" />
