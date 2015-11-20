@@ -17,13 +17,13 @@ namespace MailingServiceDemo.Database
         {
             if (_cachedTypes.Contains(typeof (TEntity)))
             {
-                return Cache<TEntity>.Instance;
+                return Table<TEntity>.Instance;
             }
 
             _cachedTypes.Add(typeof (TEntity));
-            Cache<TEntity>.Instance = null;
+            Table<TEntity>.Instance = null;
 
-            return Cache<TEntity>.Instance;
+            return Table<TEntity>.Instance;
         }
 
         public void Clean()
@@ -31,7 +31,7 @@ namespace MailingServiceDemo.Database
             _cachedTypes.Clear();
         }
 
-        private static class Cache<TEntity> where TEntity : Entity
+        private static class Table<TEntity> where TEntity : Entity
         {
             private static IDbSet<TEntity> _instance;
 

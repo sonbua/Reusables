@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Mail;
 using System.Net.NetworkInformation;
 using MailingServiceDemo.Command;
@@ -28,9 +31,12 @@ namespace MailingServiceDemo.Tests
                                                  .RegisterFakeDatabases()
                                                  .RegisterFakeSmtpClientWrapper()
                                                  .RegisterFakeApplicationSettings()
-                                                 .RegisterEventSubscriberDecorators(testOutputHelper)
+                                                 .RegisterTestOutputHelper(testOutputHelper)
+                                                 .RegisterEventSubscriberDiagnostics()
                                                  .RegisterCommandHandlerDiagnostics()
-                                                 .RegisterSmtpClientDecorator()
+                                                 .RegisterQueryHandlerDiagnostics()
+                                                 .RegisterSmtpClientDiagnostics()
+                                                 .RegisterDbContextDiagnostics()
                                                  .VerifyContainer();
         }
 
@@ -113,11 +119,16 @@ namespace MailingServiceDemo.Tests
             return container;
         }
 
-        public static Container RegisterEventSubscriberDecorators(this Container container, ITestOutputHelper testOutputHelper)
+        public static Container RegisterTestOutputHelper(this Container container, ITestOutputHelper testOutputHelper)
         {
             container.Register<ILogger, TestOutputLogger>();
             container.RegisterSingleton<ITestOutputHelper>(() => testOutputHelper);
 
+            return container;
+        }
+
+        public static Container RegisterEventSubscriberDiagnostics(this Container container)
+        {
             container.RegisterDecorator(typeof (IEventSubscriber<>), typeof (EventSubscriberDiagnostics<>));
 
             return container;
@@ -125,7 +136,16 @@ namespace MailingServiceDemo.Tests
 
         public static Container RegisterCommandHandlerDiagnostics(this Container container)
         {
-            container.RegisterDecorator(typeof (ICommandHandler<>), typeof (CommandHandlerDiagnostics<>));
+            container.RegisterDecorator(typeof (ICommandHandler<>), typeof (CommandHandlerValidator<>));
+            container.RegisterDecorator(typeof (ICommandHandler<>), typeof (CommandHandlerReporter<>));
+            container.RegisterDecorator(typeof (ICommandHandler<>), typeof (CommandHandlerStopwatcher<>));
+
+            return container;
+        }
+
+        public static Container RegisterQueryHandlerDiagnostics(this Container container)
+        {
+            container.RegisterDecorator(typeof (IQueryHandler<,>), typeof (QueryHandlerValidator<,>));
 
             return container;
         }
@@ -137,20 +157,100 @@ namespace MailingServiceDemo.Tests
             return container;
         }
 
-        public static Container RegisterSmtpClientDecorator(this Container container)
+        public static Container RegisterSmtpClientDiagnostics(this Container container)
         {
-            container.RegisterDecorator<ISmtpClientWrapper, Spy>();
+            container.RegisterDecorator<ISmtpClientWrapper, NetworkSpy>();
+
+            return container;
+        }
+
+        public static Container RegisterDbContextDiagnostics(this Container container)
+        {
+            container.RegisterDecorator<IDbContext, DbContextSpy>();
 
             return container;
         }
     }
 
-    public class Spy : ISmtpClientWrapper
+    public class DbContextSpy : IDbContext
+    {
+        private readonly IDbContext _victimDbContext;
+        private readonly IServiceProvider _serviceProvider;
+
+        public DbContextSpy(IDbContext victimDbContext, IServiceProvider serviceProvider)
+        {
+            _victimDbContext = victimDbContext;
+            _serviceProvider = serviceProvider;
+        }
+
+        public IDbSet<TEntity> Set<TEntity>() where TEntity : Entity
+        {
+            var logger = (ILogger) _serviceProvider.GetService(typeof (ILogger));
+
+            return new DbSetSpy<TEntity>(logger, _victimDbContext.Set<TEntity>());
+        }
+    }
+
+    public class DbSetSpy<TEntity> : IDbSet<TEntity> where TEntity : Entity
+    {
+        private readonly ILogger _logger;
+        private readonly IDbSet<TEntity> _victimDbSet;
+
+        public DbSetSpy(ILogger logger, IDbSet<TEntity> victimDbSet)
+        {
+            _logger = logger;
+            _victimDbSet = victimDbSet;
+        }
+
+        public IEnumerator<TEntity> GetEnumerator()
+        {
+            return _victimDbSet.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public void Add(TEntity entity)
+        {
+            _logger.Info($"{nameof(Add)} {entity.GetType().Name}: {entity.ToJson()}");
+
+            _victimDbSet.Add(entity);
+        }
+
+        public void Update(Guid id, Action<TEntity> updateAction)
+        {
+            _logger.Info($"{nameof(Update)} {typeof (TEntity).Name}: {updateAction.ToJson()}");
+
+            _victimDbSet.Update(id, updateAction);
+        }
+
+        public void Remove(Guid id)
+        {
+            _logger.Info($"{nameof(Remove)} {typeof (TEntity).Name}: {id}");
+
+            _victimDbSet.Remove(id);
+        }
+
+        public TEntity GetById(Guid id)
+        {
+            _logger.Info($"{nameof(GetById)} {typeof (TEntity).Name}: {id}");
+
+            var entity = _victimDbSet.GetById(id);
+
+            _logger.Info($"  > {entity.ToJson()}");
+
+            return entity;
+        }
+    }
+
+    public class NetworkSpy : ISmtpClientWrapper
     {
         private readonly ILogger _logger;
         private readonly ISmtpClientWrapper _smtpClientWrapper;
 
-        public Spy(ILogger logger, ISmtpClientWrapper smtpClientWrapper)
+        public NetworkSpy(ILogger logger, ISmtpClientWrapper smtpClientWrapper)
         {
             _logger = logger;
             _smtpClientWrapper = smtpClientWrapper;
@@ -305,13 +405,32 @@ namespace MailingServiceDemo.Tests
         }
     }
 
-    public class CommandHandlerDiagnostics<TCommand> : ICommandHandler<TCommand>
+    public class CommandHandlerValidator<TCommand> : ICommandHandler<TCommand>
+    {
+        private readonly ILogger _logger;
+        private readonly ICommandHandler<TCommand> _innerHandler;
+
+        public CommandHandlerValidator(ILogger logger, ICommandHandler<TCommand> innerHandler)
+        {
+            _logger = logger;
+            _innerHandler = innerHandler;
+        }
+
+        public void Handle(TCommand command)
+        {
+            _logger.Info($"{command.GetType().Name}  ====>  {_innerHandler.GetType().Name}: {command.ToJson()}\n");
+
+            _innerHandler.Handle(command);
+        }
+    }
+
+    public class CommandHandlerReporter<TCommand> : ICommandHandler<TCommand>
     {
         private readonly ICommandHandler<TCommand> _innerHandler;
         private readonly IDbContext _dbContext;
         private readonly ILogger _logger;
 
-        public CommandHandlerDiagnostics(ICommandHandler<TCommand> innerHandler, IDbContext dbContext, ILogger logger)
+        public CommandHandlerReporter(ICommandHandler<TCommand> innerHandler, IDbContext dbContext, ILogger logger)
         {
             _innerHandler = innerHandler;
             _dbContext = dbContext;
@@ -355,6 +474,50 @@ namespace MailingServiceDemo.Tests
             }
 
             _logger.Info(string.Empty);
+        }
+    }
+
+    public class CommandHandlerStopwatcher<TCommand> : ICommandHandler<TCommand>
+    {
+        private readonly ILogger _logger;
+        private readonly ICommandHandler<TCommand> _innerHandler;
+
+        public CommandHandlerStopwatcher(ILogger logger, ICommandHandler<TCommand> innerHandler)
+        {
+            _logger = logger;
+            _innerHandler = innerHandler;
+        }
+
+        public void Handle(TCommand command)
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            stopwatch.Start();
+
+            _innerHandler.Handle(command);
+
+            stopwatch.Stop();
+
+            _logger.Info($"{typeof (TCommand).Name}: {stopwatch.ElapsedMilliseconds} ms\n");
+        }
+    }
+
+    public class QueryHandlerValidator<TQuery, TResult> : IQueryHandler<TQuery, TResult> where TQuery : Query<TResult>
+    {
+        private readonly ILogger _logger;
+        private readonly IQueryHandler<TQuery, TResult> _innerHandler;
+
+        public QueryHandlerValidator(ILogger logger, IQueryHandler<TQuery, TResult> innerHandler)
+        {
+            _logger = logger;
+            _innerHandler = innerHandler;
+        }
+
+        public TResult Handle(TQuery query)
+        {
+            _logger.Info($"{query.GetType().Name}  ====>  {_innerHandler.GetType().Name}: {query.ToJson()}\n");
+
+            return _innerHandler.Handle(query);
         }
     }
 }
