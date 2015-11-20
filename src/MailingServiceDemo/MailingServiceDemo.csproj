@@ -44,14 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandler\PostOffice.cs" />
-    <Compile Include="Command\SendBatchMail.cs" />
+    <Compile Include="Command\SendMail.cs" />
     <Compile Include="CompositeValidator.cs" />
     <Compile Include="CompositionRoot\DependencyResolverConfig.cs" />
-    <Compile Include="EventHandler\DeliveryManager.cs" />
+    <Compile Include="EventHandler\OperationOfficer.cs" />
     <Compile Include="EventHandler\MailCarrier.cs" />
-    <Compile Include="Event\AnalysisRequired.cs" />
-    <Compile Include="Event\MailRequestReceived.cs" />
+    <Compile Include="Event\FaultAnalysisRequired.cs" />
+    <Compile Include="Event\ManualAnalysisRequired.cs" />
     <Compile Include="Event\DeliveryNeeded.cs" />
+    <Compile Include="Event\MailRequestReceived.cs" />
+    <Compile Include="Event\DeliveryReady.cs" />
     <Compile Include="Event\MessageSent.cs" />
     <Compile Include="Event\OutboxManagementNeeded.cs" />
     <Compile Include="Event\SendingFailed.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="ISmtpClientWrapper.cs" />
     <Compile Include="Database\IDbContext.cs" />
     <Compile Include="Database\IDbSet.cs" />
+    <Compile Include="Model\OngoingMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandler\StoreKeeper.cs" />
     <Compile Include="Query\MostUrgentMessage.cs" />
@@ -103,6 +106,10 @@
     <ProjectReference Include="..\Reusables.Validation\Reusables.Validation.csproj">
       <Project>{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}</Project>
       <Name>Reusables.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reusables\Reusables.csproj">
+      <Project>{8A6F0955-9952-43CC-ACD8-327FF2DB890B}</Project>
+      <Name>Reusables</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

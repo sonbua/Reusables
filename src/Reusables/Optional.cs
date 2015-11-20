@@ -3,11 +3,20 @@ using System.Collections.Generic;
 
 namespace Reusables
 {
-    public class Optional<T>
+    public class Optional<T> where T : class
     {
         private readonly T _value;
 
-        public bool HasValue { get; private set; }
+        public Optional(T value)
+        {
+            if (value != null)
+            {
+                _value = value;
+                HasValue = true;
+            }
+        }
+
+        public bool HasValue { get; }
 
         public T Value
         {
@@ -20,12 +29,6 @@ namespace Reusables
 
                 throw new InvalidOperationException("Value has not been set.");
             }
-        }
-
-        public Optional(T value)
-        {
-            _value = value;
-            HasValue = true;
         }
 
         public static explicit operator T(Optional<T> optional)

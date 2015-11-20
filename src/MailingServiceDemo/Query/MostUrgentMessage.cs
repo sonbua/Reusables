@@ -1,9 +1,10 @@
 using MailingServiceDemo.Model;
+using Reusables;
 using Reusables.Cqrs;
 
 namespace MailingServiceDemo.Query
 {
-    public class MostUrgentMessage : Query<OutboxMessage>
+    public class MostUrgentMessage : Query<Optional<OutboxMessage>>
     {
     }
 }

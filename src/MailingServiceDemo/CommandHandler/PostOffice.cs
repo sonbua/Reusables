@@ -6,7 +6,7 @@ using Reusables.EventSourcing;
 
 namespace MailingServiceDemo.CommandHandler
 {
-    public class PostOffice : ICommandHandler<SendBatchMail>
+    public class PostOffice : ICommandHandler<SendMail>
     {
         private readonly IEventPublisher _eventPublisher;
 
@@ -15,7 +15,7 @@ namespace MailingServiceDemo.CommandHandler
             _eventPublisher = eventPublisher;
         }
 
-        public void Handle(SendBatchMail command)
+        public void Handle(SendMail command)
         {
             var id = Guid.NewGuid();
 

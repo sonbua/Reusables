@@ -5,12 +5,12 @@ using Reusables.EventSourcing;
 
 namespace MailingServiceDemo.EventHandler
 {
-    public class DeliveryManager : IEventSubscriber<OutboxManagementNeeded>
+    public class OperationOfficer : IEventSubscriber<OutboxManagementNeeded>
     {
         private readonly IRequestDispatcher _dispatcher;
         private readonly IEventPublisher _eventPublisher;
 
-        public DeliveryManager(IRequestDispatcher dispatcher, IEventPublisher eventPublisher)
+        public OperationOfficer(IRequestDispatcher dispatcher, IEventPublisher eventPublisher)
         {
             _dispatcher = dispatcher;
             _eventPublisher = eventPublisher;
@@ -20,7 +20,10 @@ namespace MailingServiceDemo.EventHandler
         {
             var urgentMessage = _dispatcher.DispatchQuery(new MostUrgentMessage());
 
-            _eventPublisher.Publish(new DeliveryNeeded {Message = urgentMessage});
+            if (urgentMessage.HasValue)
+            {
+                _eventPublisher.Publish(new DeliveryNeeded {Message = urgentMessage.Value});
+            }
         }
     }
 }

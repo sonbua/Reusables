@@ -7,7 +7,7 @@ using Reusables.Serialization.Newtonsoft.Extensions;
 namespace MailingServiceDemo.EventHandler
 {
     // mail carrier = mail letter = postman = người đưa thư
-    public class MailCarrier : IEventSubscriber<DeliveryNeeded>
+    public class MailCarrier : IEventSubscriber<DeliveryReady>
     {
         private readonly ISmtpClientWrapper _smtpClient;
         private readonly IEventPublisher _eventPublisher;
@@ -20,7 +20,7 @@ namespace MailingServiceDemo.EventHandler
             _logger = logger;
         }
 
-        public void Handle(DeliveryNeeded @event)
+        public void Handle(DeliveryReady @event)
         {
             var delivery = @event.Message;
 

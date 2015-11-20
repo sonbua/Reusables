@@ -3,7 +3,7 @@ using System.Net.Mail;
 
 namespace MailingServiceDemo.Command
 {
-    public class SendBatchMail
+    public class SendMail
     {
         public Guid Id { get; set; }
 

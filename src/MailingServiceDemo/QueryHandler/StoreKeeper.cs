@@ -2,11 +2,12 @@
 using MailingServiceDemo.Database;
 using MailingServiceDemo.Model;
 using MailingServiceDemo.Query;
+using Reusables;
 using Reusables.Cqrs;
 
 namespace MailingServiceDemo.QueryHandler
 {
-    public class StoreKeeper : IQueryHandler<MostUrgentMessage, OutboxMessage>
+    public class StoreKeeper : IQueryHandler<MostUrgentMessage, Optional<OutboxMessage>>
     {
         private readonly IDbContext _dbContext;
 
@@ -15,12 +16,12 @@ namespace MailingServiceDemo.QueryHandler
             _dbContext = dbContext;
         }
 
-        public OutboxMessage Handle(MostUrgentMessage query)
+        public Optional<OutboxMessage> Handle(MostUrgentMessage query)
         {
             return _dbContext.Set<OutboxMessage>()
                              .OrderByDescending(message => message.Priority)
                              .ThenBy(message => message.QueuedAt)
-                             .First();
+                             .FirstOrDefault();
         }
     }
 }

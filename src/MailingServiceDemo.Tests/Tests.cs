@@ -40,31 +40,31 @@ namespace MailingServiceDemo.Tests
         {
             // arrange
             var dispatcher = _container.GetInstance<IRequestDispatcher>();
-            var sendBatchMail1 = new SendBatchMail
-                                 {
-                                     Messages = new[]
-                                                {
-                                                    new MailMessage {Subject = "Delayed 1", Priority = MailPriority.Low},
-                                                    new MailMessage {Subject = "Express 1", Priority = MailPriority.High},
-                                                    new MailMessage {Subject = "Standard 1", Priority = MailPriority.Normal},
-                                                }
-                                 };
-            var sendBatchMail2 = new SendBatchMail
-                                 {
-                                     Messages = new[]
-                                                {
-                                                    new MailMessage {Subject = "Delayed 2", Priority = MailPriority.Low},
-                                                    new MailMessage {Subject = "Express 2", Priority = MailPriority.High},
-                                                    new MailMessage {Subject = "Standard 2", Priority = MailPriority.Normal},
-                                                }
-                                 };
+            var sendMail1 = new SendMail
+                            {
+                                Messages = new[]
+                                           {
+                                               new MailMessage {Subject = "Delayed 1", Priority = MailPriority.Low},
+                                               new MailMessage {Subject = "Express 1", Priority = MailPriority.High},
+                                               new MailMessage {Subject = "Standard 1", Priority = MailPriority.Normal},
+                                           }
+                            };
+            var sendMail2 = new SendMail
+                            {
+                                Messages = new[]
+                                           {
+                                               new MailMessage {Subject = "Delayed 2", Priority = MailPriority.Low},
+                                               new MailMessage {Subject = "Express 2", Priority = MailPriority.High},
+                                               new MailMessage {Subject = "Standard 2", Priority = MailPriority.Normal},
+                                           }
+                            };
 
             // act
-            dispatcher.DispatchCommand(sendBatchMail1);
-            dispatcher.DispatchCommand(sendBatchMail2);
+            dispatcher.DispatchCommand(sendMail1);
+            dispatcher.DispatchCommand(sendMail2);
 
             // assert
-            Assert.True(sendBatchMail1.Id != Guid.Empty);
+            Assert.True(sendMail1.Id != Guid.Empty);
         }
     }
 
@@ -326,6 +326,12 @@ namespace MailingServiceDemo.Tests
 
             _logger.Info($">> {nameof(OutboxMessage)} table:");
             foreach (var message in _dbContext.Set<OutboxMessage>())
+            {
+                _logger.Info($"   > {message.ToJson()}");
+            }
+
+            _logger.Info($">> {nameof(OngoingMessage)} table:");
+            foreach (var message in _dbContext.Set<OngoingMessage>())
             {
                 _logger.Info($"   > {message.ToJson()}");
             }
