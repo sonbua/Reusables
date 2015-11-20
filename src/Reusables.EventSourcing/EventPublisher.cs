@@ -52,7 +52,7 @@ namespace Reusables.EventSourcing
 
             foreach (dynamic handler in handlers)
             {
-                tasks.Add(handler.Handle((dynamic) @event));
+                tasks.Add(handler.HandleAsync((dynamic) @event));
             }
 
             await Task.WhenAll(tasks);
