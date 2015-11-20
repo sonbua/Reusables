@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Reusables.Diagnostics.Logging;
 using Reusables.Util.Extensions;
 
@@ -33,6 +34,28 @@ namespace Reusables.EventSourcing
             {
                 handler.Handle((dynamic) @event);
             }
+        }
+
+        public async Task PublishAsync<TEvent>(TEvent @event)
+        {
+            var handlerType = typeof (IAsyncEventSubscriber<>).MakeGenericType(@event.GetType());
+
+            var handlers = _serviceProvider.Invoke(handlerType).ToList();
+
+            if (handlers.IsNullOrEmpty())
+            {
+                _logger.Info($"No asynchronous subscriber found for this event: {@event.GetType()}");
+                return;
+            }
+
+            var tasks = new List<Task>();
+
+            foreach (dynamic handler in handlers)
+            {
+                tasks.Add(handler.Handle((dynamic) @event));
+            }
+
+            await Task.WhenAll(tasks);
         }
     }
 }

@@ -36,11 +36,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aggregate.cs" />
-    <Compile Include="AsyncEventPublisher.cs" />
     <Compile Include="EventData.cs" />
     <Compile Include="EventPublisher.cs" />
     <Compile Include="IAggregateFactory.cs" />
-    <Compile Include="IAsyncEventPublisher.cs" />
     <Compile Include="IAsyncEventSubscriber.cs" />
     <Compile Include="IEventSubscriber.cs" />
     <Compile Include="IEventPublisher.cs" />

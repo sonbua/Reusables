@@ -42,8 +42,7 @@ namespace MailingServiceDemo.CompositionRoot
             container.Register(typeof (IValidationAttributeValidator<>), new[] {typeof (IValidationAttributeValidator<>).Assembly});
 
             // Event publisher
-            container.Register<IEventPublisher>(() => new EventPublisher(type => container.GetAllInstances(type), container.GetInstance<ILogger>()));
-            container.Register<IAsyncEventPublisher>(() => new AsyncEventPublisher(type => container.GetAllInstances(type), container.GetInstance<ILogger>()));
+            container.Register<IEventPublisher>(() => new EventPublisher(container.GetAllInstances, container.GetInstance<ILogger>()));
 
             // Event subscribers
             container.RegisterCollection(typeof (IEventSubscriber<>), new[] {typeof (DependencyResolverConfig).Assembly});
