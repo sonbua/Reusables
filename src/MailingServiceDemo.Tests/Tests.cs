@@ -40,9 +40,8 @@ namespace MailingServiceDemo.Tests
                                                  .VerifyContainer();
         }
 
-        [Theory]
-        [AutoData]
-        public void SimulatesBusinessProcess()
+        [Fact]
+        public void SimulatesSynchronousBusinessProcess()
         {
             // arrange
             var dispatcher = _container.GetInstance<IRequestDispatcher>();
