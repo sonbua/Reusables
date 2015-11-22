@@ -43,7 +43,6 @@
     <Compile Include="IEventSubscriber.cs" />
     <Compile Include="IEventPublisher.cs" />
     <Compile Include="IEventStore.cs" />
-    <Compile Include="NullableListenerAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
