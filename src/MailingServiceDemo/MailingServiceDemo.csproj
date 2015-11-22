@@ -63,6 +63,7 @@
     <Compile Include="ISmtpClientWrapper.cs" />
     <Compile Include="Database\IDbContext.cs" />
     <Compile Include="Database\IDbSet.cs" />
+    <Compile Include="Model\MailMessage.cs" />
     <Compile Include="Model\OngoingMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandler\StoreKeeper.cs" />

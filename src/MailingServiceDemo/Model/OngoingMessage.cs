@@ -1,5 +1,4 @@
 using System;
-using System.Net.Mail;
 
 namespace MailingServiceDemo.Model
 {
@@ -10,5 +9,7 @@ namespace MailingServiceDemo.Model
         public MailMessage Message { get; set; }
 
         public int Priority { get; set; }
+
+        public DateTime QueuedAt { get; set; }
     }
 }

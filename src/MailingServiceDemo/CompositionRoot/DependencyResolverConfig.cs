@@ -14,12 +14,12 @@ namespace MailingServiceDemo.CompositionRoot
 {
     public static class DependencyResolverConfig
     {
-        public static Container Build()
+        public static Container StartRegistrations()
         {
             return new Container();
         }
 
-        public static Container RegisterDependencies(this Container container)
+        public static Container CoreDependencies(this Container container)
         {
             // Container
             container.Register<IServiceProvider>(() => container);
@@ -29,12 +29,14 @@ namespace MailingServiceDemo.CompositionRoot
 
             // Command handlers
             container.Register(typeof (ICommandHandler<>), new[] {typeof (DependencyResolverConfig).Assembly});
+            container.Register(typeof (IAsyncCommandHandler<>), new[] {typeof (DependencyResolverConfig).Assembly});
 
             // Query handlers
             container.Register(typeof (IQueryHandler<,>), new[] {typeof (DependencyResolverConfig).Assembly});
+            container.Register(typeof (IAsyncQueryHandler<,>), new[] {typeof (DependencyResolverConfig).Assembly});
 
             // Validators
-            container.RegisterSingleton(typeof (IValidator<>), typeof (CompositeValidator<>));
+            container.Register(typeof (IValidator<>), typeof (CompositeValidator<>));
             container.AppendToCollection(typeof (IValidator<>), typeof (DataAnnotationsValidator<>));
             container.RegisterCollection(typeof (IValidator<>), typeof (DependencyResolverConfig).Assembly);
 
@@ -46,11 +48,12 @@ namespace MailingServiceDemo.CompositionRoot
 
             // Event subscribers
             container.RegisterCollection(typeof (IEventSubscriber<>), new[] {typeof (DependencyResolverConfig).Assembly});
+            container.RegisterCollection(typeof (IAsyncEventSubscriber<>), new[] {typeof (DependencyResolverConfig).Assembly});
 
             return container;
         }
 
-        public static Container RegisterLoggers(this Container container)
+        public static Container Loggers(this Container container)
         {
             // Loggers
             container.RegisterSingleton<ILogger, NLogLogger>();
@@ -59,7 +62,7 @@ namespace MailingServiceDemo.CompositionRoot
             return container;
         }
 
-        public static Container RegisterDatabases(this Container container)
+        public static Container Databases(this Container container)
         {
             // Database
             container.RegisterSingleton<IDbContext, InMemoryDbContext>();

@@ -14,9 +14,9 @@ namespace Reusables.Cqrs
     /// <summary>
     /// Defines a common interface for asynchronous command handlers.
     /// </summary>
-    /// <typeparam name="TAsyncCommand">The type of asynchronous command.</typeparam>
-    public interface IAsyncCommandHandler<TAsyncCommand>
+    /// <typeparam name="TCommand">The type of asynchronous command.</typeparam>
+    public interface IAsyncCommandHandler<TCommand>
     {
-        Task HandleAsync(TAsyncCommand command);
+        Task HandleAsync(TCommand command);
     }
 }

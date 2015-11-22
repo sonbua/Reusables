@@ -6,39 +6,28 @@ namespace MailingServiceDemo.Database
 {
     public class InMemoryDbContext : IDbContext
     {
-        private readonly ISet<Type> _cachedTypes;
+        private readonly Dictionary<Type, object> _tables;
 
         public InMemoryDbContext()
         {
-            _cachedTypes = new HashSet<Type>();
+            _tables = new Dictionary<Type, object>();
         }
 
         public IDbSet<TEntity> Set<TEntity>() where TEntity : Entity
         {
-            if (_cachedTypes.Contains(typeof (TEntity)))
+            // TODO: lock-free design
+            lock (_tables)
             {
-                return Table<TEntity>.Instance;
-            }
+                if (_tables.ContainsKey(typeof (TEntity)))
+                {
+                    return (IDbSet<TEntity>) _tables[typeof (TEntity)];
+                }
 
-            _cachedTypes.Add(typeof (TEntity));
-            Table<TEntity>.Instance = null;
+                var table = new InMemoryDbSet<TEntity>();
 
-            return Table<TEntity>.Instance;
-        }
+                _tables.Add(typeof (TEntity), table);
 
-        public void Clean()
-        {
-            _cachedTypes.Clear();
-        }
-
-        private static class Table<TEntity> where TEntity : Entity
-        {
-            private static IDbSet<TEntity> _instance;
-
-            public static IDbSet<TEntity> Instance
-            {
-                get { return _instance ?? (_instance = new InMemoryDbSet<TEntity>()); }
-                set { _instance = value; }
+                return table;
             }
         }
     }

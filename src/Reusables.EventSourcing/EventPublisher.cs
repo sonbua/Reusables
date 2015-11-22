@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Reusables.Diagnostics.Logging;
-using Reusables.Util.Extensions;
 
 namespace Reusables.EventSourcing
 {
@@ -24,16 +24,26 @@ namespace Reusables.EventSourcing
 
             var handlers = _serviceProvider.Invoke(handlerType).ToList();
 
-            if (handlers.IsNullOrEmpty())
+            if (handlers.Any())
             {
-                _logger.Info($"No subscriber found for this event: {@event.GetType()}");
+                foreach (dynamic handler in handlers)
+                {
+                    handler.Handle((dynamic) @event);
+                }
+
                 return;
             }
 
-            foreach (dynamic handler in handlers)
+            var nullableListenerAttribute = @event.GetType().GetCustomAttribute<NullableListenerAttribute>();
+
+            if (nullableListenerAttribute != null)
             {
-                handler.Handle((dynamic) @event);
+                _logger.Info($"No subscriber found for this event: {@event.GetType()}");
+
+                return;
             }
+
+            throw new NotSupportedException($"No subscriber found for this event: {@event.GetType()}");
         }
 
         public async Task PublishAsync<TEvent>(TEvent @event)
@@ -42,20 +52,30 @@ namespace Reusables.EventSourcing
 
             var handlers = _serviceProvider.Invoke(handlerType).ToList();
 
-            if (handlers.IsNullOrEmpty())
+            if (handlers.Any())
             {
-                _logger.Info($"No asynchronous subscriber found for this event: {@event.GetType()}");
+                var tasks = new List<Task>();
+
+                foreach (dynamic handler in handlers)
+                {
+                    tasks.Add(handler.HandleAsync((dynamic) @event));
+                }
+
+                await Task.WhenAll(tasks).ConfigureAwait(false);
+
                 return;
             }
 
-            var tasks = new List<Task>();
+            var nullableListenerAttribute = @event.GetType().GetCustomAttribute<NullableListenerAttribute>();
 
-            foreach (dynamic handler in handlers)
+            if (nullableListenerAttribute != null)
             {
-                tasks.Add(handler.HandleAsync((dynamic) @event));
+                _logger.Info($"No asynchronous subscriber found for this event: {@event.GetType()}");
+
+                return;
             }
 
-            await Task.WhenAll(tasks);
+            throw new NotSupportedException($"No asynchronous subscriber found for this event: {@event.GetType()}");
         }
     }
 }

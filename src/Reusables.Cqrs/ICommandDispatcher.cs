@@ -9,6 +9,6 @@ namespace Reusables.Cqrs
     {
         void DispatchCommand<TCommand>(TCommand command);
 
-        Task DispatchCommandAsync<TAsyncCommand>(TAsyncCommand command);
+        Task DispatchCommandAsync<TCommand>(TCommand command);
     }
 }

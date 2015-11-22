@@ -28,9 +28,9 @@ namespace Reusables.Cqrs
             throw new NotSupportedException($"No handler found for this command: {typeof (TCommand)}");
         }
 
-        public async Task DispatchCommandAsync<TAsyncCommand>(TAsyncCommand command)
+        public async Task DispatchCommandAsync<TCommand>(TCommand command)
         {
-            var handler = (IAsyncCommandHandler<TAsyncCommand>) _serviceProvider.GetService(typeof (IAsyncCommandHandler<TAsyncCommand>));
+            var handler = (IAsyncCommandHandler<TCommand>) _serviceProvider.GetService(typeof (IAsyncCommandHandler<TCommand>));
 
             if (handler != null)
             {
@@ -38,7 +38,7 @@ namespace Reusables.Cqrs
                 return;
             }
 
-            throw new NotSupportedException($"No handler found for this command: {typeof (TAsyncCommand)}");
+            throw new NotSupportedException($"No asynchronous handler found for this command: {typeof (TCommand)}");
         }
 
         public TResult DispatchQuery<TResult>(Query<TResult> query)
@@ -56,7 +56,7 @@ namespace Reusables.Cqrs
             throw new NotSupportedException($"No handler found for this query: {queryType}");
         }
 
-        public async Task<TResult> DispatchQueryAsync<TResult>(AsyncQuery<TResult> query)
+        public async Task<TResult> DispatchQueryAsync<TResult>(Query<TResult> query)
         {
             var queryType = query.GetType();
             var handlerType = typeof (IAsyncQueryHandler<,>).MakeGenericType(queryType, typeof (TResult));
@@ -68,7 +68,7 @@ namespace Reusables.Cqrs
                 return await handler.HandleAsync((dynamic) query).ConfigureAwait(false);
             }
 
-            throw new NotSupportedException($"No handler found for this query: {queryType}");
+            throw new NotSupportedException($"No asynchronous handler found for this query: {queryType}");
         }
     }
 }

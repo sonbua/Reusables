@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Net.Mail;
+using MailingServiceDemo.Model;
 
 namespace MailingServiceDemo.Event
 {

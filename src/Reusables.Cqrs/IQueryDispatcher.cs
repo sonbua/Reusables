@@ -9,6 +9,6 @@ namespace Reusables.Cqrs
     {
         TResult DispatchQuery<TResult>(Query<TResult> query);
 
-        Task<TResult> DispatchQueryAsync<TResult>(AsyncQuery<TResult> query);
+        Task<TResult> DispatchQueryAsync<TResult>(Query<TResult> query);
     }
 }

@@ -15,10 +15,10 @@ namespace Reusables.Cqrs
     /// <summary>
     /// Defines a common interface for asynchronous query handlers.
     /// </summary>
-    /// <typeparam name="TAsyncQuery">The type of asynchronous query.</typeparam>
+    /// <typeparam name="TQuery">The type of asynchronous query.</typeparam>
     /// <typeparam name="TResult">The type of asynchronous query result.</typeparam>
-    public interface IAsyncQueryHandler<TAsyncQuery, TResult> where TAsyncQuery : AsyncQuery<TResult>
+    public interface IAsyncQueryHandler<TQuery, TResult> where TQuery : Query<TResult>
     {
-        Task<TResult> HandleAsync(TAsyncQuery query);
+        Task<TResult> HandleAsync(TQuery query);
     }
 }
