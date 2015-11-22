@@ -43,7 +43,7 @@ namespace Reusables.EventSourcing
 
             var handlers = _serviceProvider.Invoke(handlerType).ToList();
 
-            if (!handlers.Any())
+            if (handlers.IsNullOrEmpty())
             {
                 _logger.Info($"No asynchronous subscriber found for this event: {@event.GetType()}");
 

@@ -89,10 +89,6 @@
       <Project>{7E1A4672-ACCC-4B48-8510-734EDA9A372A}</Project>
       <Name>Reusables.Diagnostics.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Reusables.EventSourcing.Extensions\Reusables.EventSourcing.Extensions.csproj">
-      <Project>{91CF2B13-0DE4-474D-9E6A-4E7483238D59}</Project>
-      <Name>Reusables.EventSourcing.Extensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Reusables.EventSourcing\Reusables.EventSourcing.csproj">
       <Project>{fb2bb5ae-e541-4e1c-9231-69d4f12a5b06}</Project>
       <Name>Reusables.EventSourcing</Name>
@@ -100,10 +96,6 @@
     <ProjectReference Include="..\Reusables.Serialization.Newtonsoft\Reusables.Serialization.Newtonsoft.csproj">
       <Project>{7907325D-7700-4E79-9CF6-3CCAF3F0A0AC}</Project>
       <Name>Reusables.Serialization.Newtonsoft</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Reusables.Util.Extensions\Reusables.Util.Extensions.csproj">
-      <Project>{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD}</Project>
-      <Name>Reusables.Util.Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.Validation\Reusables.Validation.csproj">
       <Project>{76BB9170-AF0E-4715-867C-3FB1A98DDFFC}</Project>
