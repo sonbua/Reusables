@@ -151,7 +151,7 @@ namespace MailingServiceDemo.Tests
             }
             catch (Exception exception)
             {
-                _logger.Error(exception);
+                _logger.Error($"{@event.GetType().Name}  ====>  {_innerSubscriber.GetType().Name} - {exception}");
             }
         }
     }

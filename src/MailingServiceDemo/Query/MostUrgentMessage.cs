@@ -4,7 +4,7 @@ using Reusables.Cqrs;
 
 namespace MailingServiceDemo.Query
 {
-    public class MostUrgentMessage : Query<Optional<OutboxMessage>>
+    public class MostUrgentMessage : Query<Optional<OngoingMessage>>
     {
     }
 }

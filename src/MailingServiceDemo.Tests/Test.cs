@@ -282,7 +282,7 @@ namespace MailingServiceDemo.Tests
 
         public void Error(string message, params object[] args)
         {
-            throw new NotImplementedException();
+            _testOutputHelper.WriteLine(message);
         }
 
         public void Fatal(Exception exception)

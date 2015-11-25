@@ -9,14 +9,12 @@ using Reusables.EventSourcing;
 namespace MailingServiceDemo.EventHandler
 {
     public class StoreKeeper : IEventSubscriber<MailRequestAccepted>,
-                               IEventSubscriber<DeliveryNeeded>,
                                IEventSubscriber<MessageSent>,
                                IEventSubscriber<SendingFailed>,
                                IEventSubscriber<FaultAnalysisRequired>,
                                IEventSubscriber<FaultMessageRequeueNeeded>,
                                IEventSubscriber<ManualAnalysisRequired>,
                                IAsyncEventSubscriber<MailRequestAccepted>,
-                               IAsyncEventSubscriber<DeliveryNeeded>,
                                IAsyncEventSubscriber<MessageSent>,
                                IAsyncEventSubscriber<SendingFailed>,
                                IAsyncEventSubscriber<FaultAnalysisRequired>,
@@ -49,25 +47,6 @@ namespace MailingServiceDemo.EventHandler
             }
 
             _eventPublisher.Publish(new OutboxManagementNeeded());
-        }
-
-        public void Handle(DeliveryNeeded @event)
-        {
-            var delivery = @event.Message;
-            var ongoingMessage = new OngoingMessage
-                                 {
-                                     Id = delivery.Id,
-                                     RequestId = delivery.RequestId,
-                                     Message = delivery.Message,
-                                     Priority = delivery.Priority,
-                                     QueuedAt = DateTime.UtcNow
-                                 };
-
-            _dbContext.Set<OngoingMessage>().Add(ongoingMessage);
-
-            _dbContext.Set<OutboxMessage>().Remove(delivery.Id);
-
-            _eventPublisher.Publish(new DeliveryReady {Message = ongoingMessage});
         }
 
         public void Handle(MessageSent @event)
@@ -170,25 +149,6 @@ namespace MailingServiceDemo.EventHandler
             }
 
             await _eventPublisher.PublishAsync(new OutboxManagementNeeded()).ConfigureAwait(false);
-        }
-
-        public async Task HandleAsync(DeliveryNeeded @event)
-        {
-            var delivery = @event.Message;
-            var ongoingMessage = new OngoingMessage
-                                 {
-                                     Id = delivery.Id,
-                                     RequestId = delivery.RequestId,
-                                     Message = delivery.Message,
-                                     Priority = delivery.Priority,
-                                     QueuedAt = DateTime.UtcNow
-                                 };
-
-            _dbContext.Set<OngoingMessage>().Add(ongoingMessage);
-
-            _dbContext.Set<OutboxMessage>().Remove(delivery.Id);
-
-            await _eventPublisher.PublishAsync(new DeliveryReady {Message = ongoingMessage}).ConfigureAwait(false);
         }
 
         public async Task HandleAsync(MessageSent @event)

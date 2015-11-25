@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
 using MailingServiceDemo.Database;
 using MailingServiceDemo.Model;
 using MailingServiceDemo.Query;
@@ -8,8 +8,7 @@ using Reusables.Cqrs;
 
 namespace MailingServiceDemo.QueryHandler
 {
-    public class StoreKeeper : IQueryHandler<MostUrgentMessage, Optional<OutboxMessage>>,
-                               IAsyncQueryHandler<MostUrgentMessage, Optional<OutboxMessage>>
+    public class StoreKeeper : IQueryHandler<MostUrgentMessage, Optional<OngoingMessage>>
     {
         private readonly IDbContext _dbContext;
 
@@ -18,22 +17,21 @@ namespace MailingServiceDemo.QueryHandler
             _dbContext = dbContext;
         }
 
-        public Optional<OutboxMessage> Handle(MostUrgentMessage query)
-        {
-            return _dbContext.Set<OutboxMessage>()
-                             .OrderByDescending(message => message.Priority)
-                             .ThenBy(message => message.QueuedAt)
-                             .FirstOrDefault();
-        }
-
-        public async Task<Optional<OutboxMessage>> HandleAsync(MostUrgentMessage query)
+        public Optional<OngoingMessage> Handle(MostUrgentMessage query)
         {
             var result = _dbContext.Set<OutboxMessage>()
                                    .OrderByDescending(message => message.Priority)
                                    .ThenBy(message => message.QueuedAt)
+                                   .Select(message => new OngoingMessage {Id = message.Id, RequestId = message.RequestId, Message = message.Message, Priority = message.Priority, QueuedAt = DateTime.UtcNow})
                                    .FirstOrDefault();
 
-            return await Task.FromResult(result);
+            if (result != null)
+            {
+                _dbContext.Set<OngoingMessage>().Add(result);
+                _dbContext.Set<OutboxMessage>().Remove(result.Id);
+            }
+
+            return result;
         }
     }
 }

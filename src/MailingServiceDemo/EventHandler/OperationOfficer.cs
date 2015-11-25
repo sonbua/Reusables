@@ -24,17 +24,17 @@ namespace MailingServiceDemo.EventHandler
 
             if (urgentMessage.HasValue)
             {
-                _eventPublisher.Publish(new DeliveryNeeded {Message = urgentMessage.Value});
+                _eventPublisher.Publish(new DeliveryReady {Message = urgentMessage.Value});
             }
         }
 
         public async Task HandleAsync(OutboxManagementNeeded @event)
         {
-            var urgentMessage = await _dispatcher.DispatchQueryAsync(new MostUrgentMessage());
+            var urgentMessage = _dispatcher.DispatchQuery(new MostUrgentMessage());
 
             if (urgentMessage.HasValue)
             {
-                await _eventPublisher.PublishAsync(new DeliveryNeeded {Message = urgentMessage.Value}).ConfigureAwait(false);
+                await _eventPublisher.PublishAsync(new DeliveryReady {Message = urgentMessage.Value}).ConfigureAwait(false);
             }
         }
     }
