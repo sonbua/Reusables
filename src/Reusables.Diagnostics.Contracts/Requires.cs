@@ -8,13 +8,8 @@ namespace Reusables.Diagnostics.Contracts
         {
             if (instance == null)
             {
-                ThrowArgumentNullException(paramName);
+                throw new ArgumentNullException(paramName);
             }
-        }
-
-        private static void ThrowArgumentNullException(string paramName)
-        {
-            throw new ArgumentNullException(paramName);
         }
     }
 }
