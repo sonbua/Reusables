@@ -82,20 +82,28 @@ namespace Reusables.Util.Extensions
         {
             Requires.IsNotNull(source, nameof(source));
 
-            return !source.Any();
+            using (var enumerator = source.GetEnumerator())
+            {
+                if (enumerator.MoveNext())
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
         /// Check whether a collection contains an specified item.
         /// </summary>
-        /// <typeparam name="T">The type of the elements of <paramref name="collection"/>.</typeparam>
+        /// <typeparam name="T">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <param name="item">The item to check.</param>
-        /// <param name="collection">A sequence in which to locate a value.</param>
+        /// <param name="source">A sequence in which to locate a value.</param>
         /// <returns><c>true</c> if item is in the collection, otherwise <c>false</c>. Always returns <c>false</c> if item is null.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is null.</exception>
-        public static bool IsIn<T>(this T item, IEnumerable<T> collection)
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+        public static bool IsIn<T>(this T item, IEnumerable<T> source)
         {
-            return collection.Contains(item);
+            return source.Contains(item);
         }
 
         /// <summary>
