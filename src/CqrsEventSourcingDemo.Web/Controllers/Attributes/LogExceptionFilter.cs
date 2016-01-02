@@ -6,11 +6,11 @@ using Reusables.Web.Mvc5;
 
 namespace CqrsEventSourcingDemo.Web.Controllers.Attributes
 {
-    public class LogExceptionFilterAttribute : IActionFilter<ExceptionLoggingAttribute>
+    public class LogExceptionFilter : IActionFilter<ExceptionLoggingAttribute>
     {
         private readonly ILogger _logger;
 
-        public LogExceptionFilterAttribute(ILogger logger)
+        public LogExceptionFilter(ILogger logger)
         {
             _logger = logger;
         }

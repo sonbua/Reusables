@@ -202,7 +202,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Attributes\ExceptionLoggingAttribute.cs" />
     <Compile Include="Controllers\Attributes\IncludeLayoutDataAttribute.cs" />
-    <Compile Include="Controllers\Attributes\LogExceptionFilterAttribute.cs" />
+    <Compile Include="Controllers\Attributes\LogExceptionFilter.cs" />
     <Compile Include="Controllers\Cafe\BaseController.cs" />
     <Compile Include="Controllers\Cafe\ChefController.cs" />
     <Compile Include="Controllers\Cafe\TabController.cs" />
