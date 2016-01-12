@@ -24,7 +24,7 @@ namespace Reusables.Validation.DataAnnotations
             }
 
             // TODO: resource
-            return new ValidationResult(string.Format("The field {0} must be a string or array type with a minimum length of '{1}'.", context.MemberName, attribute.Length), context.MemberName);
+            return new ValidationResult($"The field {context.MemberName} must be a string or array type with a minimum length of '{attribute.Length}'.", context.MemberName);
         }
     }
 }

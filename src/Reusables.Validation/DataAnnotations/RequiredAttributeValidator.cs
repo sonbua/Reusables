@@ -12,7 +12,7 @@ namespace Reusables.Validation.DataAnnotations
             if (value == null)
             {
                 // TODO: resource
-                return new ValidationResult(string.Format("The {0} field is required.", context.MemberName), context.MemberName);
+                return new ValidationResult($"The {context.MemberName} field is required.", context.MemberName);
             }
 
             var str = value as string;
@@ -23,7 +23,7 @@ namespace Reusables.Validation.DataAnnotations
             }
 
             // TODO: resource
-            return new ValidationResult(string.Format("The {0} field is required.", context.MemberName), context.MemberName);
+            return new ValidationResult($"The {context.MemberName} field is required.", context.MemberName);
         }
     }
 }

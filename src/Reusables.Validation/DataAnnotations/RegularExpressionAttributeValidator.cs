@@ -28,7 +28,7 @@ namespace Reusables.Validation.DataAnnotations
             }
 
             // TODO: resource
-            return new ValidationResult(string.Format("The field {0} must match the regular expression '{1}'.", context.MemberName, attribute.Pattern), context.MemberName);
+            return new ValidationResult($"The field {context.MemberName} must match the regular expression '{attribute.Pattern}'.", context.MemberName);
         }
     }
 }
