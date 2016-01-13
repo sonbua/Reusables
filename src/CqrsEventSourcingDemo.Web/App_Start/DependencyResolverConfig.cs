@@ -23,6 +23,8 @@ namespace CqrsEventSourcingDemo.Web
 {
     public class DependencyResolverConfig
     {
+        internal static IServiceProvider ServiceProvider;
+
         public static void RegisterDependencies()
         {
             var container = new Container {Options = {DefaultScopedLifestyle = new WebRequestLifestyle()}};
@@ -76,6 +78,7 @@ namespace CqrsEventSourcingDemo.Web
 
             System.Web.Mvc.DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
             System.Web.Mvc.GlobalFilters.Filters.Add(new ActionFilterDispatcher(type => container.GetAllInstances(type)));
+            ServiceProvider = container;
         }
     }
 }
