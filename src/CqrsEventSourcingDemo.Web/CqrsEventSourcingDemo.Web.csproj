@@ -203,6 +203,7 @@
     <Compile Include="Controllers\Attributes\ExceptionLoggingAttribute.cs" />
     <Compile Include="Controllers\Attributes\IncludeLayoutDataAttribute.cs" />
     <Compile Include="Controllers\Attributes\LogExceptionFilter.cs" />
+    <Compile Include="Controllers\Attributes\ModelValidationAttribute.cs" />
     <Compile Include="Controllers\Cafe\BaseController.cs" />
     <Compile Include="Controllers\Cafe\ChefController.cs" />
     <Compile Include="Controllers\Cafe\TabController.cs" />
