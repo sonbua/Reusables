@@ -13,6 +13,26 @@ namespace Reusables.Util.Extensions
     public static class StringExtensions
     {
         /// <summary>
+        /// Clean up all invalid characters in a given string, e.g. <c>" | * ? :</c>
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static string CleanUpInvalidFileNameChars(this string fileName)
+        {
+            return new string(fileName.CleanUpInvalidFileNameCharsImpl().ToArray());
+        }
+
+        private static IEnumerable<char> CleanUpInvalidFileNameCharsImpl(this string fileName)
+        {
+            return fileName.Where(c => !c.IsInvalidFileNameChar());
+        }
+
+        private static bool IsInvalidFileNameChar(this char c)
+        {
+            return c == '"' || c == '<' || c == '>' || c == '|' || c == '*' || c == '?' || c == ':' || c < 32;
+        }
+
+        /// <summary>
         /// Determines whether this string and a specified <see cref="T:System.String"/> object have the same value, ignore their casing.
         /// </summary>
         /// <param name="subject">The subject string to be compared.</param>
