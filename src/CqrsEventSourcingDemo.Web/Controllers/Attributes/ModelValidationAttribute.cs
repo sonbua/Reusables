@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Reusables.Validation;
+using Reusables.Validation.DataAnnotations;
 using Reusables.Web.Mvc5;
 using FilterAttribute = Reusables.Web.Mvc5.FilterAttribute;
 
@@ -41,11 +42,11 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Attributes
                 return;
             }
 
-            var modelValidatorType = typeof (IValidator<>).MakeGenericType(model.GetType());
+            var modelValidatorType = typeof (DataAnnotationsValidator<>).MakeGenericType(model.GetType());
 
             dynamic validator = _serviceProvider.GetService(modelValidatorType);
 
-            IEnumerable<ValidationResult> validationResults = validator.Validate((dynamic) model);
+            var validationResults = ((IEnumerable<ValidationResult>) validator.Validate((dynamic) model)).Where(x => x != ValidationResult.Success);
 
             foreach (var result in validationResults)
             {
