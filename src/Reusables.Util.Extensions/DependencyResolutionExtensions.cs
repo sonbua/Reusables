@@ -16,7 +16,7 @@ namespace Reusables.Util.Extensions
             {
                 if (_serviceProvider == null)
                 {
-                    throw new MemberAccessException($"{nameof(_serviceProvider)} has not been set.");
+                    throw new MemberAccessException($"'{nameof(_serviceProvider)}' has not been set.");
                 }
 
                 return _serviceProvider;
