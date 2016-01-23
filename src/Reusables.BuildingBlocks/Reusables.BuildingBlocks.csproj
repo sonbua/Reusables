@@ -35,6 +35,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPostRequestHandler.cs" />
+    <Compile Include="IPreRequestHandler.cs" />
+    <Compile Include="RequestHandlerPipeline.cs" />
     <Compile Include="RequestHandlerExtensions.cs" />
     <Compile Include="IRequestHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
