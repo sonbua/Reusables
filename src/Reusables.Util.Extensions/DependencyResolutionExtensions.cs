@@ -34,7 +34,16 @@ namespace Reusables.Util.Extensions
 
         public static TDecoratee DecoratedWith<TDecorator, TDecoratee>(this TDecoratee decoratee) where TDecorator : TDecoratee
         {
-            var decoratorType = typeof (TDecorator);
+            return decoratee.DecoratedWith(typeof(TDecorator));
+        }
+
+        public static TDecoratee DecoratedWith<TDecoratee>(this TDecoratee decoratee, Type decoratorType)
+        {
+            if (!typeof(TDecoratee).IsAssignableFrom(decoratorType))
+            {
+                throw new ArgumentException($"{decoratorType} is not assignment compatible with {typeof(TDecoratee)}");
+            }
+
             var decoratorConstructors = decoratorType.GetConstructors();
 
             if (decoratorConstructors.Length != 1)
@@ -56,7 +65,7 @@ namespace Reusables.Util.Extensions
                 throw new ArgumentException($"{decoratorType}'s constructor should have at least one parameter.");
             }
 
-            var decorateeType = typeof (TDecoratee);
+            var decorateeType = typeof(TDecoratee);
             var decorateeParameterInDecoratorConstructorCount = decoratorConstructorParameterInfos.Count(x => x.ParameterType.IsAssignableFrom(decorateeType));
 
             if (decorateeParameterInDecoratorConstructorCount != 1)
