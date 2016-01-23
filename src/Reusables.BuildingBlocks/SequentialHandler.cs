@@ -1,6 +1,6 @@
 ﻿namespace Reusables.BuildingBlocks
 {
-    public class SequentialHandler<TInput, TTemp, TOutput> : IHandler<TInput, TOutput>
+    internal class SequentialHandler<TInput, TTemp, TOutput> : IHandler<TInput, TOutput>
     {
         private readonly IHandler<TInput, TTemp> _firstHandler;
         private readonly IHandler<TTemp, TOutput> _secondHandler;
