@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="AssemblyExtensionsTest.cs" />
     <Compile Include="ConversionExtensionsTest.cs" />
+    <Compile Include="DependencyResolutionExtensionsTest.cs" />
     <Compile Include="EnumerableExtensionsTest.cs" />
     <Compile Include="ObjectExtensionsTest.cs" />
     <Compile Include="StringExtensionsTest.cs" />
