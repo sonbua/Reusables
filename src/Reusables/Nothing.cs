@@ -1,10 +1,17 @@
-﻿namespace Reusables
+﻿using System;
+
+namespace Reusables
 {
-    public struct Nothing
+    public struct Nothing : IEquatable<Nothing>, IComparable<Nothing>
     {
         public bool Equals(Nothing other)
         {
             return true;
+        }
+
+        public int CompareTo(Nothing other)
+        {
+            return 0;
         }
 
         public override bool Equals(object obj)
