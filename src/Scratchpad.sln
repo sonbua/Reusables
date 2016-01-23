@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Web.Mvc5", "Reusa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Diagnostics.Logging.Log4net", "Reusables.Diagnostics.Logging.Log4net\Reusables.Diagnostics.Logging.Log4net.csproj", "{21CD9202-8E4C-4B91-87E2-C04C76DE7F36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.BuildingBlocks", "Reusables.BuildingBlocks\Reusables.BuildingBlocks.csproj", "{0B550DAA-AF2C-4167-8A56-D95B96E306DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,6 +165,10 @@ Global
 		{21CD9202-8E4C-4B91-87E2-C04C76DE7F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21CD9202-8E4C-4B91-87E2-C04C76DE7F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21CD9202-8E4C-4B91-87E2-C04C76DE7F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B550DAA-AF2C-4167-8A56-D95B96E306DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B550DAA-AF2C-4167-8A56-D95B96E306DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B550DAA-AF2C-4167-8A56-D95B96E306DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B550DAA-AF2C-4167-8A56-D95B96E306DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -193,5 +199,6 @@ Global
 		{76BB9170-AF0E-4715-867C-3FB1A98DDFFC} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{A6FCD242-9112-481B-A1F1-36DF8121ED8D} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{21CD9202-8E4C-4B91-87E2-C04C76DE7F36} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{0B550DAA-AF2C-4167-8A56-D95B96E306DD} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 	EndGlobalSection
 EndGlobal
