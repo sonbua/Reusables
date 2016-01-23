@@ -2,6 +2,9 @@
 
 namespace Reusables
 {
+    /// <summary>
+    /// Represents a void type, since <see cref="Void"/> is not a valid return type in C#.
+    /// </summary>
     public struct Nothing : IEquatable<Nothing>, IComparable<Nothing>
     {
         public bool Equals(Nothing other)
