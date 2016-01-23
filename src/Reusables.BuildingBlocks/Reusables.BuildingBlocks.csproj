@@ -38,9 +38,12 @@
     <Compile Include="HandlerExtensions.cs" />
     <Compile Include="IHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SequentialHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Reusables.Diagnostics.Contracts\Reusables.Diagnostics.Contracts.csproj">
+      <Project>{a120d214-0b8b-4f1e-b707-a6655efbc626}</Project>
+      <Name>Reusables.Diagnostics.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Reusables\Reusables.csproj">
       <Project>{8a6f0955-9952-43cc-acd8-327ff2db890b}</Project>
       <Name>Reusables</Name>
