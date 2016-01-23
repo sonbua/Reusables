@@ -19,8 +19,7 @@
 
         public override int GetHashCode()
         {
-            // any prime number
-            return 397;
+            return 0;
         }
 
         public static bool operator ==(Nothing first, Nothing second)
