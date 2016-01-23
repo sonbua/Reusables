@@ -1,7 +1,7 @@
 ﻿namespace Reusables.BuildingBlocks
 {
-    public interface IHandler<in TInput, out TOutput>
+    public interface IHandler<in TMessage, out TOutput>
     {
-        TOutput Handle(TInput input);
+        TOutput Handle(TMessage message);
     }
 }

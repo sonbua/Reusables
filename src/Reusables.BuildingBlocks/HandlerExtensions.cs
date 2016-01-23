@@ -5,93 +5,93 @@ namespace Reusables.BuildingBlocks
 {
     public static class HandlerExtensions
     {
-        public static IHandler<TInput, TOutput> FollowedBy<TInput, TTemp, TOutput>(this IHandler<TInput, TTemp> firstHandler, IHandler<TTemp, TOutput> secondHandler)
+        public static IHandler<TMessage, TResponse> FollowedBy<TMessage, TTemp, TResponse>(this IHandler<TMessage, TTemp> firstHandler, IHandler<TTemp, TResponse> secondHandler)
         {
-            return new SequentialHandler<TInput, TTemp, TOutput>(firstHandler, secondHandler);
+            return new SequentialHandler<TMessage, TTemp, TResponse>(firstHandler, secondHandler);
         }
 
-        public static IHandler<TInput, TOutput> FollowedBy<TInput, TTemp, TOutput>(this IHandler<TInput, TTemp> firstHandler, Func<TTemp, TOutput> func)
+        public static IHandler<TMessage, TResponse> FollowedBy<TMessage, TTemp, TResponse>(this IHandler<TMessage, TTemp> firstHandler, Func<TTemp, TResponse> func)
         {
-            return new SequentialHandler<TInput, TTemp, TOutput>(firstHandler, new AnonymousFuncHandler<TTemp, TOutput>(func));
+            return new SequentialHandler<TMessage, TTemp, TResponse>(firstHandler, new AnonymousFuncHandler<TTemp, TResponse>(func));
         }
 
-        public static IHandler<TInput, bool> FollowedBy<TInput, TTemp>(this IHandler<TInput, TTemp> firstHandler, Predicate<TTemp> predicate)
+        public static IHandler<TMessage, bool> FollowedBy<TMessage, TTemp>(this IHandler<TMessage, TTemp> firstHandler, Predicate<TTemp> predicate)
         {
-            return new SequentialHandler<TInput, TTemp, bool>(firstHandler, new AnonymousPredicateHandler<TTemp>(predicate));
+            return new SequentialHandler<TMessage, TTemp, bool>(firstHandler, new AnonymousPredicateHandler<TTemp>(predicate));
         }
 
-        public static IHandler<TInput, Nothing> FollowedBy<TInput, TTemp>(this IHandler<TInput, TTemp> firstHandler, Action<TTemp> action)
+        public static IHandler<TMessage, Nothing> FollowedBy<TMessage, TTemp>(this IHandler<TMessage, TTemp> firstHandler, Action<TTemp> action)
         {
-            return new SequentialHandler<TInput, TTemp, Nothing>(firstHandler, new AnonymousActionHandler<TTemp>(action));
+            return new SequentialHandler<TMessage, TTemp, Nothing>(firstHandler, new AnonymousActionHandler<TTemp>(action));
         }
 
-        private class SequentialHandler<TInput, TTemp, TOutput> : IHandler<TInput, TOutput>
+        private class SequentialHandler<TMessage, TTemp, TResponse> : IHandler<TMessage, TResponse>
         {
-            private readonly IHandler<TInput, TTemp> _firstHandler;
-            private readonly IHandler<TTemp, TOutput> _secondHandler;
+            private readonly IHandler<TMessage, TTemp> _firstHandler;
+            private readonly IHandler<TTemp, TResponse> _secondHandler;
 
-            public SequentialHandler(IHandler<TInput, TTemp> firstHandler, IHandler<TTemp, TOutput> secondHandler)
+            public SequentialHandler(IHandler<TMessage, TTemp> firstHandler, IHandler<TTemp, TResponse> secondHandler)
             {
                 _firstHandler = firstHandler;
                 _secondHandler = secondHandler;
             }
 
-            public TOutput Handle(TInput input)
+            public TResponse Handle(TMessage message)
             {
-                var temp = _firstHandler.Handle(input);
+                var temp = _firstHandler.Handle(message);
 
                 return _secondHandler.Handle(temp);
             }
         }
 
-        private class AnonymousFuncHandler<TInput, TOutput> : IHandler<TInput, TOutput>
+        private class AnonymousFuncHandler<TMessage, TResponse> : IHandler<TMessage, TResponse>
         {
-            private readonly Func<TInput, TOutput> _func;
+            private readonly Func<TMessage, TResponse> _func;
 
-            public AnonymousFuncHandler(Func<TInput, TOutput> func)
+            public AnonymousFuncHandler(Func<TMessage, TResponse> func)
             {
                 Requires.IsNotNull(func, nameof(func));
 
                 _func = func;
             }
 
-            public TOutput Handle(TInput input)
+            public TResponse Handle(TMessage message)
             {
-                return _func(input);
+                return _func(message);
             }
         }
 
-        private class AnonymousPredicateHandler<TInput> : IHandler<TInput, bool>
+        private class AnonymousPredicateHandler<TMessage> : IHandler<TMessage, bool>
         {
-            private readonly Predicate<TInput> _predicate;
+            private readonly Predicate<TMessage> _predicate;
 
-            public AnonymousPredicateHandler(Predicate<TInput> predicate)
+            public AnonymousPredicateHandler(Predicate<TMessage> predicate)
             {
                 Requires.IsNotNull(predicate, nameof(predicate));
 
                 _predicate = predicate;
             }
 
-            public bool Handle(TInput input)
+            public bool Handle(TMessage message)
             {
-                return _predicate(input);
+                return _predicate(message);
             }
         }
 
-        private class AnonymousActionHandler<TInput> : IHandler<TInput, Nothing>
+        private class AnonymousActionHandler<TMessage> : IHandler<TMessage, Nothing>
         {
-            private readonly Action<TInput> _action;
+            private readonly Action<TMessage> _action;
 
-            public AnonymousActionHandler(Action<TInput> action)
+            public AnonymousActionHandler(Action<TMessage> action)
             {
                 Requires.IsNotNull(action, nameof(action));
 
                 _action = action;
             }
 
-            public Nothing Handle(TInput input)
+            public Nothing Handle(TMessage message)
             {
-                _action(input);
+                _action(message);
 
                 return new Nothing();
             }
