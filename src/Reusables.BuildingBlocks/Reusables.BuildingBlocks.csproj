@@ -35,8 +35,8 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HandlerExtensions.cs" />
-    <Compile Include="IHandler.cs" />
+    <Compile Include="RequestHandlerExtensions.cs" />
+    <Compile Include="IRequestHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
