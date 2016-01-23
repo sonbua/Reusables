@@ -1,10 +1,22 @@
 ﻿using System;
+using SimpleInjector;
 using Xunit;
 
 namespace Reusables.Util.Extensions.Tests
 {
     public class DependencyResolutionExtensionsTest
     {
+        private readonly Container _container;
+
+        public DependencyResolutionExtensionsTest()
+        {
+            _container = new Container();
+
+            _container.Register<IDependency, Dependency>();
+
+            _container.Verify();
+        }
+
         [Fact]
         public void DecoratedWith_NonCompatibleDecoratorType_ThrowsException()
         {
@@ -42,6 +54,20 @@ namespace Reusables.Util.Extensions.Tests
 
             // assert
             Assert.Equal("_decorator2_decorator1_derived", decorated.Do());
+        }
+
+        [Fact]
+        public void DecoratedWith_DecoratorWithDependency_ReturnsCorrectResult()
+        {
+            // arrange
+            IBase decoratee = new Derived();
+            DependencyResolutionExtensions.ServiceProvider = _container;
+
+            // act
+            var decorated = decoratee.DecoratedWith(typeof(DecoratorWithDependency));
+
+            // assert
+            Assert.Equal("_decoratorWithDependency_dependency_derived", decorated.Do());
         }
     }
 
@@ -85,6 +111,36 @@ namespace Reusables.Util.Extensions.Tests
         public string Do()
         {
             return "_decorator2" + _decoratee.Do();
+        }
+    }
+
+    internal class DecoratorWithDependency : IBase
+    {
+        private readonly IBase _decoratee;
+        private readonly IDependency _dependency;
+
+        public DecoratorWithDependency(IBase decoratee, IDependency dependency)
+        {
+            _decoratee = decoratee;
+            _dependency = dependency;
+        }
+
+        public string Do()
+        {
+            return "_decoratorWithDependency" + _dependency.Do() + _decoratee.Do();
+        }
+    }
+
+    internal interface IDependency
+    {
+        string Do();
+    }
+
+    internal class Dependency : IDependency
+    {
+        public string Do()
+        {
+            return "_dependency";
         }
     }
 
