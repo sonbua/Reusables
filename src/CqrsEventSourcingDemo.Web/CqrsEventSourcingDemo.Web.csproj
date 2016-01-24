@@ -299,7 +299,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Domain\ReadModels\" />
-    <Folder Include="Scenarios\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
