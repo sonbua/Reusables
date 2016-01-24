@@ -1,43 +1,35 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Reusables.Diagnostics.Contracts;
+﻿using Reusables.Diagnostics.Contracts;
 
 namespace Reusables.BuildingBlocks
 {
     public class RequestHandlerPipeline<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
     {
         private readonly IRequestHandler<TRequest, TResponse> _innerHandler;
-        private readonly IEnumerable<IPreRequestHandler<TRequest>> _preRequestHandlers;
-        private readonly IEnumerable<IPostRequestHandler<TRequest, TResponse>> _postRequestHandlers;
+        private readonly IPreRequestHandler<TRequest> _preRequestHandler;
+        private readonly IPostRequestHandler<TRequest, TResponse> _postRequestHandler;
 
         public RequestHandlerPipeline(IRequestHandler<TRequest, TResponse> innerHandler,
-                                      IEnumerable<IPreRequestHandler<TRequest>> preRequestHandlers,
-                                      IEnumerable<IPostRequestHandler<TRequest, TResponse>> postRequestHandlers)
+                                      IPreRequestHandler<TRequest> preRequestHandler,
+                                      IPostRequestHandler<TRequest, TResponse> postRequestHandler)
         {
             Requires.IsNotNull(innerHandler, nameof(innerHandler));
-            Requires.IsNotNull(preRequestHandlers, nameof(preRequestHandlers));
-            Requires.IsNotNull(postRequestHandlers, nameof(postRequestHandlers));
+            Requires.IsNotNull(preRequestHandler, nameof(preRequestHandler));
+            Requires.IsNotNull(postRequestHandler, nameof(postRequestHandler));
 
             _innerHandler = innerHandler;
-            _preRequestHandlers = preRequestHandlers;
-            _postRequestHandlers = postRequestHandlers;
+            _preRequestHandler = preRequestHandler;
+            _postRequestHandler = postRequestHandler;
         }
 
         public TResponse Handle(TRequest request)
         {
-            foreach (var preRequestHandler in _preRequestHandlers)
-            {
-                preRequestHandler.Handle(request);
-            }
+            _preRequestHandler.Handle(request);
 
-            var result = _innerHandler.Handle(request);
+            var response = _innerHandler.Handle(request);
 
-            foreach (var postRequestHandler in _postRequestHandlers)
-            {
-                postRequestHandler.Handle(request, result);
-            }
+            _postRequestHandler.Handle(request, response);
 
-            return result;
+            return response;
         }
     }
 }
