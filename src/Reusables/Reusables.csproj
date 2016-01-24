@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Nothing.cs" />
     <Compile Include="Optional.cs" />
+    <Compile Include="OrderAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

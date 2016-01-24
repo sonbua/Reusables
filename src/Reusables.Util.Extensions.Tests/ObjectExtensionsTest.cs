@@ -71,6 +71,95 @@ namespace Reusables.Util.Extensions.Tests
             Assert.Throws<ArgumentOutOfRangeException>(accessClassWithPublicStaticField);
         }
 
+        [Fact]
+        public void GetOrder_NullInstance_ThrowsException()
+        {
+            // arrange
+
+            // act
+            Action nullInstance = () => { ((object) null).GetOrder(); };
+
+            // assert
+            Assert.Throws<ArgumentNullException>("instance", nullInstance);
+        }
+
+        [Fact]
+        public void GetOrder_ClassWithoutOrderAttribute_ReturnsZero()
+        {
+            // arrange
+            var instance = new ClassWithoutOrderAttribute();
+
+            // act
+            var order = instance.GetOrder();
+
+            // assert
+            Assert.Equal(0, order);
+        }
+
+        [Fact]
+        public void GetOrder_ClassWithOrderValueOfThreeAttribute_ReturnsThree()
+        {
+            // arrange
+            var instance = new ClassWithOrderValueOfThreeAttribute();
+
+            // act
+            var order = instance.GetOrder();
+
+            // assert
+            Assert.Equal(3, order);
+        }
+
+        [Fact]
+        public void GetOrder_DerivedInstanceButAppearsToBeParent_ReturnsParentsOrder()
+        {
+            // arrange
+            ClassParent instance = new ClassDerived();
+
+            // act
+            var order = instance.GetOrder();
+
+            // assert
+            Assert.Equal(1, order);
+        }
+
+        [Fact]
+        public void GetRuntimeOrder_NullInstance_ThrowsException()
+        {
+            // arrange
+
+            // act
+            Action nullInstance = () => { ((object) null).GetOrder(); };
+
+            // assert
+            Assert.Throws<ArgumentNullException>("instance", nullInstance);
+        }
+
+        [Fact]
+        public void GetRuntimeOrder_ClassWithoutOrderAttribute_ReturnsZero()
+        {
+            // arrange
+            var instance = new ClassWithoutOrderAttribute();
+
+            // act
+            var order = instance.GetRuntimeOrder();
+
+            // assert
+            Assert.Equal(0, order);
+        }
+
+        [Fact]
+        public void GetRuntimeOrder_DerivedInstanceButAppearsToBeParent_ReturnsDerivedsOrder()
+        {
+            // arrange
+            ClassParent instance = new ClassDerived();
+
+            // act
+            var order = instance.GetRuntimeOrder();
+
+            // assert
+            Assert.Equal(2, order);
+        }
+
         public class ClassWithPublicProperty
         {
             public string Prop1 { get; set; }
@@ -89,6 +178,25 @@ namespace Reusables.Util.Extensions.Tests
         public class ClassWithPublicStaticField
         {
             public static string Field1 = string.Empty;
+        }
+
+        public class ClassWithoutOrderAttribute
+        {
+        }
+
+        [Order(3)]
+        public class ClassWithOrderValueOfThreeAttribute
+        {
+        }
+
+        [Order(1)]
+        public class ClassParent
+        {
+        }
+
+        [Order(2)]
+        public class ClassDerived : ClassParent
+        {
         }
     }
 }

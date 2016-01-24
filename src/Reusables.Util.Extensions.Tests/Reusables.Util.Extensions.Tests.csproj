@@ -82,6 +82,10 @@
       <Project>{b93b3dec-c90e-4f3f-a23d-cc976e2192dd}</Project>
       <Name>Reusables.Util.Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reusables\Reusables.csproj">
+      <Project>{8a6f0955-9952-43cc-acd8-327ff2db890b}</Project>
+      <Name>Reusables</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

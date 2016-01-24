@@ -61,6 +61,10 @@
       <Project>{A120D214-0B8B-4F1E-B707-A6655EFBC626}</Project>
       <Name>Reusables.Diagnostics.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reusables\Reusables.csproj">
+      <Project>{8a6f0955-9952-43cc-acd8-327ff2db890b}</Project>
+      <Name>Reusables</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -23,5 +23,43 @@ namespace Reusables.Util.Extensions
                                .ToDictionary(member => member.Name,
                                              member => typeAccessor[instance, member.Name]);
         }
+
+        /// <summary>
+        /// Gets order of the given instance by its compile-time type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="instance"></param>
+        /// <returns></returns>
+        public static int GetOrder<T>(this T instance)
+        {
+            Requires.IsNotNull(instance, nameof(instance));
+
+            return typeof(T).GetOrderImpl();
+        }
+
+        /// <summary>
+        /// Gets order of the given instance by its run-time type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="instance"></param>
+        /// <returns></returns>
+        public static int GetRuntimeOrder<T>(this T instance)
+        {
+            Requires.IsNotNull(instance, nameof(instance));
+
+            return instance.GetType().GetOrderImpl();
+        }
+
+        private static int GetOrderImpl(this Type type)
+        {
+            var orderAttributes = type.GetCustomAttributes(typeof(OrderAttribute), true);
+
+            if (orderAttributes.Length == 0)
+            {
+                return 0;
+            }
+
+            return ((OrderAttribute) orderAttributes[0]).Value;
+        }
     }
 }
