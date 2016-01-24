@@ -59,6 +59,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Diagnostics.Loggi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.BuildingBlocks", "Reusables.BuildingBlocks\Reusables.BuildingBlocks.csproj", "{0B550DAA-AF2C-4167-8A56-D95B96E306DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocksDemo", "BuildingBlocksDemo\BuildingBlocksDemo.csproj", "{C79F15CB-18A7-442C-A8B5-C46BB5EB2924}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -169,6 +171,10 @@ Global
 		{0B550DAA-AF2C-4167-8A56-D95B96E306DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B550DAA-AF2C-4167-8A56-D95B96E306DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B550DAA-AF2C-4167-8A56-D95B96E306DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C79F15CB-18A7-442C-A8B5-C46BB5EB2924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C79F15CB-18A7-442C-A8B5-C46BB5EB2924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C79F15CB-18A7-442C-A8B5-C46BB5EB2924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C79F15CB-18A7-442C-A8B5-C46BB5EB2924}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -200,5 +206,6 @@ Global
 		{A6FCD242-9112-481B-A1F1-36DF8121ED8D} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{21CD9202-8E4C-4B91-87E2-C04C76DE7F36} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{0B550DAA-AF2C-4167-8A56-D95B96E306DD} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{C79F15CB-18A7-442C-A8B5-C46BB5EB2924} = {E1B89800-37AB-4E3E-912F-5B0680600976}
 	EndGlobalSection
 EndGlobal
