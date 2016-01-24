@@ -5,33 +5,6 @@ namespace Reusables.Util.Extensions
 {
     public static class DependencyResolutionExtensions
     {
-        private static IServiceProvider _serviceProvider;
-
-        /// <summary>
-        /// This plays as a dependency resolver. It should be set only once, while the application is bootstrapping.
-        /// </summary>
-        public static IServiceProvider ServiceProvider
-        {
-            private get
-            {
-                if (_serviceProvider == null)
-                {
-                    throw new MemberAccessException($"'{nameof(_serviceProvider)}' has not been set.");
-                }
-
-                return _serviceProvider;
-            }
-            set
-            {
-                if (_serviceProvider != null)
-                {
-                    throw new MemberAccessException($"'{nameof(_serviceProvider)}' has already been set. This should be set only once.");
-                }
-
-                _serviceProvider = value;
-            }
-        }
-
         public static TDecoratee DecoratedWith<TDecorator, TDecoratee>(this TDecoratee decoratee) where TDecorator : TDecoratee
         {
             return decoratee.DecoratedWith(typeof(TDecorator));
@@ -78,7 +51,7 @@ namespace Reusables.Util.Extensions
                                                                                       var parameterType = x.ParameterType;
                                                                                       return parameterType.IsAssignableFrom(decorateeType)
                                                                                                  ? decoratee
-                                                                                                 : ServiceProvider.GetService(parameterType);
+                                                                                                 : DefaultServiceProvider.Current.GetService(parameterType);
                                                                                   }).ToArray();
 
             return (TDecoratee) decoratorConstructor.Invoke(constructorParameters);

@@ -61,7 +61,7 @@ namespace Reusables.Util.Extensions.Tests
         {
             // arrange
             IBase decoratee = new Derived();
-            DependencyResolutionExtensions.ServiceProvider = _container;
+            DefaultServiceProvider.Current = _container;
 
             // act
             var decorated = decoratee.DecoratedWith(typeof(DecoratorWithDependency));
