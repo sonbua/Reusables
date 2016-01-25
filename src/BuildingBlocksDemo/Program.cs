@@ -21,6 +21,10 @@ namespace BuildingBlocksDemo
 
             BlockStyleRoutine();
 
+            Console.WriteLine("++++++++++++++++++++++++++++++++++");
+
+            BlockStyleUsingLinqRoutine();
+
             Console.ReadLine();
         }
 
@@ -54,6 +58,18 @@ namespace BuildingBlocksDemo
                                                .FollowedBy(Select<int, int>.With(x => x/2))
                                                .FollowedBy(Where<int>.With(x => x%2 == 1))
                                                .FollowedBy(ForEach<int>.With(Console.WriteLine));
+
+            handler.Handle(request);
+        }
+
+        private static void BlockStyleUsingLinqRoutine()
+        {
+            var request = new RangeRequest {Start = 1, Count = 10};
+
+            var handler = new RangeEnumerator().Select(x => x*x*x)
+                                               .Select(x => x/2)
+                                               .Where(x => x%2 == 1)
+                                               .ForEach(Console.WriteLine);
 
             handler.Handle(request);
         }

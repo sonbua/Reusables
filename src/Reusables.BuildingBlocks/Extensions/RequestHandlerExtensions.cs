@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Reusables.Diagnostics.Contracts;
+using Reusables.Util.Extensions;
 
 namespace Reusables.BuildingBlocks.Extensions
 {
@@ -35,6 +38,30 @@ namespace Reusables.BuildingBlocks.Extensions
             Requires.IsNotNull(action, nameof(action));
 
             return new SequentialRequestHandler<TRequest, TTemp, Nothing>(firstHandler, new AnonymousActionHandler<TTemp>(action));
+        }
+
+        public static IRequestHandler<TRequest, IEnumerable<TResult>> Select<TRequest, TSource, TResult>(this IRequestHandler<TRequest, IEnumerable<TSource>> handler, Func<TSource, TResult> selector)
+        {
+            Requires.IsNotNull(handler, nameof(handler));
+            Requires.IsNotNull(selector, nameof(selector));
+
+            return handler.FollowedBy(source => source.Select(selector));
+        }
+
+        public static IRequestHandler<TRequest, IEnumerable<TResult>> Where<TRequest, TResult>(this IRequestHandler<TRequest, IEnumerable<TResult>> handler, Func<TResult, bool> predicate)
+        {
+            Requires.IsNotNull(handler, nameof(handler));
+            Requires.IsNotNull(predicate, nameof(predicate));
+
+            return handler.FollowedBy(source => source.Where(predicate));
+        }
+
+        public static IRequestHandler<TRequest, Nothing> ForEach<TRequest, T>(this IRequestHandler<TRequest, IEnumerable<T>> handler, Action<T> action)
+        {
+            Requires.IsNotNull(handler, nameof(handler));
+            Requires.IsNotNull(action, nameof(action));
+
+            return handler.FollowedBy(source => source.ForEach(action));
         }
 
         private class SequentialRequestHandler<TRequest, TTemp, TResponse> : IRequestHandler<TRequest, TResponse>
