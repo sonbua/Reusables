@@ -48,6 +48,7 @@
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="ConversionExtensions.cs" />
     <Compile Include="DependencyResolutionExtensions.cs" />
+    <Compile Include="FuncExtensions.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="StreamExtensions.cs" />
     <Compile Include="StringExtensions.cs" />

@@ -45,6 +45,10 @@
       <Project>{0b550daa-af2c-4167-8a56-d95b96e306dd}</Project>
       <Name>Reusables.BuildingBlocks</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reusables.Diagnostics.Contracts\Reusables.Diagnostics.Contracts.csproj">
+      <Project>{a120d214-0b8b-4f1e-b707-a6655efbc626}</Project>
+      <Name>Reusables.Diagnostics.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Reusables\Reusables.csproj">
       <Project>{8a6f0955-9952-43cc-acd8-327ff2db890b}</Project>
       <Name>Reusables</Name>

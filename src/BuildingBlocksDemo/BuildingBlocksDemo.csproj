@@ -52,6 +52,10 @@
       <Project>{0b550daa-af2c-4167-8a56-d95b96e306dd}</Project>
       <Name>Reusables.BuildingBlocks</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reusables.Util.Extensions\Reusables.Util.Extensions.csproj">
+      <Project>{b93b3dec-c90e-4f3f-a23d-cc976e2192dd}</Project>
+      <Name>Reusables.Util.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Reusables\Reusables.csproj">
       <Project>{8a6f0955-9952-43cc-acd8-327ff2db890b}</Project>
       <Name>Reusables</Name>

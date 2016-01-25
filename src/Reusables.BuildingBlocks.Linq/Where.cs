@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Reusables.Diagnostics.Contracts;
 
 namespace Reusables.BuildingBlocks.Linq
 {
@@ -8,7 +9,7 @@ namespace Reusables.BuildingBlocks.Linq
     {
         private readonly Func<TSource, bool> _predicate;
 
-        public Where(Func<TSource, bool> predicate)
+        private Where(Func<TSource, bool> predicate)
         {
             _predicate = predicate;
         }
@@ -16,6 +17,13 @@ namespace Reusables.BuildingBlocks.Linq
         public IEnumerable<TSource> Handle(IEnumerable<TSource> request)
         {
             return request.Where(_predicate);
+        }
+
+        public static IRequestHandler<IEnumerable<TSource>, IEnumerable<TSource>> With(Func<TSource, bool> predicate)
+        {
+            Requires.IsNotNull(predicate, nameof(predicate));
+
+            return new Where<TSource>(predicate);
         }
     }
 }

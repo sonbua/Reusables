@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Reusables.Diagnostics.Contracts;
 
 namespace Reusables.BuildingBlocks.Linq
 {
@@ -7,7 +8,7 @@ namespace Reusables.BuildingBlocks.Linq
     {
         private readonly Action<TSource> _action;
 
-        public ForEach(Action<TSource> action)
+        private ForEach(Action<TSource> action)
         {
             _action = action;
         }
@@ -20,6 +21,13 @@ namespace Reusables.BuildingBlocks.Linq
             }
 
             return new Nothing();
+        }
+
+        public static IRequestHandler<IEnumerable<TSource>, Nothing> With(Action<TSource> action)
+        {
+            Requires.IsNotNull(action, nameof(action));
+
+            return new ForEach<TSource>(action);
         }
     }
 }

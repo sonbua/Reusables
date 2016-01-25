@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Reusables.BuildingBlocks;
+using Reusables.BuildingBlocks.Extensions;
 using Reusables.BuildingBlocks.Linq;
 
 namespace BuildingBlocksDemo
@@ -14,21 +15,13 @@ namespace BuildingBlocksDemo
 
             Console.WriteLine("++++++++++++++++++++++++++++++++++");
 
+            FuncChainingRoutine();
+
+            Console.WriteLine("++++++++++++++++++++++++++++++++++");
+
             BlockStyleRoutine();
 
             Console.ReadLine();
-        }
-
-        private static void BlockStyleRoutine()
-        {
-            var request = new RangeRequest {Start = 1, Count = 10};
-
-            var handler = new RangeEnumerator().FollowedBy(new Select<int, int>(x => x*x*x))
-                                               .FollowedBy(new Select<int, int>(x => x/2))
-                                               .FollowedBy(new Where<int>(x => x%2 == 1))
-                                               .FollowedBy(new ForEach<int>(Console.WriteLine));
-
-            handler.Handle(request);
         }
 
         private static void TradionalRoutine()
@@ -39,6 +32,30 @@ namespace BuildingBlocksDemo
                       .Where(x => x%2 == 1)
                       .ToList()
                       .ForEach(Console.WriteLine);
+        }
+
+        private static void FuncChainingRoutine()
+        {
+            Func<int, int, IEnumerable<int>> range = Enumerable.Range;
+
+            var handler = range.FollowedBy(Select<int, int>.With(x => x*x*x))
+                               .FollowedBy(Select<int, int>.With(x => x/2))
+                               .FollowedBy(Where<int>.With(x => x%2 == 1))
+                               .FollowedBy(ForEach<int>.With(Console.WriteLine));
+
+            handler(1, 10);
+        }
+
+        private static void BlockStyleRoutine()
+        {
+            var request = new RangeRequest {Start = 1, Count = 10};
+
+            var handler = new RangeEnumerator().FollowedBy(Select<int, int>.With(x => x*x*x))
+                                               .FollowedBy(Select<int, int>.With(x => x/2))
+                                               .FollowedBy(Where<int>.With(x => x%2 == 1))
+                                               .FollowedBy(ForEach<int>.With(Console.WriteLine));
+
+            handler.Handle(request);
         }
     }
 
