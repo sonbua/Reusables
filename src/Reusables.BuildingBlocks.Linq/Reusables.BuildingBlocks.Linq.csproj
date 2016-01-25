@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C79F15CB-18A7-442C-A8B5-C46BB5EB2924}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{EEF771A2-29B4-489C-BF1C-32D2533EB2EF}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BuildingBlocksDemo</RootNamespace>
-    <AssemblyName>BuildingBlocksDemo</AssemblyName>
+    <RootNamespace>Reusables.BuildingBlocks.Linq</RootNamespace>
+    <AssemblyName>Reusables.BuildingBlocks.Linq</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -37,17 +35,12 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="ForEach.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Select.cs" />
+    <Compile Include="Where.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Reusables.BuildingBlocks.Linq\Reusables.BuildingBlocks.Linq.csproj">
-      <Project>{eef771a2-29b4-489c-bf1c-32d2533eb2ef}</Project>
-      <Name>Reusables.BuildingBlocks.Linq</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Reusables.BuildingBlocks\Reusables.BuildingBlocks.csproj">
       <Project>{0b550daa-af2c-4167-8a56-d95b96e306dd}</Project>
       <Name>Reusables.BuildingBlocks</Name>

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Reusables;
 using Reusables.BuildingBlocks;
+using Reusables.BuildingBlocks.Linq;
 
 namespace BuildingBlocksDemo
 {
@@ -23,10 +23,10 @@ namespace BuildingBlocksDemo
         {
             var request = new RangeRequest {Start = 1, Count = 10};
 
-            var handler = new RangeEnumerator().FollowedBy(new LinqSelect<int, int>(x => x*x*x))
-                                               .FollowedBy(new LinqSelect<int, int>(x => x/2))
-                                               .FollowedBy(new LinqWhere<int>(x => x%2 == 1))
-                                               .FollowedBy(new LinqForEach<int>(Console.WriteLine));
+            var handler = new RangeEnumerator().FollowedBy(new Select<int, int>(x => x*x*x))
+                                               .FollowedBy(new Select<int, int>(x => x/2))
+                                               .FollowedBy(new Where<int>(x => x%2 == 1))
+                                               .FollowedBy(new ForEach<int>(Console.WriteLine));
 
             handler.Handle(request);
         }
@@ -47,56 +47,6 @@ namespace BuildingBlocksDemo
         IEnumerable<int> IRequestHandler<RangeRequest, IEnumerable<int>>.Handle(RangeRequest request)
         {
             return Enumerable.Range(request.Start, request.Count);
-        }
-    }
-
-    internal class LinqSelect<TIn, TOut> : IRequestHandler<IEnumerable<TIn>, IEnumerable<TOut>>
-    {
-        private readonly Func<TIn, TOut> _selector;
-
-        public LinqSelect(Func<TIn, TOut> selector)
-        {
-            _selector = selector;
-        }
-
-        public IEnumerable<TOut> Handle(IEnumerable<TIn> request)
-        {
-            return request.Select(_selector);
-        }
-    }
-
-    internal class LinqWhere<T> : IRequestHandler<IEnumerable<T>, IEnumerable<T>>
-    {
-        private readonly Func<T, bool> _predicate;
-
-        public LinqWhere(Func<T, bool> predicate)
-        {
-            _predicate = predicate;
-        }
-
-        public IEnumerable<T> Handle(IEnumerable<T> request)
-        {
-            return request.Where(_predicate);
-        }
-    }
-
-    internal class LinqForEach<T> : IRequestHandler<IEnumerable<T>, Nothing>
-    {
-        private readonly Action<T> _action;
-
-        public LinqForEach(Action<T> action)
-        {
-            _action = action;
-        }
-
-        public Nothing Handle(IEnumerable<T> request)
-        {
-            foreach (var item in request)
-            {
-                _action(item);
-            }
-
-            return new Nothing();
         }
     }
 
