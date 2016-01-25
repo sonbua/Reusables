@@ -4,6 +4,7 @@ using System.Linq;
 using Reusables.BuildingBlocks;
 using Reusables.BuildingBlocks.Extensions;
 using Reusables.BuildingBlocks.Linq;
+using Reusables.Util.Extensions;
 
 namespace BuildingBlocksDemo
 {
@@ -11,19 +12,24 @@ namespace BuildingBlocksDemo
     {
         private static void Main()
         {
+            Console.WriteLine("Traditional Routine");
             TradionalRoutine();
-
             Console.WriteLine("++++++++++++++++++++++++++++++++++");
 
+            Console.WriteLine("Function Chaining Routine");
             FuncChainingRoutine();
-
             Console.WriteLine("++++++++++++++++++++++++++++++++++");
 
+            Console.WriteLine("Function Chaining Using LINQ-like Syntax Routine");
+            FuncChainingUsingLinqLikeSyntaxRoutine();
+            Console.WriteLine("++++++++++++++++++++++++++++++++++");
+
+            Console.WriteLine("Block-Style Routine");
             BlockStyleRoutine();
-
             Console.WriteLine("++++++++++++++++++++++++++++++++++");
 
-            BlockStyleUsingLinqRoutine();
+            Console.WriteLine("Block-Style Using LINQ-like Syntax Routine");
+            BlockStyleUsingLinqLikeSyntaxRoutine();
 
             Console.ReadLine();
         }
@@ -50,6 +56,18 @@ namespace BuildingBlocksDemo
             handler(1, 10);
         }
 
+        private static void FuncChainingUsingLinqLikeSyntaxRoutine()
+        {
+            Func<int, int, IEnumerable<int>> range = Enumerable.Range;
+
+            var handler = range.Select(x => x*x*x)
+                               .Select(x => x/2)
+                               .Where(x => x%2 == 1)
+                               .ForEach(Console.WriteLine);
+
+            handler(1, 10);
+        }
+
         private static void BlockStyleRoutine()
         {
             var request = new RangeRequest {Start = 1, Count = 10};
@@ -62,7 +80,7 @@ namespace BuildingBlocksDemo
             handler.Handle(request);
         }
 
-        private static void BlockStyleUsingLinqRoutine()
+        private static void BlockStyleUsingLinqLikeSyntaxRoutine()
         {
             var request = new RangeRequest {Start = 1, Count = 10};
 
