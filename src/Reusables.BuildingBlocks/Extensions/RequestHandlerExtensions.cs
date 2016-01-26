@@ -71,9 +71,6 @@ namespace Reusables.BuildingBlocks.Extensions
 
             public SequentialRequestHandler(IRequestHandler<TRequest, TTemp> firstHandler, IRequestHandler<TTemp, TResponse> secondHandler)
             {
-                Requires.IsNotNull(firstHandler, nameof(firstHandler));
-                Requires.IsNotNull(secondHandler, nameof(secondHandler));
-
                 _firstHandler = firstHandler;
                 _secondHandler = secondHandler;
             }
