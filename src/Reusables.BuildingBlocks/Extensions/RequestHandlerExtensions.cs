@@ -40,6 +40,14 @@ namespace Reusables.BuildingBlocks.Extensions
             return new SequentialRequestHandler<TRequest, TTemp, Nothing>(firstHandler, new AnonymousActionHandler<TTemp>(action));
         }
 
+        public static IRequestHandler<TRequest, IEnumerable<TResult>> Where<TRequest, TResult>(this IRequestHandler<TRequest, IEnumerable<TResult>> handler, Func<TResult, bool> predicate)
+        {
+            Requires.IsNotNull(handler, nameof(handler));
+            Requires.IsNotNull(predicate, nameof(predicate));
+
+            return handler.FollowedBy(source => source.Where(predicate));
+        }
+
         public static IRequestHandler<TRequest, IEnumerable<TResult>> Select<TRequest, TSource, TResult>(this IRequestHandler<TRequest, IEnumerable<TSource>> handler, Func<TSource, TResult> selector)
         {
             Requires.IsNotNull(handler, nameof(handler));
@@ -48,12 +56,18 @@ namespace Reusables.BuildingBlocks.Extensions
             return handler.FollowedBy(source => source.Select(selector));
         }
 
-        public static IRequestHandler<TRequest, IEnumerable<TResult>> Where<TRequest, TResult>(this IRequestHandler<TRequest, IEnumerable<TResult>> handler, Func<TResult, bool> predicate)
+        public static IRequestHandler<TRequest, int> Count<TRequest, TSource>(this IRequestHandler<TRequest, IEnumerable<TSource>> handler)
+        {
+            Requires.IsNotNull(handler, nameof(handler));
+
+            return handler.FollowedBy(source => source.Count());
+        }
+        public static IRequestHandler<TRequest, int> Count<TRequest, TSource>(this IRequestHandler<TRequest, IEnumerable<TSource>> handler, Func<TSource, bool> predicate)
         {
             Requires.IsNotNull(handler, nameof(handler));
             Requires.IsNotNull(predicate, nameof(predicate));
 
-            return handler.FollowedBy(source => source.Where(predicate));
+            return handler.FollowedBy(source => source.Count(predicate));
         }
 
         public static IRequestHandler<TRequest, Nothing> ForEach<TRequest, T>(this IRequestHandler<TRequest, IEnumerable<T>> handler, Action<T> action)
