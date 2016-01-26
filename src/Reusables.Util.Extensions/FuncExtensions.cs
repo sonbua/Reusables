@@ -210,22 +210,6 @@ namespace Reusables.Util.Extensions
             return (arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16) => nextFunc(firstFunc(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16));
         }
 
-        public static Func<T, IEnumerable<TResult>> Select<T, TSource, TResult>(this Func<T, IEnumerable<TSource>> func, Func<TSource, TResult> selector)
-        {
-            Requires.IsNotNull(func, nameof(func));
-            Requires.IsNotNull(selector, nameof(selector));
-
-            return arg => func(arg).Select(selector);
-        }
-
-        public static Func<T1, T2, IEnumerable<TResult>> Select<T1, T2, TSource, TResult>(this Func<T1, T2, IEnumerable<TSource>> func, Func<TSource, TResult> selector)
-        {
-            Requires.IsNotNull(func, nameof(func));
-            Requires.IsNotNull(selector, nameof(selector));
-
-            return (arg1, arg2) => func(arg1, arg2).Select(selector);
-        }
-
         public static Func<T, IEnumerable<TResult>> Where<T, TResult>(this Func<T, IEnumerable<TResult>> func, Func<TResult, bool> predicate)
         {
             Requires.IsNotNull(func, nameof(func));
@@ -240,6 +224,22 @@ namespace Reusables.Util.Extensions
             Requires.IsNotNull(predicate, nameof(predicate));
 
             return (arg1, arg2) => func(arg1, arg2).Where(predicate);
+        }
+
+        public static Func<T, IEnumerable<TResult>> Select<T, TSource, TResult>(this Func<T, IEnumerable<TSource>> func, Func<TSource, TResult> selector)
+        {
+            Requires.IsNotNull(func, nameof(func));
+            Requires.IsNotNull(selector, nameof(selector));
+
+            return arg => func(arg).Select(selector);
+        }
+
+        public static Func<T1, T2, IEnumerable<TResult>> Select<T1, T2, TSource, TResult>(this Func<T1, T2, IEnumerable<TSource>> func, Func<TSource, TResult> selector)
+        {
+            Requires.IsNotNull(func, nameof(func));
+            Requires.IsNotNull(selector, nameof(selector));
+
+            return (arg1, arg2) => func(arg1, arg2).Select(selector);
         }
 
         public static Func<T, Nothing> ForEach<T, TSource>(this Func<T, IEnumerable<TSource>> func, Action<TSource> action)
