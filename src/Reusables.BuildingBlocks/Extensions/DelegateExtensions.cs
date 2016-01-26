@@ -27,28 +27,30 @@ namespace Reusables.BuildingBlocks.Extensions
             return new AnonymousActionHandler<TRequest>(action);
         }
 
-        public static Func<T, TResult> FollowedBy<T, TTemp, TResult>(this Func<T, TTemp> func, IRequestHandler<TTemp, TResult> requestHandler)
+        public static Func<T, TResult> ForwardCompose<T, TTemp, TResult>(this Func<T, TTemp> func, IRequestHandler<TTemp, TResult> requestHandler)
         {
             Requires.IsNotNull(func, nameof(func));
             Requires.IsNotNull(requestHandler, nameof(requestHandler));
 
-            return func.FollowedBy(requestHandler.Handle);
+            return func.ForwardCompose(requestHandler.Handle);
         }
 
-        public static Func<T1, T2, TResult> FollowedBy<T1, T2, TTemp, TResult>(this Func<T1, T2, TTemp> func, IRequestHandler<TTemp, TResult> requestHandler)
+        public static Func<T1, T2, TResult> ForwardCompose<T1, T2, TTemp, TResult>(this Func<T1, T2, TTemp> func, IRequestHandler<TTemp, TResult> requestHandler)
         {
             Requires.IsNotNull(func, nameof(func));
             Requires.IsNotNull(requestHandler, nameof(requestHandler));
 
-            return func.FollowedBy(requestHandler.Handle);
+            return func.ForwardCompose(requestHandler.Handle);
         }
 
-        public static Func<T1, T2, T3, TResult> FollowedBy<T1, T2, T3, TTemp, TResult>(this Func<T1, T2, T3, TTemp> func, IRequestHandler<TTemp, TResult> requestHandler)
+        public static Func<T1, T2, T3, TResult> ForwardCompose<T1, T2, T3, TTemp, TResult>(this Func<T1, T2, T3, TTemp> func, IRequestHandler<TTemp, TResult> requestHandler)
         {
             Requires.IsNotNull(func, nameof(func));
             Requires.IsNotNull(requestHandler, nameof(requestHandler));
 
-            return func.FollowedBy(requestHandler.Handle);
+            return func.ForwardCompose(requestHandler.Handle);
         }
+
+        // TODO: complete ForwardCompose list
     }
 }

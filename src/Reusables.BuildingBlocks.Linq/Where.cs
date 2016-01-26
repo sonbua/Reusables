@@ -19,7 +19,7 @@ namespace Reusables.BuildingBlocks.Linq
             return request.Where(_predicate);
         }
 
-        public static IRequestHandler<IEnumerable<TSource>, IEnumerable<TSource>> With(Func<TSource, bool> predicate)
+        public static IRequestHandler<IEnumerable<TSource>, IEnumerable<TSource>> Apply(Func<TSource, bool> predicate)
         {
             Requires.IsNotNull(predicate, nameof(predicate));
 

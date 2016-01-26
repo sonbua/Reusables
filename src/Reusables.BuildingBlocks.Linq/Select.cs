@@ -19,7 +19,7 @@ namespace Reusables.BuildingBlocks.Linq
             return request.Select(_selector);
         }
 
-        public static IRequestHandler<IEnumerable<TSource>, IEnumerable<TResult>> With(Func<TSource, TResult> selector)
+        public static IRequestHandler<IEnumerable<TSource>, IEnumerable<TResult>> Apply(Func<TSource, TResult> selector)
         {
             Requires.IsNotNull(selector, nameof(selector));
 

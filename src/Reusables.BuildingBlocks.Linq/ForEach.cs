@@ -23,7 +23,7 @@ namespace Reusables.BuildingBlocks.Linq
             return new Nothing();
         }
 
-        public static IRequestHandler<IEnumerable<TSource>, Nothing> With(Action<TSource> action)
+        public static IRequestHandler<IEnumerable<TSource>, Nothing> Apply(Action<TSource> action)
         {
             Requires.IsNotNull(action, nameof(action));
 

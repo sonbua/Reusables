@@ -8,7 +8,7 @@ namespace Reusables.BuildingBlocks.Extensions
 {
     public static class RequestHandlerExtensions
     {
-        public static IRequestHandler<TRequest, TResponse> FollowedBy<TRequest, TTemp, TResponse>(this IRequestHandler<TRequest, TTemp> firstHandler, IRequestHandler<TTemp, TResponse> secondHandler)
+        public static IRequestHandler<TRequest, TResponse> Forward<TRequest, TTemp, TResponse>(this IRequestHandler<TRequest, TTemp> firstHandler, IRequestHandler<TTemp, TResponse> secondHandler)
         {
             Requires.IsNotNull(firstHandler, nameof(firstHandler));
             Requires.IsNotNull(secondHandler, nameof(secondHandler));
@@ -16,7 +16,7 @@ namespace Reusables.BuildingBlocks.Extensions
             return new SequentialRequestHandler<TRequest, TTemp, TResponse>(firstHandler, secondHandler);
         }
 
-        public static IRequestHandler<TRequest, TResponse> FollowedBy<TRequest, TTemp, TResponse>(this IRequestHandler<TRequest, TTemp> firstHandler, Func<TTemp, TResponse> func)
+        public static IRequestHandler<TRequest, TResponse> Forward<TRequest, TTemp, TResponse>(this IRequestHandler<TRequest, TTemp> firstHandler, Func<TTemp, TResponse> func)
         {
             Requires.IsNotNull(firstHandler, nameof(firstHandler));
             Requires.IsNotNull(func, nameof(func));
@@ -24,7 +24,7 @@ namespace Reusables.BuildingBlocks.Extensions
             return new SequentialRequestHandler<TRequest, TTemp, TResponse>(firstHandler, new AnonymousFuncHandler<TTemp, TResponse>(func));
         }
 
-        public static IRequestHandler<TRequest, bool> FollowedBy<TRequest, TTemp>(this IRequestHandler<TRequest, TTemp> firstHandler, Predicate<TTemp> predicate)
+        public static IRequestHandler<TRequest, bool> Forward<TRequest, TTemp>(this IRequestHandler<TRequest, TTemp> firstHandler, Predicate<TTemp> predicate)
         {
             Requires.IsNotNull(firstHandler, nameof(firstHandler));
             Requires.IsNotNull(predicate, nameof(predicate));
@@ -32,7 +32,7 @@ namespace Reusables.BuildingBlocks.Extensions
             return new SequentialRequestHandler<TRequest, TTemp, bool>(firstHandler, new AnonymousPredicateHandler<TTemp>(predicate));
         }
 
-        public static IRequestHandler<TRequest, Nothing> FollowedBy<TRequest, TTemp>(this IRequestHandler<TRequest, TTemp> firstHandler, Action<TTemp> action)
+        public static IRequestHandler<TRequest, Nothing> Forward<TRequest, TTemp>(this IRequestHandler<TRequest, TTemp> firstHandler, Action<TTemp> action)
         {
             Requires.IsNotNull(firstHandler, nameof(firstHandler));
             Requires.IsNotNull(action, nameof(action));
@@ -45,7 +45,7 @@ namespace Reusables.BuildingBlocks.Extensions
             Requires.IsNotNull(handler, nameof(handler));
             Requires.IsNotNull(predicate, nameof(predicate));
 
-            return handler.FollowedBy(source => source.Where(predicate));
+            return handler.Forward(source => source.Where(predicate));
         }
 
         public static IRequestHandler<TRequest, IEnumerable<TResult>> Select<TRequest, TSource, TResult>(this IRequestHandler<TRequest, IEnumerable<TSource>> handler, Func<TSource, TResult> selector)
@@ -53,21 +53,21 @@ namespace Reusables.BuildingBlocks.Extensions
             Requires.IsNotNull(handler, nameof(handler));
             Requires.IsNotNull(selector, nameof(selector));
 
-            return handler.FollowedBy(source => source.Select(selector));
+            return handler.Forward(source => source.Select(selector));
         }
 
         public static IRequestHandler<TRequest, int> Count<TRequest, TSource>(this IRequestHandler<TRequest, IEnumerable<TSource>> handler)
         {
             Requires.IsNotNull(handler, nameof(handler));
 
-            return handler.FollowedBy(source => source.Count());
+            return handler.Forward(source => source.Count());
         }
         public static IRequestHandler<TRequest, int> Count<TRequest, TSource>(this IRequestHandler<TRequest, IEnumerable<TSource>> handler, Func<TSource, bool> predicate)
         {
             Requires.IsNotNull(handler, nameof(handler));
             Requires.IsNotNull(predicate, nameof(predicate));
 
-            return handler.FollowedBy(source => source.Count(predicate));
+            return handler.Forward(source => source.Count(predicate));
         }
 
         public static IRequestHandler<TRequest, Nothing> ForEach<TRequest, T>(this IRequestHandler<TRequest, IEnumerable<T>> handler, Action<T> action)
@@ -75,7 +75,7 @@ namespace Reusables.BuildingBlocks.Extensions
             Requires.IsNotNull(handler, nameof(handler));
             Requires.IsNotNull(action, nameof(action));
 
-            return handler.FollowedBy(source => source.ForEach(action));
+            return handler.Forward(source => source.ForEach(action));
         }
 
         private class SequentialRequestHandler<TRequest, TTemp, TResponse> : IRequestHandler<TRequest, TResponse>
