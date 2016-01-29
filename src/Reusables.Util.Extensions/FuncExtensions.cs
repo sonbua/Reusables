@@ -242,6 +242,13 @@ namespace Reusables.Util.Extensions
             return (arg1, arg2) => func(arg1, arg2).Select(selector);
         }
 
+        public static Func<T, List<TSource>> ToList<T, TSource>(this Func<T, IEnumerable<TSource>> func)
+        {
+            Requires.IsNotNull(func, nameof(func));
+
+            return arg => func(arg).ToList();
+        }
+
         public static Func<T, Nothing> ForEach<T, TSource>(this Func<T, IEnumerable<TSource>> func, Action<TSource> action)
         {
             Requires.IsNotNull(func, nameof(func));
