@@ -16,9 +16,7 @@ namespace Reusables.BuildingBlocks.Linq
         public Nothing Handle(IEnumerable<TSource> request)
         {
             foreach (var item in request)
-            {
                 _action(item);
-            }
 
             return new Nothing();
         }

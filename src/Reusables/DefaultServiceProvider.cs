@@ -14,9 +14,7 @@ namespace Reusables
             get
             {
                 if (_resolver == null)
-                {
                     throw new MemberAccessException($"'{nameof(_resolver)}' has not been set.");
-                }
 
                 return _resolver;
             }

@@ -19,9 +19,7 @@ namespace MailingServiceDemo.Database
             lock (_tables)
             {
                 if (_tables.ContainsKey(typeof (TEntity)))
-                {
                     return (IDbSet<TEntity>) _tables[typeof (TEntity)];
-                }
 
                 var table = new InMemoryDbSet<TEntity>();
 

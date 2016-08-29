@@ -55,9 +55,7 @@ namespace Reusables.Util.Extensions
             var orderAttributes = type.GetCustomAttributes(typeof(OrderAttribute), true);
 
             if (orderAttributes.Length == 0)
-            {
                 return 0;
-            }
 
             return ((OrderAttribute) orderAttributes[0]).Value;
         }

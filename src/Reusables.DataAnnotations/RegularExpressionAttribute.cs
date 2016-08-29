@@ -8,14 +8,12 @@ namespace Reusables.DataAnnotations
         public RegularExpressionAttribute(string pattern)
         {
             if (string.IsNullOrEmpty(pattern))
-            {
                 // TODO: resource
                 throw new ArgumentException("The pattern must be set to a valid regular expression.");
-            }
 
             Pattern = pattern;
         }
 
-        public string Pattern { get; private set; }
+        public string Pattern { get; }
     }
 }

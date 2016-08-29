@@ -31,9 +31,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Attributes
         public void OnActionExecuted(ExceptionLoggingAttribute attribute, ActionExecutedContext filterContext)
         {
             if (filterContext.Exception == null)
-            {
                 return;
-            }
 
             _logger.Error(filterContext.Exception, ExtractRequestInfo(filterContext));
 
@@ -52,9 +50,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Attributes
         private static void RedirectToErrorPage(ActionExecutedContext filterContext)
         {
             if (!filterContext.HttpContext.IsCustomErrorEnabled)
-            {
                 return;
-            }
 
             var controllerName = filterContext.RouteData.Values["controller"].ToString();
             var actionName = filterContext.RouteData.Values["action"].ToString();

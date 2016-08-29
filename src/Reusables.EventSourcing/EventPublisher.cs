@@ -32,9 +32,7 @@ namespace Reusables.EventSourcing
             }
 
             foreach (dynamic handler in handlers)
-            {
                 handler.Handle((dynamic) @event);
-            }
         }
 
         public async Task PublishAsync<TEvent>(TEvent @event)
@@ -53,9 +51,7 @@ namespace Reusables.EventSourcing
             var tasks = new List<Task>();
 
             foreach (dynamic handler in handlers)
-            {
                 tasks.Add(handler.HandleAsync((dynamic) @event));
-            }
 
             await Task.WhenAll(tasks).ConfigureAwait(false);
         }

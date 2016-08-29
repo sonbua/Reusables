@@ -71,9 +71,7 @@ namespace Reusables.Util.Extensions
                 }
 
                 if (index >= source.Length)
-                {
                     continue;
-                }
 
                 maskedInput += source[index];
                 index++;
@@ -170,9 +168,7 @@ namespace Reusables.Util.Extensions
             Requires.IsNotNull(removedChars, nameof(removedChars));
 
             if (removedChars.Length == 0)
-            {
                 return source;
-            }
 
             return source.ReplaceImpl(removedChars, string.Empty);
         }
@@ -190,9 +186,7 @@ namespace Reusables.Util.Extensions
             Requires.IsNotNull(removedStrings, nameof(removedStrings));
 
             if (source.Length == 0 || removedStrings.Length == 0)
-            {
                 return source;
-            }
 
             return source.Replace(removedStrings, string.Empty);
         }
@@ -211,9 +205,7 @@ namespace Reusables.Util.Extensions
             Requires.IsNotNull(oldChars, nameof(oldChars));
 
             if (source.Length == 0 || oldChars.Length == 0)
-            {
                 return source;
-            }
 
             return source.ReplaceImpl(oldChars, substituent);
         }
@@ -222,9 +214,7 @@ namespace Reusables.Util.Extensions
         {
             var builder = new StringBuilder(source);
             foreach (var c in oldChars)
-            {
                 builder.Replace(c.ToString(), substituent);
-            }
             return builder.ToString();
         }
 
@@ -248,9 +238,7 @@ namespace Reusables.Util.Extensions
         {
             var builder = new StringBuilder(source);
             foreach (var oldString in oldStrings)
-            {
                 builder.Replace(oldString, substituent);
-            }
             return builder.ToString();
         }
 
@@ -265,13 +253,9 @@ namespace Reusables.Util.Extensions
         public static string SafeFormat(this string format, params object[] args)
         {
             if (args == null)
-            {
                 return string.Format(format, string.Empty);
-            }
             if (args.Length == 0)
-            {
                 return format;
-            }
 
             var safeArgs = args.Select(o => o ?? string.Empty).ToArray();
             return string.Format(format, safeArgs);

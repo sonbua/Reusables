@@ -11,6 +11,7 @@ namespace CqrsEventSourcingDemo.Web
 {
     public class MvcApplication : HttpApplication
     {
+        private const string _KEY = "tq8OuyxHpDgkRg54klfpqg==";
         private static ILogger _logger;
 
         protected void Application_Start()
@@ -29,34 +30,27 @@ namespace CqrsEventSourcingDemo.Web
         protected void Application_BeginRequest()
         {
             var context = HttpContext.Current;
-            const string key = "tq8OuyxHpDgkRg54klfpqg==";
 
-            if (context.Items.Contains(key))
-            {
+            if (context.Items.Contains(_KEY))
                 return;
-            }
 
-            var mutex = string.Intern($"{key}:{context.GetHashCode()}");
+            var mutex = string.Intern($"{_KEY}:{context.GetHashCode()}");
 
             lock (mutex)
-            {
-                if (!context.Items.Contains(key))
-                {
-                    context.Items[key] = Guid.NewGuid();
-                }
-            }
+                if (!context.Items.Contains(_KEY))
+                    context.Items[_KEY] = Guid.NewGuid();
 
             var stopwatch = new Stopwatch();
 
-            HttpContext.Current.Items["tq8OuyxHpDgkRg54klfpqg==_Stopwatch"] = stopwatch;
+            HttpContext.Current.Items[_KEY + "_Stopwatch"] = stopwatch;
 
             stopwatch.Start();
         }
 
         protected void Application_EndRequest()
         {
-            var requestId = HttpContext.Current.Items["tq8OuyxHpDgkRg54klfpqg=="];
-            var stopwatch = (Stopwatch) HttpContext.Current.Items["tq8OuyxHpDgkRg54klfpqg==_Stopwatch"];
+            var requestId = HttpContext.Current.Items[_KEY];
+            var stopwatch = (Stopwatch) HttpContext.Current.Items[_KEY + "_Stopwatch"];
 
             stopwatch.Stop();
 

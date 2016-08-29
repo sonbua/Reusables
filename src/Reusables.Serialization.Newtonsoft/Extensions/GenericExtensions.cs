@@ -30,9 +30,7 @@ namespace Reusables.Serialization.Newtonsoft.Extensions
                 sourceStream.TryToRewind();
 
                 using (var streamReader = new StreamReader(sourceStream))
-                {
                     return streamReader.ReadToEnd();
-                }
             }
         }
 
@@ -41,17 +39,15 @@ namespace Reusables.Serialization.Newtonsoft.Extensions
             Requires.IsNotNull(source, nameof(source));
 
             using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream))
             {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Write(source);
-                    writer.Flush();
-                    stream.TryToRewind();
+                writer.Write(source);
+                writer.Flush();
+                stream.TryToRewind();
 
-                    var serializer = new DataContractSerializer(typeof (T));
+                var serializer = new DataContractSerializer(typeof(T));
 
-                    return (T) serializer.ReadObject(stream);
-                }
+                return (T)serializer.ReadObject(stream);
             }
         }
     }

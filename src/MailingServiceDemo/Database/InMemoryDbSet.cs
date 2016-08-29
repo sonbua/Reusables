@@ -14,9 +14,7 @@ namespace MailingServiceDemo.Database
         public void Add(TEntity entity)
         {
             if (!_set.ContainsKey(entity.Id))
-            {
                 _set.Add(entity.Id, entity);
-            }
         }
 
         public void Update(Guid id, Action<TEntity> updateAction)

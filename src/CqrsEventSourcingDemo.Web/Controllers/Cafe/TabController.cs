@@ -69,7 +69,6 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
                 var menuItem = StaticData.Menu.Single(item => item.MenuNumber == lineItem.MenuNumber);
 
                 for (var i = 0; i < lineItem.NumberToOrder; i++)
-                {
                     yield return new OrderedItem
                                  {
                                      MenuNumber = lineItem.MenuNumber,
@@ -77,7 +76,6 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
                                      IsDrink = menuItem.IsDrink,
                                      Price = menuItem.Price
                                  };
-                }
             }
         }
 
@@ -120,13 +118,11 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
             var drinks = servedMenuNumbers.Where(item => isDrinkLookup[item]).ToList();
 
             if (drinks.Any())
-            {
                 _dispatcher.DispatchCommand(new MarkDrinksServed
                                             {
                                                 TabId = tabId,
                                                 MenuNumbers = servedMenuNumbers
                                             });
-            }
         }
 
         private void DispatchMarkFoodServedCommand(Guid tabId, List<int> servedMenuNumbers, Dictionary<int, bool> isDrinkLookup)
@@ -134,13 +130,11 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
             var food = servedMenuNumbers.Where(item => !isDrinkLookup[item]).ToList();
 
             if (food.Any())
-            {
                 _dispatcher.DispatchCommand(new MarkFoodServed
                                             {
                                                 Id = tabId,
                                                 MenuNumbers = food
                                             });
-            }
         }
     }
 }

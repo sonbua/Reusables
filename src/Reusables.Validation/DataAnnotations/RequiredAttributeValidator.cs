@@ -10,17 +10,13 @@ namespace Reusables.Validation.DataAnnotations
             Requires.IsNotNull(context, nameof(context));
 
             if (value == null)
-            {
                 // TODO: resource
                 return new ValidationResult($"The {context.MemberName} field is required.", context.MemberName);
-            }
 
             var str = value as string;
 
             if (str == null || attribute.AllowEmptyString || str.Trim().Length > 0)
-            {
                 return ValidationResult.Success;
-            }
 
             // TODO: resource
             return new ValidationResult($"The {context.MemberName} field is required.", context.MemberName);

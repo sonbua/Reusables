@@ -27,15 +27,11 @@ namespace Reusables.Web.Mvc5
                     skipNextFilters = actionFilter.SkipNextFilters;
 
                     if (skipNextFilters)
-                    {
                         break;
-                    }
                 }
 
                 if (skipNextFilters)
-                {
                     break;
-                }
             }
         }
 
@@ -52,15 +48,11 @@ namespace Reusables.Web.Mvc5
                     skipNextFilters = actionFilter.SkipNextFilters;
 
                     if (skipNextFilters)
-                    {
                         break;
-                    }
                 }
 
                 if (skipNextFilters)
-                {
                     break;
-                }
             }
         }
 

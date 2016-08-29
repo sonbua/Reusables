@@ -15,9 +15,7 @@ namespace Reusables.Configuration
             get
             {
                 if (_rootElementName != null)
-                {
                     return _rootElementName;
-                }
 
                 var xmlRootAttributes = typeof (T).GetCustomAttributes(typeof (XmlRootAttribute), false)
                                                   .Cast<XmlRootAttribute>()

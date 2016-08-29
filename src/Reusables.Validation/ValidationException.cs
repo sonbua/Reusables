@@ -31,10 +31,10 @@ namespace Reusables.Validation
         {
         }
 
-        public ValidationAttribute ValidationAttribute { get; private set; }
+        public ValidationAttribute ValidationAttribute { get; }
 
         public ValidationResult ValidationResult => _validationResult ?? (_validationResult = new ValidationResult(Message, string.Empty));
 
-        public object Value { get; private set; }
+        public object Value { get; }
     }
 }

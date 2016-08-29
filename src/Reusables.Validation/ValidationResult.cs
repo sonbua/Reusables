@@ -15,8 +15,8 @@ namespace Reusables.Validation
             MemberName = memberName;
         }
 
-        public string ErrorMessage { get; private set; }
+        public string ErrorMessage { get; }
 
-        public string MemberName { get; private set; }
+        public string MemberName { get; }
     }
 }

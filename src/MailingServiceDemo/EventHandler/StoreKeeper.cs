@@ -35,7 +35,6 @@ namespace MailingServiceDemo.EventHandler
         public void Handle(MailRequestAccepted @event)
         {
             foreach (var mailMessage in @event.Messages)
-            {
                 _dbContext.Set<OutboxMessage>().Add(new OutboxMessage
                                                     {
                                                         Id = Guid.NewGuid(),
@@ -44,7 +43,6 @@ namespace MailingServiceDemo.EventHandler
                                                         Priority = mailMessage.Priority,
                                                         QueuedAt = DateTime.UtcNow
                                                     });
-            }
 
             _eventPublisher.Publish(new OutboxManagementNeeded());
         }
@@ -137,7 +135,6 @@ namespace MailingServiceDemo.EventHandler
         public async Task HandleAsync(MailRequestAccepted @event)
         {
             foreach (var mailMessage in @event.Messages)
-            {
                 _dbContext.Set<OutboxMessage>().Add(new OutboxMessage
                                                     {
                                                         Id = Guid.NewGuid(),
@@ -146,7 +143,6 @@ namespace MailingServiceDemo.EventHandler
                                                         Priority = mailMessage.Priority,
                                                         QueuedAt = DateTime.UtcNow
                                                     });
-            }
 
             await _eventPublisher.PublishAsync(new OutboxManagementNeeded()).ConfigureAwait(false);
         }

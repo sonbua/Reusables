@@ -16,9 +16,7 @@ namespace CqrsEventSourcingDemo.AggregateRoot
         public TabAggregate(IEnumerable<object> history)
         {
             foreach (var @event in history)
-            {
                 Apply(@event);
-            }
         }
 
         public void OpenTab(Guid id, int tableNumber, string waiter)
@@ -36,24 +34,20 @@ namespace CqrsEventSourcingDemo.AggregateRoot
             var drinks = orderedItems.FindAll(item => item.IsDrink);
 
             if (drinks.Any())
-            {
                 Publish(new DrinkOrdered
                         {
                             TabId = Id,
                             Items = drinks
                         });
-            }
 
             var food = orderedItems.FindAll(item => !item.IsDrink);
 
             if (food.Any())
-            {
                 Publish(new FoodOrdered
                         {
                             TabId = Id,
                             Items = food
                         });
-            }
         }
 
         public void MarkDrinkServed(List<int> menuNumbers)

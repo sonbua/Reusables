@@ -15,9 +15,7 @@ namespace Reusables.EventSourcing.Extensions
             var eventType = @event.GetType();
 
             if (!EventHandlerCache<TAggregate>.Instance.TryGetValue(eventType, out handler))
-            {
                 return;
-            }
 
             try
             {

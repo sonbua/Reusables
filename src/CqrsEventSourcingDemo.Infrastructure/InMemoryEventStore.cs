@@ -25,9 +25,7 @@ namespace CqrsEventSourcingDemo.Infrastructure
             List<EventData> eventDataHistory;
 
             if (!_eventStorage.TryGetValue(id, out eventDataHistory))
-            {
                 return _aggregateFactory.Create<TAggregate>(new object[0]);
-            }
 
             var history = eventDataHistory.Select(x => x.FromEventData());
 
@@ -44,9 +42,7 @@ namespace CqrsEventSourcingDemo.Infrastructure
             var events = aggregate.GetUncommittedEvents();
 
             if (events.IsNullOrEmpty())
-            {
                 return;
-            }
 
             var aggregateType = aggregate.GetType().Name;
             var originalVersion = aggregate.Version - events.LongLength + 1;
@@ -56,18 +52,12 @@ namespace CqrsEventSourcingDemo.Infrastructure
             List<EventData> existingEvents;
 
             if (_eventStorage.TryGetValue(aggregate.Id, out existingEvents))
-            {
                 existingEvents.AddRange(eventsToSave);
-            }
             else
-            {
                 _eventStorage.Add(aggregate.Id, eventsToSave);
-            }
 
             foreach (var @event in events)
-            {
                 _eventPublisher.Publish(@event);
-            }
 
             aggregate.ClearUncommittedEvents();
         }

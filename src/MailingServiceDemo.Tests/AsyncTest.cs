@@ -238,33 +238,23 @@ namespace MailingServiceDemo.Tests
 
             _logger.Info($">> {nameof(OutboxMessage)} table:");
             foreach (var message in _dbContext.Set<OutboxMessage>())
-            {
                 _logger.Info($"   > {message.ToJson()}");
-            }
 
             _logger.Info($">> {nameof(OngoingMessage)} table:");
             foreach (var message in _dbContext.Set<OngoingMessage>())
-            {
                 _logger.Info($"   > {message.ToJson()}");
-            }
 
             _logger.Info($">> {nameof(FaultMessage)} table:");
             foreach (var message in _dbContext.Set<FaultMessage>())
-            {
                 _logger.Info($"   > {message.ToJson()}");
-            }
 
             _logger.Info($">> {nameof(SentMessage)} table:");
             foreach (var message in _dbContext.Set<SentMessage>())
-            {
                 _logger.Info($"   > {message.ToJson()}");
-            }
 
             _logger.Info($">> {nameof(SuspiciousMessage)} table:");
             foreach (var message in _dbContext.Set<SuspiciousMessage>())
-            {
                 _logger.Info($"   > {message.ToJson()}");
-            }
         }
     }
 

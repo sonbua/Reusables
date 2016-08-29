@@ -14,8 +14,8 @@ namespace Reusables.Validation.DataAnnotations
             MemberName = memberName;
         }
 
-        public Type ObjectType { get; private set; }
+        public Type ObjectType { get; }
 
-        public string MemberName { get; private set; }
+        public string MemberName { get; }
     }
 }

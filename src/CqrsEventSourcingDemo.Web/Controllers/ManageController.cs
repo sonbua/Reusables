@@ -58,34 +58,22 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         private static string StatusMessage(ManageMessageId? message)
         {
             if (message == ManageMessageId.ChangePasswordSuccess)
-            {
                 return "Your password has been changed.";
-            }
 
             if (message == ManageMessageId.SetPasswordSuccess)
-            {
                 return "Your password has been set.";
-            }
 
             if (message == ManageMessageId.SetTwoFactorSuccess)
-            {
                 return "Your two-factor authentication provider has been set.";
-            }
 
             if (message == ManageMessageId.Error)
-            {
                 return "An error has occurred.";
-            }
 
             if (message == ManageMessageId.AddPhoneSuccess)
-            {
                 return "Your phone number was added.";
-            }
 
             if (message == ManageMessageId.RemovePhoneSuccess)
-            {
                 return "Your phone number was removed.";
-            }
 
             return string.Empty;
         }
@@ -102,9 +90,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
                 if (user != null)
-                {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                }
                 message = ManageMessageId.RemoveLoginSuccess;
             }
             else
@@ -128,9 +114,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
             // Generate the token and send it
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
             if (UserManager.SmsService != null)
@@ -154,9 +138,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
             await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user != null)
-            {
                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-            }
             return RedirectToAction("Index", "Manage");
         }
 
@@ -169,9 +151,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
             await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), false);
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user != null)
-            {
                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-            }
             return RedirectToAction("Index", "Manage");
         }
 
@@ -191,17 +171,13 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
             var result = await UserManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.PhoneNumber, model.Code);
             if (result.Succeeded)
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
                 if (user != null)
-                {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                }
                 return RedirectToAction("Index", new {Message = ManageMessageId.AddPhoneSuccess});
             }
             // If we got this far, something failed, redisplay form
@@ -215,14 +191,10 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         {
             var result = await UserManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
             if (!result.Succeeded)
-            {
                 return RedirectToAction("Index", new {Message = ManageMessageId.Error});
-            }
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user != null)
-            {
                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-            }
             return RedirectToAction("Index", new {Message = ManageMessageId.RemovePhoneSuccess});
         }
 
@@ -240,17 +212,13 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
             var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
             if (result.Succeeded)
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
                 if (user != null)
-                {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                }
                 return RedirectToAction("Index", new {Message = ManageMessageId.ChangePasswordSuccess});
             }
             AddErrors(result);
@@ -277,9 +245,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
                 {
                     var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
                     if (user != null)
-                    {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    }
                     return RedirectToAction("Index", new {Message = ManageMessageId.SetPasswordSuccess});
                 }
                 AddErrors(result);
@@ -299,9 +265,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
                           : "";
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user == null)
-            {
                 return View("Error");
-            }
             var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
             var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
             ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
@@ -326,11 +290,9 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
+            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(_XSRF_KEY, User.Identity.GetUserId());
             if (loginInfo == null)
-            {
                 return RedirectToAction("ManageLogins", new {Message = ManageMessageId.Error});
-            }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new {Message = ManageMessageId.Error});
         }
@@ -349,7 +311,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         #region Helpers
 
         // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
+        private const string _XSRF_KEY = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -359,9 +321,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
-            {
                 ModelState.AddModelError("", error);
-            }
         }
 
         private bool HasPassword()

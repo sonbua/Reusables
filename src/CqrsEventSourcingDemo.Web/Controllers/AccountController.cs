@@ -54,9 +54,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -83,9 +81,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         {
             // Require that the user has already logged in via username/password or external login
             if (!await SignInManager.HasBeenVerifiedAsync())
-            {
                 return View("Error");
-            }
             return View(new VerifyCodeViewModel {Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe});
         }
 
@@ -97,9 +93,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
 
             // The following code protects for brute force attacks against the two factor codes. 
             // If a user enters incorrect codes for a specified amount of time then the user account 
@@ -163,9 +157,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
-            {
                 return View("Error");
-            }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
@@ -189,10 +181,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null || !await UserManager.IsEmailConfirmedAsync(user.Id))
-                {
-                    // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
-                }
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
@@ -230,20 +219,13 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
             var user = await UserManager.FindByNameAsync(model.Email);
             if (user == null)
-            {
-                // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
-            {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
             AddErrors(result);
             return View();
         }
@@ -274,9 +256,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
             if (userId == null)
-            {
                 return View("Error");
-            }
             var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
             var factorOptions = userFactors.Select(purpose => new SelectListItem {Text = purpose, Value = purpose}).ToList();
             return View(new SendCodeViewModel {Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe});
@@ -290,15 +270,11 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         public async Task<ActionResult> SendCode(SendCodeViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View();
-            }
 
             // Generate the token and send it
             if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
-            {
                 return View("Error");
-            }
             return RedirectToAction("VerifyCode", new {Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe});
         }
 
@@ -309,9 +285,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
-            {
                 return RedirectToAction("Login");
-            }
 
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
@@ -340,18 +314,14 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
-            {
                 return RedirectToAction("Index", "Manage");
-            }
 
             if (ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
                 if (info == null)
-                {
                     return View("ExternalLoginFailure");
-                }
                 var user = new ApplicationUser {UserName = model.Email, Email = model.Email};
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
@@ -411,24 +381,20 @@ namespace CqrsEventSourcingDemo.Web.Controllers
         #region Helpers
 
         // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
+        private const string _XSRF_KEY = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
-            {
                 ModelState.AddModelError("", error);
-            }
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
-            {
                 return Redirect(returnUrl);
-            }
             return RedirectToAction("Index", "Home");
         }
 
@@ -456,9 +422,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers
             {
                 var properties = new AuthenticationProperties {RedirectUri = RedirectUri};
                 if (UserId != null)
-                {
-                    properties.Dictionary[XsrfKey] = UserId;
-                }
+                    properties.Dictionary[_XSRF_KEY] = UserId;
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }

@@ -31,9 +31,7 @@ namespace Reusables.Util.Extensions
         {
             var stringBuilder = new StringBuilder();
             foreach (var item in source)
-            {
                 stringBuilder.Append(func(item));
-            }
             return stringBuilder.ToString();
         }
 
@@ -42,16 +40,12 @@ namespace Reusables.Util.Extensions
             Requires.IsNotNull(source, nameof(source));
 
             if (chunkSize <= 0)
-            {
                 throw new ArgumentException("Chunk size must be at least 1.");
-            }
 
             var sourceArray = source.ToArray();
 
             for (var i = 0; i < sourceArray.Length; i += chunkSize)
-            {
                 yield return sourceArray.Skip(i).Take(chunkSize);
-            }
         }
 
         /// <summary>
@@ -67,9 +61,7 @@ namespace Reusables.Util.Extensions
             Requires.IsNotNull(action, nameof(action));
 
             foreach (var item in source)
-            {
                 action(item);
-            }
         }
 
         /// <summary>
@@ -83,12 +75,8 @@ namespace Reusables.Util.Extensions
             Requires.IsNotNull(source, nameof(source));
 
             using (var enumerator = source.GetEnumerator())
-            {
                 if (enumerator.MoveNext())
-                {
                     return false;
-                }
-            }
 
             return true;
         }
@@ -116,14 +104,10 @@ namespace Reusables.Util.Extensions
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> source)
         {
             if (source == null)
-            {
                 return true;
-            }
 
             using (var enumerator = source.GetEnumerator())
-            {
                 return !enumerator.MoveNext();
-            }
         }
 
         /// <summary>

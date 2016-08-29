@@ -17,9 +17,7 @@ namespace CqrsEventSourcingDemo.Web.Abstractions.Decorators
         public void Handle(TCommand command)
         {
             foreach (var validationResult in _validator.Validate(command))
-            {
                 throw new ValidationException(validationResult.ErrorMessage);
-            }
 
             _innerHandler.Handle(command);
         }

@@ -8,10 +8,8 @@ namespace Reusables.DataAnnotations
         public RangeAttribute(int minimum, int maximum)
         {
             if (minimum > maximum)
-            {
                 // TODO: resource
                 throw new InvalidOperationException("Max must be greater than or equal to min.");
-            }
 
             Minimum = minimum;
             Maximum = maximum;
@@ -20,17 +18,15 @@ namespace Reusables.DataAnnotations
         public RangeAttribute(double minimum, double maximum)
         {
             if (minimum > maximum)
-            {
                 // TODO: resource
                 throw new InvalidOperationException("Max must be greater than or equal to min.");
-            }
 
             Minimum = minimum;
             Maximum = maximum;
         }
 
-        public object Minimum { get; private set; }
+        public object Minimum { get; }
 
-        public object Maximum { get; private set; }
+        public object Maximum { get; }
     }
 }

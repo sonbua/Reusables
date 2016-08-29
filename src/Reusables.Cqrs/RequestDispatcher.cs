@@ -49,9 +49,7 @@ namespace Reusables.Cqrs
             dynamic handler = _serviceProvider.GetService(handlerType);
 
             if (handler != null)
-            {
                 return handler.Handle((dynamic) query);
-            }
 
             throw new NotSupportedException($"No handler found for this query: {queryType}");
         }
@@ -64,9 +62,7 @@ namespace Reusables.Cqrs
             dynamic handler = _serviceProvider.GetService(handlerType);
 
             if (handler != null)
-            {
                 return await handler.HandleAsync((dynamic) query).ConfigureAwait(false);
-            }
 
             throw new NotSupportedException($"No asynchronous handler found for this query: {queryType}");
         }

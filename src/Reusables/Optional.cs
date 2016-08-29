@@ -23,9 +23,7 @@ namespace Reusables
             get
             {
                 if (HasValue)
-                {
                     return _value;
-                }
 
                 throw new InvalidOperationException("Value has not been set.");
             }
@@ -51,9 +49,7 @@ namespace Reusables
         public bool Equals(Optional<T> other)
         {
             if (HasValue && other.HasValue)
-            {
                 return Equals(_value, other._value);
-            }
 
             return HasValue == other.HasValue;
         }

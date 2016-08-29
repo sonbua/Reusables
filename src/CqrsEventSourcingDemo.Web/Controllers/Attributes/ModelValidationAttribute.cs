@@ -31,16 +31,12 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Attributes
             var actionParameters = filterContext.ActionParameters;
 
             if (actionParameters.Count == 0)
-            {
                 return;
-            }
 
             var model = actionParameters.Select(x => x.Value).FirstOrDefault(x => x.GetType().IsClass);
 
             if (model == null)
-            {
                 return;
-            }
 
             var modelValidatorType = typeof (DataAnnotationsValidator<>).MakeGenericType(model.GetType());
 
@@ -49,9 +45,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Attributes
             var validationResults = ((IEnumerable<ValidationResult>) validator.Validate((dynamic) model)).Where(x => x != ValidationResult.Success);
 
             foreach (var result in validationResults)
-            {
                 filterContext.Controller.ViewData.ModelState.AddModelError(result.MemberName, result.ErrorMessage);
-            }
         }
 
         public void OnActionExecuted(ModelValidationAttribute attribute, ActionExecutedContext filterContext)
