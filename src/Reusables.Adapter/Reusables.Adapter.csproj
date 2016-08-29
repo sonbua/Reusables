@@ -40,6 +40,8 @@
     <Compile Include="System\IO\FileAdapter.cs" />
     <Compile Include="System\IO\IDirectory.cs" />
     <Compile Include="System\IO\IFile.cs" />
+    <Compile Include="System\IO\IPath.cs" />
+    <Compile Include="System\IO\PathAdapter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
