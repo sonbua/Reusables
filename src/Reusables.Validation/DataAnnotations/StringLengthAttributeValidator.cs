@@ -1,5 +1,4 @@
-﻿using System;
-using Reusables.DataAnnotations;
+﻿using Reusables.DataAnnotations;
 
 namespace Reusables.Validation.DataAnnotations
 {
