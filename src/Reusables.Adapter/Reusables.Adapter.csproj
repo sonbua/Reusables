@@ -37,7 +37,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\IO\DirectoryAdapter.cs" />
-    <Compile Include="System\IO\File.cs" />
+    <Compile Include="System\IO\FileAdapter.cs" />
     <Compile Include="System\IO\IDirectory.cs" />
     <Compile Include="System\IO\IFile.cs" />
   </ItemGroup>
