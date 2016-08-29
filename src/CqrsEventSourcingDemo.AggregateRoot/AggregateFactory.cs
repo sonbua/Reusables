@@ -6,9 +6,9 @@ namespace CqrsEventSourcingDemo.AggregateRoot
 {
     public class AggregateFactory : IAggregateFactory
     {
-        public TAggregate Create<TAggregate>(IEnumerable<object> history) where TAggregate : Reusables.EventSourcing.Aggregate
+        public TAggregate Create<TAggregate>(IEnumerable<object> history) where TAggregate : Aggregate
         {
-            return (TAggregate) Activator.CreateInstance(typeof (TAggregate), history);
+            return (TAggregate) Activator.CreateInstance(typeof(TAggregate), history);
         }
     }
 }

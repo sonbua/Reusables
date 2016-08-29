@@ -143,7 +143,7 @@ namespace MailingServiceDemo.EventHandler
                                                         Id = Guid.NewGuid(),
                                                         RequestId = @event.Id,
                                                         Message = mailMessage,
-                                                        Priority = (int) mailMessage.Priority,
+                                                        Priority = mailMessage.Priority,
                                                         QueuedAt = DateTime.UtcNow
                                                     });
             }

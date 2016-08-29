@@ -6,7 +6,7 @@ using CqrsEventSourcingDemo.ReadModel;
 
 namespace CqrsEventSourcingDemo.Infrastructure
 {
-    public class InMemoryViewModelSet<TViewModel> : IViewModelSet<TViewModel>, IEnumerable<TViewModel> where TViewModel : ViewModel
+    public class InMemoryViewModelSet<TViewModel> : IViewModelSet<TViewModel> where TViewModel : ViewModel
     {
         private readonly ICollection<TViewModel> _viewModels = new List<TViewModel>();
 

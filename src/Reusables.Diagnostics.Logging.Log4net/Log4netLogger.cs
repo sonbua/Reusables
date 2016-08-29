@@ -3,6 +3,7 @@ using log4net;
 
 namespace Reusables.Diagnostics.Logging.Log4net
 {
+    // ReSharper disable once InconsistentNaming
     public class Log4netLogger
     {
         private readonly ILog _innerLogger;

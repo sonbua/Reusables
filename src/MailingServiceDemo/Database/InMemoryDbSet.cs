@@ -7,7 +7,7 @@ using MailingServiceDemo.Model;
 namespace MailingServiceDemo.Database
 {
     // TODO: lock-free design
-    public class InMemoryDbSet<TEntity> : IDbSet<TEntity>, IEnumerable<TEntity> where TEntity : Entity
+    public class InMemoryDbSet<TEntity> : IDbSet<TEntity> where TEntity : Entity
     {
         private readonly IDictionary<Guid, TEntity> _set = new ConcurrentDictionary<Guid, TEntity>();
 
