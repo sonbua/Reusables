@@ -40,10 +40,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Log4netLogger.cs" />
+    <Compile Include="Log4netLoggerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Reusables.Diagnostics.Logging\Reusables.Diagnostics.Logging.csproj">
+      <Project>{7E1A4672-ACCC-4B48-8510-734EDA9A372A}</Project>
+      <Name>Reusables.Diagnostics.Logging</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
