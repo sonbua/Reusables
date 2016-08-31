@@ -37,17 +37,7 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
 
         public ActionResult Order(int id)
         {
-            return View(new OrderModel
-                        {
-                            Items = StaticData.Menu
-                                              .Select(menuItem => new OrderLineItem
-                                                                  {
-                                                                      MenuNumber = menuItem.MenuNumber,
-                                                                      Description = menuItem.Description,
-                                                                      NumberToOrder = 0
-                                                                  })
-                                              .ToList()
-                        });
+            return View(new OrderModel {Items = StaticData.Menu.Select(CreateOrderLineItem).ToList()});
         }
 
         [HttpPost]
@@ -60,23 +50,6 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
                                         });
 
             return RedirectToAction("Status", new {id = id});
-        }
-
-        private static IEnumerable<OrderedItem> OrderedItems(OrderModel orderModel)
-        {
-            foreach (var lineItem in orderModel.Items.Where(x => x.NumberToOrder > 0))
-            {
-                var menuItem = StaticData.Menu.Single(item => item.MenuNumber == lineItem.MenuNumber);
-
-                for (var i = 0; i < lineItem.NumberToOrder; i++)
-                    yield return new OrderedItem
-                                 {
-                                     MenuNumber = lineItem.MenuNumber,
-                                     Description = menuItem.Description,
-                                     IsDrink = menuItem.IsDrink,
-                                     Price = menuItem.Price
-                                 };
-            }
         }
 
         public ActionResult Status(int id)
@@ -102,6 +75,42 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
             DispatchCommands(tabId, servedMenuNumbers);
 
             return RedirectToAction("Status", new {id = id});
+        }
+
+        private static IEnumerable<OrderedItem> OrderedItems(OrderModel orderModel)
+        {
+            return orderModel.Items
+                             .Where(x => x.NumberToOrder > 0)
+                             .SelectMany(CreateOrderedItemsFromLineItem);
+        }
+
+        private static IEnumerable<OrderedItem> CreateOrderedItemsFromLineItem(OrderLineItem lineItem)
+        {
+            var menuItem = StaticData.Menu.Single(item => item.MenuNumber == lineItem.MenuNumber);
+
+            return Enumerable.Range(0, lineItem.NumberToOrder)
+                             .Select(i => CreateOrderedItem(lineItem.MenuNumber, menuItem));
+        }
+
+        private static OrderedItem CreateOrderedItem(int menuNumber, MenuItem menuItem)
+        {
+            return new OrderedItem
+                   {
+                       MenuNumber = menuNumber,
+                       Description = menuItem.Description,
+                       IsDrink = menuItem.IsDrink,
+                       Price = menuItem.Price
+                   };
+        }
+
+        private static OrderLineItem CreateOrderLineItem(MenuItem menuItem)
+        {
+            return new OrderLineItem
+                   {
+                       MenuNumber = menuItem.MenuNumber,
+                       Description = menuItem.Description,
+                       NumberToOrder = 0
+                   };
         }
 
         private void DispatchCommands(Guid tabId, List<int> servedMenuNumbers)
