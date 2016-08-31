@@ -8,17 +8,11 @@ namespace Reusables.Util.Extensions.Tests
 {
     public class EnumerableExtensionsTest
     {
-        private static IEnumerable<object> Objects
-        {
-            get
-            {
-                return new List<object>
-                       {
-                           new HelperObject {Prop1 = "1", Prop2 = "2"},
-                           new HelperObject {Prop1 = "3", Prop2 = "4"},
-                       };
-            }
-        }
+        private static IEnumerable<object> Objects => new List<object>
+                                                      {
+                                                          new HelperObject {Prop1 = "1", Prop2 = "2"},
+                                                          new HelperObject {Prop1 = "3", Prop2 = "4"}
+                                                      };
 
         [Fact]
         public void IsNullOrEmpty_NullEnumerable_ReturnsTrue()
@@ -236,7 +230,7 @@ namespace Reusables.Util.Extensions.Tests
 
             public override string ToString()
             {
-                return string.Format("{0}:{1}", Prop1, Prop2);
+                return $"{Prop1}:{Prop2}";
             }
         }
     }

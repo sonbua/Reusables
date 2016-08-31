@@ -34,7 +34,7 @@ namespace CqrsEventSourcingDemo.Infrastructure
 
         public Task<TAggregate> GetByIdAsync<TAggregate>(Guid id) where TAggregate : Aggregate
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public void Save<TAggregate>(TAggregate aggregate) where TAggregate : Aggregate
@@ -64,7 +64,7 @@ namespace CqrsEventSourcingDemo.Infrastructure
 
         public Task SaveAsync<TAggregate>(TAggregate aggregate) where TAggregate : Aggregate
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 }

@@ -6,7 +6,7 @@ using Reusables.Validation;
 using Reusables.Validation.DataAnnotations;
 using Reusables.Web.Mvc5;
 
-namespace CqrsEventSourcingDemo.Web.Controllers.Attributes
+namespace CqrsEventSourcingDemo.Web.Controllers.Attributes.Handlers
 {
     public class ValidateModel : IActionFilter<ModelValidationAttribute>
     {

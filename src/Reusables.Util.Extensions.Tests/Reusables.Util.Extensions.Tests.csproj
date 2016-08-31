@@ -71,7 +71,31 @@
   <ItemGroup>
     <Compile Include="AssemblyExtensionsTest.cs" />
     <Compile Include="ConversionExtensionsTest.cs" />
+    <Compile Include="DependencyResolutionExtensionsTest.Decorator1.cs">
+      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DependencyResolutionExtensionsTest.Decorator2.cs">
+      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DependencyResolutionExtensionsTest.DecoratorWithDependency.cs">
+      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="DependencyResolutionExtensionsTest.cs" />
+    <Compile Include="DependencyResolutionExtensionsTest.Dependency.cs">
+      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DependencyResolutionExtensionsTest.Derived.cs">
+      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DependencyResolutionExtensionsTest.IBase.cs">
+      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DependencyResolutionExtensionsTest.IDependency.cs">
+      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DependencyResolutionExtensionsTest.NonCompatible.cs">
+      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="EnumerableExtensionsTest.cs" />
     <Compile Include="ObjectExtensionsTest.cs" />
     <Compile Include="StringExtensionsTest.cs" />

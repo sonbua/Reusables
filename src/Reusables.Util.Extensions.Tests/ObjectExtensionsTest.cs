@@ -10,10 +10,9 @@ namespace Reusables.Util.Extensions.Tests
         public void ToDictionary_NullInstance_ThrowsException()
         {
             // arrange
-            object instance = null;
 
             // act
-            Action nullInstance = () => instance.ToDictionary();
+            Action nullInstance = () => ((object) null).ToDictionary();
 
             // assert
             Assert.Throws<ArgumentNullException>("instance", nullInstance);
