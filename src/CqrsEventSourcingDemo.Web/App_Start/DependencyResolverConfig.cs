@@ -6,8 +6,8 @@ using CqrsEventSourcingDemo.ReadModel;
 using CqrsEventSourcingDemo.ReadModel.Tab;
 using CqrsEventSourcingDemo.Web.Abstractions;
 using CqrsEventSourcingDemo.Web.Abstractions.Decorators;
-using NLog;
 using Reusables.Cqrs;
+using Reusables.Diagnostics.Logging;
 using Reusables.Diagnostics.Logging.NLog;
 using Reusables.EventSourcing;
 using Reusables.Validation;
@@ -17,7 +17,6 @@ using SimpleInjector;
 using SimpleInjector.Advanced;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
-using ILogger = Reusables.Diagnostics.Logging.ILogger;
 
 namespace CqrsEventSourcingDemo.Web
 {
@@ -52,8 +51,7 @@ namespace CqrsEventSourcingDemo.Web
             container.Register(typeof (IValidationAttributeValidator<>), new[] {typeof (IValidationAttributeValidator<>).Assembly});
 
             // Loggers
-            container.RegisterSingleton<ILogger, NLogLogger>();
-            container.RegisterSingleton(() => LogManager.GetLogger("NLog"));
+            container.RegisterSingleton<ILoggerFactory, NLogLoggerFactory>();
 
             // Action filters
             container.RegisterCollection(typeof (IActionFilter<>), typeof (MvcApplication).Assembly);
@@ -65,7 +63,7 @@ namespace CqrsEventSourcingDemo.Web
             container.Register<IAggregateFactory, AggregateFactory>();
 
             // Event publisher
-            container.Register<IEventPublisher>(() => new EventPublisher(type => container.GetAllInstances(type), container.GetInstance<ILogger>()));
+            container.Register<IEventPublisher>(() => new EventPublisher(type => container.GetAllInstances(type), container.GetInstance<ILoggerFactory>()));
 
             // Event handlers
             container.RegisterCollection(typeof (IEventSubscriber<>), new[] {typeof (TabReadModel).Assembly});

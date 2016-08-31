@@ -12,10 +12,10 @@ namespace Reusables.EventSourcing
         private readonly Func<Type, IEnumerable<object>> _serviceProvider;
         private readonly ILogger _logger;
 
-        public EventPublisher(Func<Type, IEnumerable<object>> serviceProvider, ILogger logger)
+        public EventPublisher(Func<Type, IEnumerable<object>> serviceProvider, ILoggerFactory loggerFactory)
         {
             _serviceProvider = serviceProvider;
-            _logger = logger;
+            _logger = loggerFactory.GetCurrentClassLogger();
         }
 
         public void Publish<TEvent>(TEvent @event)

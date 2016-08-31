@@ -10,9 +10,9 @@ namespace CqrsEventSourcingDemo.Web.Abstractions.Decorators
         private readonly ILogger _logger;
         private readonly ICommandHandler<TCommand> _innerHandler;
 
-        public LoggingDecoratorCommandHandler(ILogger logger, ICommandHandler<TCommand> innerHandler)
+        public LoggingDecoratorCommandHandler(ILoggerFactory loggerFactory, ICommandHandler<TCommand> innerHandler)
         {
-            _logger = logger;
+            _logger = loggerFactory.GetCurrentClassLogger();
             _innerHandler = innerHandler;
         }
 

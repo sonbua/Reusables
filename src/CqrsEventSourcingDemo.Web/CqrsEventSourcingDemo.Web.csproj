@@ -202,7 +202,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Attributes\ExceptionLoggingAttribute.cs" />
     <Compile Include="Controllers\Attributes\IncludeLayoutDataAttribute.cs" />
+    <Compile Include="Controllers\Attributes\Handlers\LogExceptionFilter.cs" />
+    <Compile Include="Controllers\Attributes\MenuItem.cs" />
     <Compile Include="Controllers\Attributes\ModelValidationAttribute.cs" />
+    <Compile Include="Controllers\Attributes\Handlers\ValidateModel.cs" />
+    <Compile Include="Controllers\Attributes\StaticData.cs" />
     <Compile Include="Controllers\Cafe\BaseController.cs" />
     <Compile Include="Controllers\Cafe\ChefController.cs" />
     <Compile Include="Controllers\Cafe\TabController.cs" />
@@ -215,6 +219,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrderLineItem.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -298,7 +303,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Domain\ReadModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

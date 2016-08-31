@@ -24,7 +24,7 @@ namespace CqrsEventSourcingDemo.Web
 
             DependencyResolverConfig.RegisterDependencies();
 
-            _logger = (ILogger) DependencyResolverConfig.ServiceProvider.GetService(typeof (ILogger));
+            _logger = ((ILoggerFactory) DependencyResolverConfig.ServiceProvider.GetService(typeof(ILoggerFactory))).GetCurrentClassLogger();
         }
 
         protected void Application_BeginRequest()
