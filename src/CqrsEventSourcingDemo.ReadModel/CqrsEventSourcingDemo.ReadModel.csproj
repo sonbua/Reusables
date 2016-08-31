@@ -52,14 +52,17 @@
     <ProjectReference Include="..\CqrsEventSourcingDemo.Event\CqrsEventSourcingDemo.Event.csproj">
       <Project>{256b0685-8f12-4a60-9d8e-d75925b7aa35}</Project>
       <Name>CqrsEventSourcingDemo.Event</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.Cqrs\Reusables.Cqrs.csproj">
       <Project>{5e7e00eb-aa72-4ef1-9ba6-17c0c3c9a7dc}</Project>
       <Name>Reusables.Cqrs</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.EventSourcing\Reusables.EventSourcing.csproj">
       <Project>{fb2bb5ae-e541-4e1c-9231-69d4f12a5b06}</Project>
       <Name>Reusables.EventSourcing</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

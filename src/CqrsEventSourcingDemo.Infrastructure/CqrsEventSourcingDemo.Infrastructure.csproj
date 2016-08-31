@@ -44,18 +44,22 @@
     <ProjectReference Include="..\CqrsEventSourcingDemo.ReadModel\CqrsEventSourcingDemo.ReadModel.csproj">
       <Project>{5a7b15bf-ca34-4d40-bc2a-2fa9d7defd6c}</Project>
       <Name>CqrsEventSourcingDemo.ReadModel</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.EventSourcing.Extensions\Reusables.EventSourcing.Extensions.csproj">
       <Project>{91cf2b13-0de4-474d-9e6a-4e7483238d59}</Project>
       <Name>Reusables.EventSourcing.Extensions</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.EventSourcing\Reusables.EventSourcing.csproj">
       <Project>{fb2bb5ae-e541-4e1c-9231-69d4f12a5b06}</Project>
       <Name>Reusables.EventSourcing</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.Util.Extensions\Reusables.Util.Extensions.csproj">
       <Project>{b93b3dec-c90e-4f3f-a23d-cc976e2192dd}</Project>
       <Name>Reusables.Util.Extensions</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

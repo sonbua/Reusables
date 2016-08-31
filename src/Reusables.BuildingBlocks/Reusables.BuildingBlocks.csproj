@@ -47,14 +47,17 @@
     <ProjectReference Include="..\Reusables.Diagnostics.Contracts\Reusables.Diagnostics.Contracts.csproj">
       <Project>{a120d214-0b8b-4f1e-b707-a6655efbc626}</Project>
       <Name>Reusables.Diagnostics.Contracts</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.Util.Extensions\Reusables.Util.Extensions.csproj">
       <Project>{b93b3dec-c90e-4f3f-a23d-cc976e2192dd}</Project>
       <Name>Reusables.Util.Extensions</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables\Reusables.csproj">
       <Project>{8a6f0955-9952-43cc-acd8-327ff2db890b}</Project>
       <Name>Reusables</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

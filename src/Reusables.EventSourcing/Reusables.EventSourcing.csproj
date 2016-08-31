@@ -49,10 +49,12 @@
     <ProjectReference Include="..\Reusables.Diagnostics.Logging\Reusables.Diagnostics.Logging.csproj">
       <Project>{7E1A4672-ACCC-4B48-8510-734EDA9A372A}</Project>
       <Name>Reusables.Diagnostics.Logging</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.Util.Extensions\Reusables.Util.Extensions.csproj">
       <Project>{B93B3DEC-C90E-4F3F-A23D-CC976E2192DD}</Project>
       <Name>Reusables.Util.Extensions</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
