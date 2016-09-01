@@ -115,6 +115,7 @@ namespace MailingServiceDemo.Tests
 
         public static Container TestOutputHelper(this Container container, ITestOutputHelper testOutputHelper)
         {
+            container.Register<ILoggerFactory, TestOutputLoggerFactory>();
             container.Register<ILogger, TestOutputLogger>();
             container.Register<ITestOutputHelper>(() => testOutputHelper);
             //container.RegisterDecorator<ITestOutputHelper, NewLineAppender>();
@@ -214,6 +215,26 @@ namespace MailingServiceDemo.Tests
     public class FakeApplicationSettings : IApplicationSettings
     {
         public int MaxAttempt => 3;
+    }
+
+    public class TestOutputLoggerFactory : ILoggerFactory
+    {
+        private readonly ILogger _logger;
+
+        public TestOutputLoggerFactory(ILogger logger)
+        {
+            _logger = logger;
+        }
+
+        public ILogger GetLogger<T>()
+        {
+            return GetCurrentClassLogger();
+        }
+
+        public ILogger GetCurrentClassLogger()
+        {
+            return _logger;
+        }
     }
 
     public class TestOutputLogger : ILogger

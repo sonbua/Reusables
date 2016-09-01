@@ -1,14 +1,13 @@
 ﻿using System;
 using MailingServiceDemo.Database;
-using NLog;
 using Reusables.Cqrs;
+using Reusables.Diagnostics.Logging;
 using Reusables.Diagnostics.Logging.NLog;
 using Reusables.EventSourcing;
 using Reusables.Validation;
 using Reusables.Validation.DataAnnotations;
 using SimpleInjector;
 using SimpleInjector.Advanced;
-using ILogger = Reusables.Diagnostics.Logging.ILogger;
 
 namespace MailingServiceDemo.CompositionRoot
 {
@@ -44,7 +43,7 @@ namespace MailingServiceDemo.CompositionRoot
             container.Register(typeof (IValidationAttributeValidator<>), new[] {typeof (IValidationAttributeValidator<>).Assembly});
 
             // Event publisher
-            container.Register<IEventPublisher>(() => new EventPublisher(container.GetAllInstances, container.GetInstance<ILogger>()));
+            container.Register<IEventPublisher>(() => new EventPublisher(container.GetAllInstances, container.GetInstance<ILoggerFactory>()));
 
             // Event subscribers
             container.RegisterCollection(typeof (IEventSubscriber<>), new[] {typeof (DependencyResolverConfig).Assembly});
@@ -56,8 +55,7 @@ namespace MailingServiceDemo.CompositionRoot
         public static Container Loggers(this Container container)
         {
             // Loggers
-            container.RegisterSingleton<ILogger, NLogLogger>();
-            container.RegisterSingleton(() => LogManager.GetLogger("NLog"));
+            container.RegisterSingleton<ILoggerFactory, NLogLoggerFactory>();
 
             return container;
         }
