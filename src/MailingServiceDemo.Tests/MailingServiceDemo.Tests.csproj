@@ -30,9 +30,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AsyncTests\AsyncCommandHandlerNotifier.cs" />
+    <Compile Include="AsyncTests\AsyncCommandHandlerReporter.cs" />
+    <Compile Include="AsyncTests\AsyncCommandHandlerStopwatcher.cs" />
+    <Compile Include="AsyncTests\AsyncEventSubscriberExceptionSuppressor.cs" />
+    <Compile Include="AsyncTests\AsyncEventSubscriberNotifier.cs" />
+    <Compile Include="AsyncTests\AsyncEventProcrastinator.cs" />
+    <Compile Include="AsyncTests\AsyncQueryHandlerReporter.cs" />
+    <Compile Include="AsyncTests\ThreadIdPrepender.cs" />
+    <Compile Include="AsyncTests\TimeKeeper.cs" />
+    <Compile Include="AsyncTests\ContainerAsyncExtensions.cs" />
+    <Compile Include="SyncTests\ContainerExtensions.cs" />
+    <Compile Include="SyncTests\FailureSmtpClientWrapper.cs" />
+    <Compile Include="SyncTests\FakeApplicationSettings.cs" />
+    <Compile Include="SyncTests\NewLineAppender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.cs" />
-    <Compile Include="AsyncTest.cs" />
+    <Compile Include="AsyncTests\RequestDispatcherAsyncTest.cs" />
+    <Compile Include="Randomizer.cs" />
+    <Compile Include="SyncTests\SuccessSmtpClientWrapper.cs" />
+    <Compile Include="SyncTests\CommandHandlerNotifier.cs" />
+    <Compile Include="SyncTests\CommandHandlerReporter.cs" />
+    <Compile Include="SyncTests\CommandHandlerStopwatcher.cs" />
+    <Compile Include="SyncTests\DbContextSpy.cs" />
+    <Compile Include="SyncTests\DbSetSpy.cs" />
+    <Compile Include="SyncTests\EventSubscriberDatabaseReporter.cs" />
+    <Compile Include="SyncTests\EventSubscriberNotifier.cs" />
+    <Compile Include="SyncTests\Firewall.cs" />
+    <Compile Include="SyncTests\QueryHandlerReporter.cs" />
+    <Compile Include="SyncTests\SmptClientProcrastinator.cs" />
+    <Compile Include="SyncTests\RequestDispatcherTest.cs" />
+    <Compile Include="SyncTests\TestOutputLogger.cs" />
+    <Compile Include="SyncTests\TestOutputLoggerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SimpleInjector, Version=3.2.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
