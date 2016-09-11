@@ -32,7 +32,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,17 +50,17 @@
     <ProjectReference Include="..\Reusables.Diagnostics.Contracts\Reusables.Diagnostics.Contracts.csproj">
       <Project>{A120D214-0B8B-4F1E-B707-A6655EFBC626}</Project>
       <Name>Reusables.Diagnostics.Contracts</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.Serialization\Reusables.Serialization.csproj">
       <Project>{6f8c4016-0bed-4dcf-b61a-aa7c105bbade}</Project>
       <Name>Reusables.Serialization</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.Util.Extensions\Reusables.Util.Extensions.csproj">
       <Project>{b93b3dec-c90e-4f3f-a23d-cc976e2192dd}</Project>
       <Name>Reusables.Util.Extensions</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

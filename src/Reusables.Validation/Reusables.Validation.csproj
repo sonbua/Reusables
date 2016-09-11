@@ -54,12 +54,12 @@
     <ProjectReference Include="..\Reusables.DataAnnotations\Reusables.DataAnnotations.csproj">
       <Project>{f4bfac1b-4638-447e-a562-2df8c146a8d1}</Project>
       <Name>Reusables.DataAnnotations</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.Diagnostics.Contracts\Reusables.Diagnostics.Contracts.csproj">
       <Project>{A120D214-0B8B-4F1E-B707-A6655EFBC626}</Project>
       <Name>Reusables.Diagnostics.Contracts</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

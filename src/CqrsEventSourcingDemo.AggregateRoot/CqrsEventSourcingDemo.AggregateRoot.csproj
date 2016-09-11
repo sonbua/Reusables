@@ -32,12 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggregateFactory.cs" />
@@ -48,17 +42,17 @@
     <ProjectReference Include="..\CqrsEventSourcingDemo.Event\CqrsEventSourcingDemo.Event.csproj">
       <Project>{256b0685-8f12-4a60-9d8e-d75925b7aa35}</Project>
       <Name>CqrsEventSourcingDemo.Event</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.EventSourcing.Extensions\Reusables.EventSourcing.Extensions.csproj">
       <Project>{91cf2b13-0de4-474d-9e6a-4e7483238d59}</Project>
       <Name>Reusables.EventSourcing.Extensions</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.EventSourcing\Reusables.EventSourcing.csproj">
       <Project>{fb2bb5ae-e541-4e1c-9231-69d4f12a5b06}</Project>
       <Name>Reusables.EventSourcing</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

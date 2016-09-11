@@ -32,7 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IViewModelDatabase.cs" />
@@ -52,18 +51,21 @@
     <ProjectReference Include="..\CqrsEventSourcingDemo.Event\CqrsEventSourcingDemo.Event.csproj">
       <Project>{256b0685-8f12-4a60-9d8e-d75925b7aa35}</Project>
       <Name>CqrsEventSourcingDemo.Event</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.Cqrs\Reusables.Cqrs.csproj">
       <Project>{5e7e00eb-aa72-4ef1-9ba6-17c0c3c9a7dc}</Project>
       <Name>Reusables.Cqrs</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Reusables.EventSourcing\Reusables.EventSourcing.csproj">
       <Project>{fb2bb5ae-e541-4e1c-9231-69d4f12a5b06}</Project>
       <Name>Reusables.EventSourcing</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
