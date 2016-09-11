@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DataContractXmlSerializer.cs" />
     <Compile Include="Extensions\GenericExtensions.cs" />
+    <Compile Include="NetFrameworkXmlSerializer.cs" />
     <Compile Include="NewtonsoftJsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
