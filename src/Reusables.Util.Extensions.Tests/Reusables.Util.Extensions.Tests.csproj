@@ -73,37 +73,51 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyExtensionsTest.cs" />
-    <Compile Include="ConversionExtensionsTest.cs" />
+    <Compile Include="AssemblyExtensions_GetLoadableTypes_Test.cs" />
+    <Compile Include="ConversionExtensions_GetBytes_Test.cs" />
+    <Compile Include="ConversionExtensions_GetString_Test.cs" />
     <Compile Include="DependencyResolutionExtensionsTest.Decorator1.cs">
-      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+      <DependentUpon>DependencyResolutionExtensions_DecoratedWith_Test.cs</DependentUpon>
     </Compile>
     <Compile Include="DependencyResolutionExtensionsTest.Decorator2.cs">
-      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+      <DependentUpon>DependencyResolutionExtensions_DecoratedWith_Test.cs</DependentUpon>
     </Compile>
     <Compile Include="DependencyResolutionExtensionsTest.DecoratorWithDependency.cs">
-      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+      <DependentUpon>DependencyResolutionExtensions_DecoratedWith_Test.cs</DependentUpon>
     </Compile>
-    <Compile Include="DependencyResolutionExtensionsTest.cs" />
+    <Compile Include="DependencyResolutionExtensions_DecoratedWith_Test.cs" />
     <Compile Include="DependencyResolutionExtensionsTest.Dependency.cs">
-      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+      <DependentUpon>DependencyResolutionExtensions_DecoratedWith_Test.cs</DependentUpon>
     </Compile>
     <Compile Include="DependencyResolutionExtensionsTest.Derived.cs">
-      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+      <DependentUpon>DependencyResolutionExtensions_DecoratedWith_Test.cs</DependentUpon>
     </Compile>
     <Compile Include="DependencyResolutionExtensionsTest.IBase.cs">
-      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+      <DependentUpon>DependencyResolutionExtensions_DecoratedWith_Test.cs</DependentUpon>
     </Compile>
     <Compile Include="DependencyResolutionExtensionsTest.IDependency.cs">
-      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+      <DependentUpon>DependencyResolutionExtensions_DecoratedWith_Test.cs</DependentUpon>
     </Compile>
     <Compile Include="DependencyResolutionExtensionsTest.NonCompatible.cs">
-      <DependentUpon>DependencyResolutionExtensionsTest.cs</DependentUpon>
+      <DependentUpon>DependencyResolutionExtensions_DecoratedWith_Test.cs</DependentUpon>
     </Compile>
-    <Compile Include="EnumerableExtensionsTest.cs" />
-    <Compile Include="ObjectExtensionsTest.cs" />
-    <Compile Include="StringExtensionsTest.cs" />
+    <Compile Include="EnumerableExtensions_IsIn_Test.cs" />
+    <Compile Include="EnumerableExtensions_BuildString_Test.cs" />
+    <Compile Include="EnumerableExtensions_ForEach_Test.cs" />
+    <Compile Include="EnumerableExtensions_IsNullOrEmpty_Test.cs" />
+    <Compile Include="EnumerableExtensions_Join_Test.cs" />
+    <Compile Include="ObjectExtensions_GetRuntimeOrder_Test.cs" />
+    <Compile Include="ObjectExtensions_GetOrder_Test.cs" />
+    <Compile Include="ObjectExtensions_ToDictionary_Test.cs" />
+    <Compile Include="StringExtensions_Merge_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtensions_EqualsIgnoreCase_Test.cs" />
+    <Compile Include="StringExtensions_FormatWithMask_Test.cs" />
+    <Compile Include="StringExtensions_IsNullOrEmpty_Test.cs" />
+    <Compile Include="StringExtensions_RegexReplace_Test.cs" />
+    <Compile Include="StringExtensions_Remove_Test.cs" />
+    <Compile Include="StringExtensions_Replace_Test.cs" />
+    <Compile Include="StringExtensions_SafeFormat_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Reusables.Util.Extensions\Reusables.Util.Extensions.csproj">

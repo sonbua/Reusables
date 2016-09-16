@@ -257,7 +257,7 @@ namespace Reusables.Util.Extensions
             if (args.Length == 0)
                 return format;
 
-            var safeArgs = args.Select(o => o ?? string.Empty).ToArray();
+            var safeArgs = args.Select(arg => arg ?? string.Empty).ToArray();
             return string.Format(format, safeArgs);
         }
     }

@@ -5,10 +5,10 @@ using Xunit;
 
 namespace Reusables.Util.Extensions.Tests
 {
-    public class AssemblyExtensionsTest
+    public class AssemblyExtensions_GetLoadableTypes_Test
     {
         [Fact]
-        public void GetLoadableTypes_NullAssembly_ThrowsException()
+        public void GivenNullAssembly_ThrowsException()
         {
             // arrange
 
@@ -20,7 +20,7 @@ namespace Reusables.Util.Extensions.Tests
         }
 
         [Fact]
-        public void GetLoadableTypes_ThisAssembly_ReturnsAllTypesWithTestSuffix()
+        public void GivenThisAssembly_ReturnsAllTypesWithTestSuffix()
         {
             // arrange
             var thisAssembly = Assembly.GetExecutingAssembly();

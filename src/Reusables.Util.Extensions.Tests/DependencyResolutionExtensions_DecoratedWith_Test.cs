@@ -4,11 +4,11 @@ using Xunit;
 
 namespace Reusables.Util.Extensions.Tests
 {
-    public class DependencyResolutionExtensionsTest
+    public class DependencyResolutionExtensions_DecoratedWith_Test
     {
         private readonly Container _container;
 
-        public DependencyResolutionExtensionsTest()
+        public DependencyResolutionExtensions_DecoratedWith_Test()
         {
             _container = new Container();
 
@@ -18,7 +18,7 @@ namespace Reusables.Util.Extensions.Tests
         }
 
         [Fact]
-        public void DecoratedWith_NonCompatibleDecoratorType_ThrowsException()
+        public void GivenNonCompatibleDecoratorType_ThrowsException()
         {
             // arrange
             var decoratee = new Derived();
@@ -31,7 +31,7 @@ namespace Reusables.Util.Extensions.Tests
         }
 
         [Fact]
-        public void DecoratedWith_OneDecorator_ReturnsCorrectResult()
+        public void GivenOneDecorator_ReturnsCorrectResult()
         {
             // arrange
             var decoratee = new Derived();
@@ -44,7 +44,7 @@ namespace Reusables.Util.Extensions.Tests
         }
 
         [Fact]
-        public void DecoratedWith_TwoDecorators_ReturnsCorrectResult()
+        public void GivenTwoDecorators_ReturnsCorrectResult()
         {
             // arrange
             IBase decoratee = new Derived();
@@ -57,7 +57,7 @@ namespace Reusables.Util.Extensions.Tests
         }
 
         [Fact]
-        public void DecoratedWith_DecoratorWithDependency_ReturnsCorrectResult()
+        public void GivenDecoratorWithDependency_ReturnsCorrectResult()
         {
             // arrange
             IBase decoratee = new Derived();
