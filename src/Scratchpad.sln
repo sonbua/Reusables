@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.BuildingBlocks.Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.Adapter", "Reusables.Adapter\Reusables.Adapter.csproj", "{D255B627-F135-4F52-A473-6098727082B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reusables.QualityTools", "Reusables.QualityTools\Reusables.QualityTools.csproj", "{29172FE5-63E5-4EF8-A8A6-FCB4D540BA21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -187,6 +189,10 @@ Global
 		{D255B627-F135-4F52-A473-6098727082B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D255B627-F135-4F52-A473-6098727082B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D255B627-F135-4F52-A473-6098727082B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29172FE5-63E5-4EF8-A8A6-FCB4D540BA21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29172FE5-63E5-4EF8-A8A6-FCB4D540BA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29172FE5-63E5-4EF8-A8A6-FCB4D540BA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29172FE5-63E5-4EF8-A8A6-FCB4D540BA21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -221,5 +227,6 @@ Global
 		{C79F15CB-18A7-442C-A8B5-C46BB5EB2924} = {E1B89800-37AB-4E3E-912F-5B0680600976}
 		{EEF771A2-29B4-489C-BF1C-32D2533EB2EF} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 		{D255B627-F135-4F52-A473-6098727082B2} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
+		{29172FE5-63E5-4EF8-A8A6-FCB4D540BA21} = {61D0BC57-AFCC-4913-B467-4BE91D89CA01}
 	EndGlobalSection
 EndGlobal
