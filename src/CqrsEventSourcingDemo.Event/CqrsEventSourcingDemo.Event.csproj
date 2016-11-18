@@ -38,7 +38,7 @@
     <Compile Include="Tab\DrinkOrdered.cs" />
     <Compile Include="Tab\DrinksServed.cs" />
     <Compile Include="Tab\FoodOrdered.cs" />
-    <Compile Include="Tab\Shared.cs" />
+    <Compile Include="Tab\OrderedItem.cs" />
     <Compile Include="Tab\TabOpened.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
