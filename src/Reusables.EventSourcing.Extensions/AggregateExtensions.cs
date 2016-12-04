@@ -10,7 +10,7 @@ namespace Reusables.EventSourcing.Extensions
         private static readonly MethodInfo _internalPreserveStackTraceMethod = typeof (Exception).GetMethod("InternalPreserveStackTrace", BindingFlags.Instance | BindingFlags.NonPublic);
 
         /// <summary>
-        /// Do reflection on <typeparamref name="TAggregate" /> to find correct "When" method that can handle event of type <typeparamref name="TEvent" />. If no method is found, then just ignore this event.
+        /// Does reflection on <typeparamref name="TAggregate" /> to find correct "When" method that can handle event of type <typeparamref name="TEvent" />. If no method is found, then just ignore this event.
         /// </summary>
         /// <typeparam name="TAggregate"></typeparam>
         /// <typeparam name="TEvent"></typeparam>
@@ -21,7 +21,7 @@ namespace Reusables.EventSourcing.Extensions
             MethodInfo handler;
             var eventType = @event.GetType();
 
-            if (!InternalEventHandlerCache<TAggregate>.Instance.TryGetValue(eventType, out handler))
+            if (!InternalEventHandlerMap<TAggregate>.Instance.TryGetValue(eventType, out handler))
                 return;
 
             try
@@ -36,12 +36,23 @@ namespace Reusables.EventSourcing.Extensions
             }
         }
 
-        private static class InternalEventHandlerCache<TAggregate>
+        /// <summary>
+        /// Stores in memory a map of event to "When" method, which handles that event.
+        /// </summary>
+        /// <typeparam name="TAggregate"></typeparam>
+        private static class InternalEventHandlerMap<TAggregate>
         {
-            public static readonly IDictionary<Type, MethodInfo> Instance = typeof (TAggregate).GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-                                                                                               .Where(m => m.Name == "When")
-                                                                                               .Where(m => m.GetParameters().Length == 1)
-                                                                                               .ToDictionary(m => m.GetParameters().First().ParameterType, m => m);
+            static InternalEventHandlerMap()
+            {
+                Instance =
+                    typeof(TAggregate)
+                        .GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                        .Where(m => m.Name == "When")
+                        .Where(m => m.GetParameters().Length == 1)
+                        .ToDictionary(m => m.GetParameters().First().ParameterType, m => m);
+            }
+
+            public static readonly IDictionary<Type, MethodInfo> Instance;
         }
     }
 }
