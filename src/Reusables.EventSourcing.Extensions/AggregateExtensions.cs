@@ -9,12 +9,19 @@ namespace Reusables.EventSourcing.Extensions
     {
         private static readonly MethodInfo _internalPreserveStackTraceMethod = typeof (Exception).GetMethod("InternalPreserveStackTrace", BindingFlags.Instance | BindingFlags.NonPublic);
 
-        public static void ApplyEventOptionally<TAggregate, TEvent>(this TAggregate aggregate, TEvent @event) where TAggregate : Aggregate
+        /// <summary>
+        /// Do reflection on <typeparamref name="TAggregate" /> to find correct "When" method that can handle event of type <typeparamref name="TEvent" />. If no method is found, then just ignore this event.
+        /// </summary>
+        /// <typeparam name="TAggregate"></typeparam>
+        /// <typeparam name="TEvent"></typeparam>
+        /// <param name="aggregate"></param>
+        /// <param name="event"></param>
+        public static void ApplyInternally<TAggregate, TEvent>(this TAggregate aggregate, TEvent @event) where TAggregate : Aggregate
         {
             MethodInfo handler;
             var eventType = @event.GetType();
 
-            if (!EventHandlerCache<TAggregate>.Instance.TryGetValue(eventType, out handler))
+            if (!InternalEventHandlerCache<TAggregate>.Instance.TryGetValue(eventType, out handler))
                 return;
 
             try
@@ -29,7 +36,7 @@ namespace Reusables.EventSourcing.Extensions
             }
         }
 
-        private static class EventHandlerCache<TAggregate>
+        private static class InternalEventHandlerCache<TAggregate>
         {
             public static readonly IDictionary<Type, MethodInfo> Instance = typeof (TAggregate).GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
                                                                                                .Where(m => m.Name == "When")

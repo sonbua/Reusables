@@ -21,12 +21,12 @@ namespace CqrsEventSourcingDemo.AggregateRoot
 
         public void OpenTab(Guid id, int tableNumber, string waiter)
         {
-            Publish(new TabOpened
-                    {
-                        Id = id,
-                        TableNumber = tableNumber,
-                        Waiter = waiter
-                    });
+            ApplyUncommittedEvent(new TabOpened
+            {
+                Id = id,
+                TableNumber = tableNumber,
+                Waiter = waiter
+            });
         }
 
         public void PlaceOrder(List<OrderedItem> orderedItems)
@@ -34,32 +34,32 @@ namespace CqrsEventSourcingDemo.AggregateRoot
             var drinks = orderedItems.FindAll(item => item.IsDrink);
 
             if (drinks.Any())
-                Publish(new DrinkOrdered
-                        {
-                            TabId = Id,
-                            Items = drinks
-                        });
+                ApplyUncommittedEvent(new DrinkOrdered
+                {
+                    TabId = Id,
+                    Items = drinks
+                });
 
             var food = orderedItems.FindAll(item => !item.IsDrink);
 
             if (food.Any())
-                Publish(new FoodOrdered
-                        {
-                            TabId = Id,
-                            Items = food
-                        });
+                ApplyUncommittedEvent(new FoodOrdered
+                {
+                    TabId = Id,
+                    Items = food
+                });
         }
 
         public void MarkDrinkServed(List<int> menuNumbers)
         {
-            Publish(new DrinksServed
-                    {
-                        TabId = Id,
-                        MenuNumbers = menuNumbers
-                    });
+            ApplyUncommittedEvent(new DrinksServed
+            {
+                TabId = Id,
+                MenuNumbers = menuNumbers
+            });
         }
 
-        private void Publish<TEvent>(TEvent @event)
+        private void ApplyUncommittedEvent<TEvent>(TEvent @event)
         {
             UncommittedEvents.Add(@event);
 
@@ -70,7 +70,7 @@ namespace CqrsEventSourcingDemo.AggregateRoot
         {
             Version++;
 
-            this.ApplyEventOptionally(@event);
+            this.ApplyInternally(@event);
         }
 
         private void When(TabOpened @event)
