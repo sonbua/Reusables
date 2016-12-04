@@ -37,6 +37,7 @@
     <Compile Include="AggregateFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TabAggregate.cs" />
+    <Compile Include="TabExceptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CqrsEventSourcingDemo.Event\CqrsEventSourcingDemo.Event.csproj">

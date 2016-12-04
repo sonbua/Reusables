@@ -17,7 +17,8 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
         IEventSubscriber<FoodOrdered>,
         IEventSubscriber<DrinksServed>,
         IEventSubscriber<FoodPrepared>,
-        IEventSubscriber<FoodServed>
+        IEventSubscriber<FoodServed>,
+        IEventSubscriber<TabClosed>
     {
         private readonly IViewModelDatabase _database;
 
@@ -34,15 +35,15 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
         public Guid Handle(TabIdForTable query)
         {
             return _database.Set<Tab>()
-                .Single(tab => tab.TableNumber == query.TableNumber &&
+                .Single(tab =>
+                    tab.TableNumber == query.TableNumber &&
                     tab.Status == TabStatuses.Open)
                 .Id;
         }
 
         public TabStatus Handle(TabForTable query)
         {
-            var tab = _database.Set<Tab>().Single(x => x.TableNumber == query.TableNumber &&
-                x.Status == TabStatuses.Open);
+            var tab = _database.Set<Tab>().Single(x => x.TableNumber == query.TableNumber);
 
             return new TabStatus
             {
@@ -76,12 +77,14 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
         public void Handle(DrinkOrdered @event)
         {
             var tab = _database.Set<Tab>().GetById(@event.TabId);
-            var drinksToServe = @event.Items.Select(item => new TabItem
-            {
-                MenuNumber = item.MenuNumber,
-                Description = item.Description,
-                Price = item.Price
-            });
+            var drinksToServe =
+                @event.Items.Select(item =>
+                    new TabItem
+                    {
+                        MenuNumber = item.MenuNumber,
+                        Description = item.Description,
+                        Price = item.Price
+                    });
 
             tab.ToServe.AddRange(drinksToServe);
         }
@@ -138,6 +141,11 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
                 tab.ToServe.Remove(servedFood);
                 tab.Served.Add(servedFood);
             }
+        }
+
+        public void Handle(TabClosed @event)
+        {
+            _database.Set<Tab>().Remove(@event.TabId);
         }
     }
 }

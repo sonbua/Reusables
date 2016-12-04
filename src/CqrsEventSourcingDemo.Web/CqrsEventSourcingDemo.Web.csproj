@@ -217,6 +217,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CloseModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrderLineItem.cs" />
@@ -296,6 +297,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <None Include="Views\Chef\Index.cshtml" />
+    <Content Include="Views\Tab\Close.cshtml" />
     <None Include="Views\Tab\Open.cshtml" />
     <None Include="Views\Tab\Order.cshtml" />
     <None Include="Views\Tab\Status.cshtml" />

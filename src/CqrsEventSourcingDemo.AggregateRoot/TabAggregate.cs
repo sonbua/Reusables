@@ -12,7 +12,9 @@ namespace CqrsEventSourcingDemo.AggregateRoot
         private readonly List<OrderedItem> _outstandingDrinks = new List<OrderedItem>();
         private readonly List<OrderedItem> _outstandingFood = new List<OrderedItem>();
         private readonly List<OrderedItem> _preparedFood = new List<OrderedItem>();
+
         private bool _open;
+        private decimal _servedItemsValue;
 
         public TabAggregate(IEnumerable<object> history)
         {
@@ -84,6 +86,35 @@ namespace CqrsEventSourcingDemo.AggregateRoot
                 });
         }
 
+        public void CloseTab(decimal amountPaid)
+        {
+            if (!_open)
+                throw new TabNotOpenException();
+            if (HasUnservedItems())
+                throw new TabHasUnservedItemsException();
+            if (!EnoughPaid(amountPaid))
+                throw new MustPayEnoughException();
+
+            ApplyUncommittedEvent(
+                new TabClosed
+                {
+                    TabId = Id,
+                    AmountPaid = amountPaid,
+                    OrderValue = _servedItemsValue,
+                    TipValue = amountPaid - _servedItemsValue
+                });
+        }
+
+        private bool HasUnservedItems()
+        {
+            return _outstandingDrinks.Any() || _outstandingFood.Any() || _preparedFood.Any();
+        }
+
+        private bool EnoughPaid(decimal amountPaid)
+        {
+            return amountPaid >= _servedItemsValue;
+        }
+
         private void ApplyUncommittedEvent<TEvent>(TEvent @event)
         {
             UncommittedEvents.Add(@event);
@@ -121,6 +152,7 @@ namespace CqrsEventSourcingDemo.AggregateRoot
                 var servedDrink = _outstandingDrinks.First(item => item.MenuNumber == menuNumber);
 
                 _outstandingDrinks.Remove(servedDrink);
+                _servedItemsValue += servedDrink.Price;
             }
         }
 
@@ -142,7 +174,13 @@ namespace CqrsEventSourcingDemo.AggregateRoot
                 var servedFood = _preparedFood.First(item => item.MenuNumber == menuNumber);
 
                 _preparedFood.Remove(servedFood);
+                _servedItemsValue += servedFood.Price;
             }
+        }
+
+        private void When(TabClosed @event)
+        {
+            _open = false;
         }
     }
 }

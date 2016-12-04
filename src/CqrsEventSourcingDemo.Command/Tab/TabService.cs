@@ -1,6 +1,5 @@
 ﻿using System;
 using CqrsEventSourcingDemo.AggregateRoot;
-using CqrsEventSourcingDemo.Event.Tab;
 using Reusables.Cqrs;
 using Reusables.EventSourcing;
 using Reusables.EventSourcing.Extensions;
@@ -12,7 +11,8 @@ namespace CqrsEventSourcingDemo.Command.Tab
         ICommandHandler<PlaceOrder>,
         ICommandHandler<MarkDrinksServed>,
         ICommandHandler<MarkFoodPrepared>,
-        ICommandHandler<MarkFoodServed>
+        ICommandHandler<MarkFoodServed>,
+        ICommandHandler<CloseTab>
     {
         private readonly IEventStore _eventStore;
 
@@ -48,6 +48,11 @@ namespace CqrsEventSourcingDemo.Command.Tab
         public void Handle(MarkFoodServed command)
         {
             _eventStore.Act<TabAggregate>(command.TabId, aggregate => aggregate.MarkFoodServed(command.MenuNumbers));
+        }
+
+        public void Handle(CloseTab command)
+        {
+            _eventStore.Act<TabAggregate>(command.TabId, aggregate => aggregate.CloseTab(command.AmountPaid));
         }
     }
 }

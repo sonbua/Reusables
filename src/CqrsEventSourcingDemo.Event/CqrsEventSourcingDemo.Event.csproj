@@ -41,6 +41,7 @@
     <Compile Include="Tab\FoodPrepared.cs" />
     <Compile Include="Tab\FoodServed.cs" />
     <Compile Include="Tab\OrderedItem.cs" />
+    <Compile Include="Tab\TabClosed.cs" />
     <Compile Include="Tab\TabOpened.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

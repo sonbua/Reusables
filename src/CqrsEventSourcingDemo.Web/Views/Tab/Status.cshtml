@@ -7,7 +7,11 @@
 <h2>Tab for Table @Model.TableNumber</h2>
 
 <div>
-    <i class="glyphicon-plus"></i>
+    <i class="glyphicon glyphicon-remove"></i>
+    @Html.ActionLink("Close Tab", "Close", new {id = Model.TableNumber})
+</div>
+<div>
+    <i class="glyphicon glyphicon-plus"></i>
     @Html.ActionLink("Order Food/Drink", "Order", new {id = Model.TableNumber})
 </div>
 

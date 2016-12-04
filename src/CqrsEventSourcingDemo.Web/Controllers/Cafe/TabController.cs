@@ -77,6 +77,26 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
             return RedirectToAction("Status", new {id = id});
         }
 
+        public ActionResult Close(int id)
+        {
+            return View(new CloseModel {TableNumber = id});
+        }
+
+        [HttpPost]
+        public ActionResult Close(CloseModel model)
+        {
+            var tabId = _dispatcher.DispatchQuery(new TabIdForTable {TableNumber = model.TableNumber});
+
+            _dispatcher.DispatchCommand(
+                new CloseTab
+                {
+                    TabId = tabId,
+                    AmountPaid = model.AmountPaid
+                });
+
+            return RedirectToAction("Index", "Home");
+        }
+
         private static IEnumerable<OrderedItem> OrderedItems(OrderModel orderModel)
         {
             return orderModel.Items
