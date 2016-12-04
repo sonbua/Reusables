@@ -69,7 +69,7 @@ namespace CqrsEventSourcingDemo.Web
             container.RegisterCollection(typeof (IEventSubscriber<>), new[] {typeof (TabReadModel).Assembly});
 
             // View model database
-            container.RegisterSingleton<IViewModelDatabase, InMemoryViewModelDatabase>();
+            container.RegisterSingleton<IReadModelDatabase, InMemoryReadModelDatabase>();
 
             // Verify
             container.Verify();

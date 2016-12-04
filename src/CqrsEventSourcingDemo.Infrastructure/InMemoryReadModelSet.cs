@@ -6,16 +6,16 @@ using CqrsEventSourcingDemo.ReadModel;
 
 namespace CqrsEventSourcingDemo.Infrastructure
 {
-    public class InMemoryViewModelSet<TViewModel> : IViewModelSet<TViewModel> where TViewModel : ViewModel
+    public class InMemoryReadModelSet<TReadModel> : IReadModelSet<TReadModel> where TReadModel : ReadModel.ReadModel
     {
-        private readonly ICollection<TViewModel> _viewModels = new List<TViewModel>();
+        private readonly ICollection<TReadModel> _viewModels = new List<TReadModel>();
 
-        public void Add(TViewModel view)
+        public void Add(TReadModel view)
         {
             _viewModels.Add(view);
         }
 
-        public void Update(Guid id, Action<TViewModel> updateAction)
+        public void Update(Guid id, Action<TReadModel> updateAction)
         {
             var viewModel = GetById(id);
 
@@ -27,12 +27,12 @@ namespace CqrsEventSourcingDemo.Infrastructure
             _viewModels.Remove(GetById(id));
         }
 
-        public TViewModel GetById(Guid id)
+        public TReadModel GetById(Guid id)
         {
             return _viewModels.Single(x => x.Id == id);
         }
 
-        public IEnumerator<TViewModel> GetEnumerator()
+        public IEnumerator<TReadModel> GetEnumerator()
         {
             return _viewModels.GetEnumerator();
         }
@@ -42,7 +42,7 @@ namespace CqrsEventSourcingDemo.Infrastructure
             return GetEnumerator();
         }
 
-        public IEnumerable<TViewModel> GetAll()
+        public IEnumerable<TReadModel> GetAll()
         {
             return _viewModels;
         }

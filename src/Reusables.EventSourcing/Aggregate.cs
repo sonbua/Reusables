@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace Reusables.EventSourcing
 {
-    // TODO: consider enforcing an empty constructor and a LoadFromHistory method to load aggregate from event store
     public abstract class Aggregate
     {
         protected List<object> UncommittedEvents;

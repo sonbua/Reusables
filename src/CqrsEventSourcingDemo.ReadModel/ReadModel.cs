@@ -2,8 +2,7 @@ using System;
 
 namespace CqrsEventSourcingDemo.ReadModel
 {
-    // TODO: rename to ReadModel
-    public abstract class ViewModel
+    public abstract class ReadModel
     {
         public Guid Id { get; set; }
     }

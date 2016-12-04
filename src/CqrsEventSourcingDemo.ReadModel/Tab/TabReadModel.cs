@@ -20,9 +20,9 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
         IEventSubscriber<FoodServed>,
         IEventSubscriber<TabClosed>
     {
-        private readonly IViewModelDatabase _database;
+        private readonly IReadModelDatabase _database;
 
-        public TabReadModel(IViewModelDatabase database)
+        public TabReadModel(IReadModelDatabase database)
         {
             _database = database;
         }

@@ -11,9 +11,9 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
         IEventSubscriber<FoodOrdered>,
         IEventSubscriber<FoodPrepared>
     {
-        private readonly IViewModelDatabase _database;
+        private readonly IReadModelDatabase _database;
 
-        public ChefTodoListReadModel(IViewModelDatabase database)
+        public ChefTodoListReadModel(IReadModelDatabase database)
         {
             _database = database;
         }

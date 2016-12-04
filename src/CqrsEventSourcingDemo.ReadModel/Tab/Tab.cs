@@ -4,7 +4,7 @@ using CqrsEventSourcingDemo.Event.Tab;
 
 namespace CqrsEventSourcingDemo.ReadModel.Tab
 {
-    public class Tab : ViewModel
+    public class Tab : ReadModel
     {
         public Tab()
         {
@@ -55,7 +55,7 @@ namespace CqrsEventSourcingDemo.ReadModel.Tab
         Closed = 1
     }
 
-    public class TodoList : ViewModel
+    public class TodoList : ReadModel
     {
         public Guid TabId { get; set; }
 

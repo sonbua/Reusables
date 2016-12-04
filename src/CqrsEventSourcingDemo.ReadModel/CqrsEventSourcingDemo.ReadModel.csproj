@@ -34,8 +34,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IViewModelDatabase.cs" />
-    <Compile Include="IViewModelSet.cs" />
+    <Compile Include="IReadModelDatabase.cs" />
+    <Compile Include="IReadModelSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tab\ActiveTableNumbers.cs" />
     <Compile Include="Tab\ChefTodoListReadModel.cs" />
@@ -45,7 +45,7 @@
     <Compile Include="Tab\TabIdForTable.cs" />
     <Compile Include="Tab\TabReadModel.cs" />
     <Compile Include="Tab\TodoListForWaiter.cs" />
-    <Compile Include="ViewModel.cs" />
+    <Compile Include="ReadModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CqrsEventSourcingDemo.Event\CqrsEventSourcingDemo.Event.csproj">
