@@ -127,11 +127,12 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
             var drinks = servedMenuNumbers.Where(item => isDrinkLookup[item]).ToList();
 
             if (drinks.Any())
-                _dispatcher.DispatchCommand(new MarkDrinksServed
-                                            {
-                                                TabId = tabId,
-                                                MenuNumbers = servedMenuNumbers
-                                            });
+                _dispatcher.DispatchCommand(
+                    new MarkDrinksServed
+                    {
+                        TabId = tabId,
+                        MenuNumbers = servedMenuNumbers
+                    });
         }
 
         private void DispatchMarkFoodServedCommand(Guid tabId, List<int> servedMenuNumbers, Dictionary<int, bool> isDrinkLookup)
@@ -139,11 +140,12 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
             var food = servedMenuNumbers.Where(item => !isDrinkLookup[item]).ToList();
 
             if (food.Any())
-                _dispatcher.DispatchCommand(new MarkFoodServed
-                                            {
-                                                Id = tabId,
-                                                MenuNumbers = food
-                                            });
+                _dispatcher.DispatchCommand(
+                    new MarkFoodServed
+                    {
+                        TabId = tabId,
+                        MenuNumbers = food
+                    });
         }
     }
 }

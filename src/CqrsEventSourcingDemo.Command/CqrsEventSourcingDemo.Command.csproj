@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tab\MarkDrinksServed.cs" />
+    <Compile Include="Tab\MarkFoodPrepared.cs" />
     <Compile Include="Tab\MarkFoodServed.cs" />
     <Compile Include="Tab\OpenTab.cs" />
     <Compile Include="Tab\PlaceOrder.cs" />

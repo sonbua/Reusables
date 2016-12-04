@@ -1,4 +1,9 @@
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using CqrsEventSourcingDemo.Command.Tab;
+using CqrsEventSourcingDemo.Event.Tab;
 using CqrsEventSourcingDemo.ReadModel.Tab;
 using CqrsEventSourcingDemo.Web.Controllers.Attributes;
 using Reusables.Cqrs;
@@ -22,9 +27,26 @@ namespace CqrsEventSourcingDemo.Web.Controllers.Cafe
             return View(todoLists);
         }
 
-        public ActionResult MarkPrepared()
+        public ActionResult MarkPrepared(Guid tabId, FormCollection form)
         {
-            return Content("TODO");
+            var servedItemsPattern = new Regex("^prepared_\\d+_(\\d+)$", RegexOptions.Compiled);
+            var servedMenuNumbers =
+                form.AllKeys
+                    .Where(key => servedItemsPattern.IsMatch(key))
+                    .Where(key => form[key] != "false")
+                    .Select(key => servedItemsPattern.Match(key))
+                    .Select(match => match.Groups[1].Value)
+                    .Select(int.Parse)
+                    .ToList();
+
+            _dispatcher.DispatchCommand(
+                new MarkFoodPrepared
+                {
+                    TabId = tabId,
+                    MenuNumbers = servedMenuNumbers
+                });
+
+            return RedirectToAction("Index");
         }
     }
 }

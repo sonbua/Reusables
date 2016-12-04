@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace CqrsEventSourcingDemo.Command.Tab
+namespace CqrsEventSourcingDemo.Event.Tab
 {
-    public class MarkFoodServed
+    public class FoodServed
     {
         public Guid TabId { get; set; }
 

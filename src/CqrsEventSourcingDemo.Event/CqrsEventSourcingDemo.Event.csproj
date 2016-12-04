@@ -38,6 +38,8 @@
     <Compile Include="Tab\DrinkOrdered.cs" />
     <Compile Include="Tab\DrinksServed.cs" />
     <Compile Include="Tab\FoodOrdered.cs" />
+    <Compile Include="Tab\FoodPrepared.cs" />
+    <Compile Include="Tab\FoodServed.cs" />
     <Compile Include="Tab\OrderedItem.cs" />
     <Compile Include="Tab\TabOpened.cs" />
   </ItemGroup>

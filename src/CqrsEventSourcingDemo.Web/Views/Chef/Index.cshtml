@@ -8,10 +8,10 @@
 
 @foreach (var todoList in Model)
 {
-    @Html.Hidden("tabId", todoList.TabId)
-
     using (Html.BeginForm("MarkPrepared", "Chef"))
     {
+        @Html.Hidden("tabId", todoList.TabId)
+
         <div class="panel panel-warning">
             <div class="panel-body">
                 <table class="table">

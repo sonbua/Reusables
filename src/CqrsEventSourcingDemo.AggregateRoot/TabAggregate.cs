@@ -11,6 +11,7 @@ namespace CqrsEventSourcingDemo.AggregateRoot
     {
         private readonly List<OrderedItem> _outstandingDrinks = new List<OrderedItem>();
         private readonly List<OrderedItem> _outstandingFood = new List<OrderedItem>();
+        private readonly List<OrderedItem> _preparedFood = new List<OrderedItem>();
         private bool _open;
 
         public TabAggregate(IEnumerable<object> history)
@@ -21,12 +22,13 @@ namespace CqrsEventSourcingDemo.AggregateRoot
 
         public void OpenTab(Guid id, int tableNumber, string waiter)
         {
-            ApplyUncommittedEvent(new TabOpened
-            {
-                Id = id,
-                TableNumber = tableNumber,
-                Waiter = waiter
-            });
+            ApplyUncommittedEvent(
+                new TabOpened
+                {
+                    Id = id,
+                    TableNumber = tableNumber,
+                    Waiter = waiter
+                });
         }
 
         public void PlaceOrder(List<OrderedItem> orderedItems)
@@ -34,29 +36,52 @@ namespace CqrsEventSourcingDemo.AggregateRoot
             var drinks = orderedItems.FindAll(item => item.IsDrink);
 
             if (drinks.Any())
-                ApplyUncommittedEvent(new DrinkOrdered
-                {
-                    TabId = Id,
-                    Items = drinks
-                });
+                ApplyUncommittedEvent(
+                    new DrinkOrdered
+                    {
+                        TabId = Id,
+                        Items = drinks
+                    });
 
             var food = orderedItems.FindAll(item => !item.IsDrink);
 
             if (food.Any())
-                ApplyUncommittedEvent(new FoodOrdered
-                {
-                    TabId = Id,
-                    Items = food
-                });
+                ApplyUncommittedEvent(
+                    new FoodOrdered
+                    {
+                        TabId = Id,
+                        Items = food
+                    });
         }
 
         public void MarkDrinkServed(List<int> menuNumbers)
         {
-            ApplyUncommittedEvent(new DrinksServed
-            {
-                TabId = Id,
-                MenuNumbers = menuNumbers
-            });
+            ApplyUncommittedEvent(
+                new DrinksServed
+                {
+                    TabId = Id,
+                    MenuNumbers = menuNumbers
+                });
+        }
+
+        public void MarkFoodPrepared(List<int> menuNumbers)
+        {
+            ApplyUncommittedEvent(
+                new FoodPrepared
+                {
+                    TabId = Id,
+                    MenuNumbers = menuNumbers
+                });
+        }
+
+        public void MarkFoodServed(List<int> menuNumbers)
+        {
+            ApplyUncommittedEvent(
+                new FoodServed
+                {
+                    TabId = Id,
+                    MenuNumbers = menuNumbers
+                });
         }
 
         private void ApplyUncommittedEvent<TEvent>(TEvent @event)
@@ -91,11 +116,32 @@ namespace CqrsEventSourcingDemo.AggregateRoot
 
         private void When(DrinksServed @event)
         {
-            foreach (var drinkMenuNumber in @event.MenuNumbers)
+            foreach (var menuNumber in @event.MenuNumbers)
             {
-                var drinkToRemove = _outstandingDrinks.FirstOrDefault(drink => drink.MenuNumber == drinkMenuNumber);
+                var servedDrink = _outstandingDrinks.First(item => item.MenuNumber == menuNumber);
 
-                _outstandingDrinks.Remove(drinkToRemove);
+                _outstandingDrinks.Remove(servedDrink);
+            }
+        }
+
+        private void When(FoodPrepared @event)
+        {
+            foreach (var menuNumber in @event.MenuNumbers)
+            {
+                var preparedFood = _outstandingFood.First(item => item.MenuNumber == menuNumber);
+
+                _outstandingFood.Remove(preparedFood);
+                _preparedFood.Add(preparedFood);
+            }
+        }
+
+        private void When(FoodServed @event)
+        {
+            foreach (var menuNumber in @event.MenuNumbers)
+            {
+                var servedFood = _preparedFood.First(item => item.MenuNumber == menuNumber);
+
+                _preparedFood.Remove(servedFood);
             }
         }
     }
