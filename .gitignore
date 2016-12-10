@@ -191,3 +191,6 @@ _Pvt_Extensions/
 ModelManifest.xml
 *.sln.GhostDoc.xml
 .vs/
+
+# JetBrains Rider
+.idea/
